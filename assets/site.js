@@ -1,11 +1,12 @@
 /* =====================================================================
-   VKVSIR.COM — SHARED CONTENT (header, menu, footer for every page)
+   VKVSIR.COM — SHARED HEADER, MENU, FOOTER & EFFECTS
    ===================================================================== */
-const OLD = 'https://www.vkvsir.com';            // existing Wix site (members area & blog posts live there for now)
+const OLD = 'https://www.vkvsir.com';
+const TESTLAB = 'https://test.vkvsir.com';
 const SITE = {
   name: 'Prof. Vinod Kumar Verma',
-  dept: 'Department of Mechanical Engineering<br>Engineering College Ajmer, Rajasthan, India',
-  logo: 'https://static.wixstatic.com/media/b90d41_2891d42aeac74eb783f9e95cded38f1e~mv2.png',
+  short: 'Mechanical Engg. · Engineering College Ajmer',
+  logo: 'https://static.wixstatic.com/media/b90d41_2891d42aeac74eb783f9e95cded38f1e~mv2.png/v1/fit/w_120,h_120,q_90/logo.png',
   joinUrl: OLD + '/apply',
   email: 'vinodvermavkvsir@gmail.com',
   address: 'NB-202, New Building, Engineering College Ajmer, Rajasthan, India – 305025',
@@ -17,58 +18,79 @@ const SITE = {
     ['Instagram','https://www.instagram.com/vkvsir','8d6893330740455c96d218258a458aa4.png'],
     ['Telegram','https://t.me/vkvsir','11062b_e98838ff3ed04690a4d6de29d5936f77~mv2.png']
   ],
+  members: [
+    ['Automobile Engineering', OLD + '/automobile-engineering'],
+    ['Hybrid & Electric Vehicles', OLD + '/hev'],
+    ['Workshop Practice', OLD + '/workshop-practice'],
+    ['Quiz', OLD + '/quiz'],
+    ['New Product Design & Launching', OLD + '/pdl']
+  ],
   menu: [
-    ['Home','./'],['Courses','courses'],['About','about'],
-    ['R&D, Projects & Innovation', OLD + '/research-project-innovation'],
-    ['Media','media'],['Test and Analysis','test-and-analysis'],
-    ['Blog & Linkedin','blog'],['FAQ','faq'],['Contact','contact'],
-    ['Members Area ▾', OLD + '/members',[
-      ['Automobile Engineering', OLD + '/automobile-engineering'],
-      ['Hybrid and Electric Vehicles', OLD + '/hev'],
-      ['Workshop Practice', OLD + '/workshop-practice'],
-      ['Quiz', OLD + '/quiz'],
-      ['New Product Design & Launching', OLD + '/pdl'],
-      ['Join membership – free', OLD + '/apply']]]
+    ['Home','./'],['About','about'],['Courses','courses'],['Test Lab', TESTLAB],
+    ['R&D','research-project-innovation'],['Media','media'],['Blog','blog'],
+    ['More',null,[['Test and Analysis','test-and-analysis'],['FAQ','faq'],['Contact','contact']]],
+    ['Members',null,'members']
   ],
   footer: '©2026 Website created & handled by Reeva Verma'
 };
 
 (function render(){
   const here = (location.pathname.split('/').pop() || '').replace('.html','') || './';
-  const media = i => `https://static.wixstatic.com/media/${i}`;
-  const isCur = u => (u === here) || (u === './' && (here === './' || here === 'index'));
-  const menu = SITE.menu.map(([t,u,sub]) => `<li><a href="${u}"${isCur(u)?' aria-current="page"':''}>${t}</a>${sub?`<div class="sub">${sub.map(([st,su])=>`<a href="${su}">${st}</a>`).join('')}</div>`:''}</li>`).join('');
-  const soc = SITE.socials.map(([n,u,i])=>`<a href="${u}" target="_blank" rel="noopener" aria-label="${n}"><img src="${media(i)}" alt="${n}" width="28" height="28"></a>`).join('');
-  document.getElementById('site-header').innerHTML = `
-  <header class="site-header"><div class="head-row">
-    <a class="logo" href="./"><img src="${SITE.logo}" alt="Logo of vkvsir"></a>
-    <div class="titles"><a class="name" href="./">${SITE.name}</a><p class="dept">${SITE.dept}</p></div>
-    <div class="head-side"><a class="login" href="${SITE.joinUrl}">Log In / Join</a><div class="socials">${soc}</div></div>
-  </div></header>
-  <nav class="nav" id="nav" aria-label="Main"><button class="menu-toggle" aria-expanded="false">☰ Menu</button><ul>${menu}</ul></nav>`;
-  const members = SITE.menu[9][2];
-  document.getElementById('site-footer').innerHTML = `
-  <footer><div class="wrap"><div class="foot-grid">
-    <div><h3>${SITE.name}</h3><p>${SITE.address}</p><p><a href="mailto:${SITE.email}">${SITE.email}</a></p><div class="foot-socials">${soc}</div></div>
-    <div><h3>Explore</h3><ul>${[1,2,4,5,6,7,8].map(k=>`<li><a href="${SITE.menu[k][1]}">${SITE.menu[k][0]}</a></li>`).join('')}</ul></div>
-    <div><h3>Members area</h3><ul>${members.map(([t,u])=>`<li><a href="${u}">${t}</a></li>`).join('')}</ul></div>
-  </div><p class="copy">${SITE.footer} · <a href="${OLD}/post/privacy-policy">Privacy Policy</a></p></div></footer>`;
-  const nav = document.getElementById('nav');
-  nav.querySelector('.menu-toggle').addEventListener('click', e => { const o = nav.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', o); });
+  const cur = u => u === here || (u === './' && (here === './' || here === 'index'));
+  const ext = u => /^https?:/.test(u) && !u.startsWith(location.origin);
+  const A = (t,u) => `<a href="${u}"${cur(u)?' aria-current="page"':''}${ext(u)&&u.startsWith(TESTLAB)?' target="_blank" rel="noopener"':''}>${t}</a>`;
+  const items = SITE.menu.map(([t,u,sub]) => {
+    if (!sub) return `<li>${A(t,u)}</li>`;
+    const list = sub === 'members' ? [...SITE.members, ['Join membership – free', SITE.joinUrl]] : sub;
+    return `<li><button aria-expanded="false" aria-haspopup="true">${t} <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button><ul class="drop">${list.map(([a,b])=>`<li>${A(a,b)}</li>`).join('')}</ul></li>`;
+  }).join('');
+  const soc = SITE.socials.map(([n,u,i])=>`<a href="${u}" target="_blank" rel="noopener" aria-label="${n}"><img src="https://static.wixstatic.com/media/${i}/v1/fit/w_44,h_44/s.png" alt="" width="22" height="22" loading="lazy"></a>`).join('');
+  const brand = `<a class="brand" href="./" aria-label="Home – ${SITE.name}"><img src="${SITE.logo}" alt="VKVSir logo" width="46" height="39"><span><b>${SITE.name}</b><small>${SITE.short}</small></span></a>`;
+  document.getElementById('site-header').outerHTML = `
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="hdr" id="hdr"><div class="wrap hdr-in">${brand}
+    <button class="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+    <ul class="menu" id="menu">${items}<li><a class="cta" href="${SITE.joinUrl}">Join free</a></li></ul>
+  </div></header><div class="scrim" id="scrim"></div>`;
+  document.getElementById('site-footer').outerHTML = `
+  <footer class="ftr"><div class="wrap"><div class="ftr-grid">
+    <div>${brand}<p style="margin-top:16px">${SITE.address}</p><p><a href="mailto:${SITE.email}">${SITE.email}</a></p><div class="soc">${soc}</div></div>
+    <div><h3>Explore</h3><ul><li><a href="about">About</a></li><li><a href="courses">Courses</a></li><li><a href="research-project-innovation">R&amp;D &amp; Innovation</a></li><li><a href="media">Media</a></li><li><a href="blog">Blog</a></li></ul></div>
+    <div><h3>Learn</h3><ul><li><a href="${TESTLAB}" target="_blank" rel="noopener">Test Lab</a></li><li><a href="test-and-analysis">Test and Analysis</a></li>${SITE.members.map(([t,u])=>`<li><a href="${u}">${t}</a></li>`).join('')}</ul></div>
+    <div><h3>Help</h3><ul><li><a href="${SITE.joinUrl}">Join membership – free</a></li><li><a href="faq">FAQ</a></li><li><a href="contact">Contact</a></li><li><a href="${OLD}/post/privacy-policy">Privacy policy</a></li></ul></div>
+  </div><div class="copy"><span>${SITE.footer}</span><span>Learning with VKVSir is fun.</span></div></div></footer>`;
+
+  const body = document.body, burger = document.querySelector('.burger');
+  const setNav = o => { body.classList.toggle('nav-open', o); burger.setAttribute('aria-expanded', o); };
+  burger.onclick = () => setNav(!body.classList.contains('nav-open'));
+  document.getElementById('scrim').onclick = () => setNav(false);
+  document.addEventListener('keydown', e => e.key === 'Escape' && setNav(false));
+  document.querySelectorAll('.menu > li > button').forEach(b => b.onclick = () => { const li = b.parentElement; const o = li.classList.toggle('open'); b.setAttribute('aria-expanded', o); });
+  const hdr = document.getElementById('hdr');
+  const onScroll = () => hdr.classList.toggle('scrolled', scrollY > 8);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* reveal on scroll */
+  const els = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    els.forEach(el => io.observe(el));
+  } else els.forEach(el => el.classList.add('in'));
 })();
 
-/* Lightbox for any image gallery marked data-gallery */
+/* Lightbox for galleries: lightbox('selector') — images need data-full */
 function lightbox(selector){
   const imgs = [...document.querySelectorAll(selector)]; if (!imgs.length) return;
-  const box = document.createElement('div'); box.className = 'lightbox'; box.setAttribute('role','dialog');
-  box.innerHTML = '<button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button>';
+  const box = document.createElement('div'); box.className = 'lightbox'; box.setAttribute('role','dialog'); box.setAttribute('aria-modal','true');
+  box.innerHTML = '<button class="lb-close" aria-label="Close">×</button><button class="lb-prev" aria-label="Previous">‹</button><img alt=""><button class="lb-next" aria-label="Next">›</button><p class="lb-cap"></p>';
   document.body.appendChild(box);
-  const big = box.querySelector('img'); let i = 0;
-  const show = n => { i = (n + imgs.length) % imgs.length; big.src = imgs[i].dataset.full; big.alt = imgs[i].alt; };
-  imgs.forEach((im, n) => { im.style.cursor = 'zoom-in'; im.tabIndex = 0; const open = () => { show(n); box.classList.add('open'); }; im.addEventListener('click', open); im.addEventListener('keydown', e => e.key === 'Enter' && open()); });
-  box.querySelector('.lb-close').onclick = () => box.classList.remove('open');
+  const big = box.querySelector('img'), cap = box.querySelector('.lb-cap'); let i = 0;
+  const show = n => { i = (n + imgs.length) % imgs.length; big.src = imgs[i].dataset.full; big.alt = imgs[i].alt; cap.textContent = imgs[i].alt + '  ·  ' + (i + 1) + ' / ' + imgs.length; };
+  const close = () => box.classList.remove('open');
+  imgs.forEach((im, n) => { im.style.cursor = 'zoom-in'; im.tabIndex = 0; const open = () => { show(n); box.classList.add('open'); }; im.onclick = open; im.onkeydown = e => e.key === 'Enter' && open(); });
+  box.querySelector('.lb-close').onclick = close;
   box.querySelector('.lb-prev').onclick = () => show(i - 1);
   box.querySelector('.lb-next').onclick = () => show(i + 1);
-  box.addEventListener('click', e => { if (e.target === box) box.classList.remove('open'); });
-  document.addEventListener('keydown', e => { if (!box.classList.contains('open')) return; if (e.key === 'Escape') box.classList.remove('open'); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
+  box.onclick = e => { if (e.target === box) close(); };
+  document.addEventListener('keydown', e => { if (!box.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
 }
