@@ -4,295 +4,83 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Academician | Vkvsir | India</title>
-<meta name="description" content="Learning with vkvsir is fun. All course are in hindi & english with animations, ppt, pdf and objective question / mcq. Full course lectures of Automobile engineering, Hybrid & Electric Vehicles (HEV), Workshop, Drawing etc.">
+<meta name="description" content="Learning with vkvsir is fun. All course are in hindi &amp; english with animations, ppt, pdf and objective question / mcq. Full course lectures of Automobile engineering, Hybrid &amp; Electric Vehicles (HEV), Workshop, Drawing etc.">
 <meta property="og:title" content="Academician | Vkvsir | India">
+<meta property="og:description" content="Learning with vkvsir is fun. All course are in hindi &amp; english with animations, ppt, pdf and objective question / mcq. Full course lectures of Automobile engineering, Hybrid &amp; Electric Vehicles (HEV), Workshop, Drawing etc.">
 <meta property="og:image" content="https://static.wixstatic.com/media/b90d41_c42d4694683b4a9b8599e2321e7a0d1f~mv2.jpg">
 <meta name="google-site-verification" content="6SKN6jL13ZKnwFayefSH5_D0gb4olI3XBhQWLGzdgRY">
 <link rel="icon" href="https://static.wixstatic.com/media/b90d41_2891d42aeac74eb783f9e95cded38f1e~mv2.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Oswald:wght@400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main>
 <style>
-/* ======================================================================
-   DESIGN SETTINGS — change colours / fonts here and the whole page follows
-   ====================================================================== */
-:root{
-  --header-bg-1:#c9eea6; --header-bg-2:#eaf8cf;   /* light green header */
-  --title:#0e3a36;                                /* dark teal title text */
-  --nav-bg:#111; --nav-text:#fff; --nav-active:#3a3a3a;
-  --hero-bg:#0f3b33; --hero-text:#f4f1e6; --gold:#d8b25a;
-  --section-bg:#ffffff; --alt-bg:#eef6ea; --text:#1f2a28; --muted:#55615e;
-  --accent:#0e6b5c; --btn-text:#fff; --yt:#e62117;
-  --font-title:'Archivo',Arial,sans-serif;
-  --font-nav:'Oswald','Arial Narrow',sans-serif;
-  --font-body:'Lora',Georgia,serif;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;font-family:var(--font-body);color:var(--text);background:var(--section-bg);line-height:1.6}
-img{max-width:100%;display:block}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
-
-/* ---------- Header ---------- */
-.site-header{background:linear-gradient(115deg,var(--header-bg-1),var(--header-bg-2) 60%,var(--header-bg-1));padding-top:env(safe-area-inset-top,0)}
-.head-row{display:grid;grid-template-columns:auto 1fr auto;gap:20px;align-items:center;padding:16px 20px}
-.logo img{width:110px;height:auto}
-.titles{text-align:center}
-.titles h1{font-family:var(--font-title);font-weight:800;color:var(--title);letter-spacing:.14em;font-size:clamp(20px,3.2vw,38px);margin:0;text-decoration:none}
-.titles p{font-family:var(--font-title);font-weight:700;color:var(--title);letter-spacing:.1em;font-size:clamp(13px,1.7vw,21px);margin:6px 0 0;line-height:1.35}
-.head-side{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-.login{font-family:var(--font-nav);font-size:15px;text-decoration:none;color:var(--title)}
-.socials{display:flex;gap:6px}
-.socials img{width:30px;height:30px}
-
-/* ---------- Menu ---------- */
-.nav{background:var(--nav-bg);position:sticky;top:0;z-index:20}
-.nav ul{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;max-width:1180px}
-.nav li{position:relative}
-.nav a{display:block;padding:12px 15px;font-family:var(--font-nav);font-size:17px;color:var(--nav-text);text-decoration:none;white-space:nowrap}
-.nav a:hover,.nav a[aria-current="page"]{background:var(--nav-active)}
-.nav .sub{display:none;position:absolute;top:100%;left:0;background:var(--nav-bg);min-width:250px;flex-direction:column}
-.nav li:hover>.sub,.nav li:focus-within>.sub{display:flex}
-.menu-toggle{display:none}
-
-/* ---------- Hero ---------- */
-.hero{background:var(--hero-bg);color:var(--hero-text);overflow:hidden}
+.hero{background:radial-gradient(circle at 80% 40%,#1a5a4c 0,var(--hero-bg) 55%);color:var(--hero-text);overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;padding-top:50px;padding-bottom:50px}
 .rule{display:block;width:90px;height:4px;border-radius:2px;background:var(--gold);margin-bottom:18px}
-.hero{background:radial-gradient(circle at 80% 40%,#1a5a4c 0,var(--hero-bg) 55%)}
-.hero-photo{filter:drop-shadow(0 18px 30px rgba(0,0,0,.45))}
-.hero h2{font-family:var(--font-title);color:var(--gold);font-size:clamp(32px,5vw,56px);margin:10px 0}
+.hero h1{font-family:var(--font-title);color:var(--gold);font-size:clamp(34px,5vw,58px);margin:0 0 10px}
 .hero .he{font-size:20px;margin:0 0 6px;font-style:italic}
 .hero .lines p{margin:2px 0;font-size:clamp(18px,2vw,23px)}
 .hero blockquote{margin:22px 0 0;font-style:italic;color:var(--gold);font-size:18px}
-.hero-photo{justify-self:center;max-width:420px}
-.btn{display:inline-block;background:var(--accent);color:var(--btn-text);font-family:var(--font-nav);font-size:18px;padding:12px 26px;border-radius:30px;text-decoration:none;border:2px solid transparent}
-.btn:hover{border-color:var(--gold)}
-.btn.gold{background:var(--gold);color:#1a1a1a}
-.btn.yt{background:var(--yt)}
-
-/* ---------- Sections ---------- */
-section.block{padding:60px 0}
-section.alt{background:var(--alt-bg)}
-.block h2{font-family:var(--font-title);color:var(--title);font-size:clamp(26px,3.4vw,40px);margin:0 0 10px;text-align:center}
-.block .lead{max-width:760px;margin:0 auto 30px;text-align:center;color:var(--muted)}
-.center{text-align:center;margin-top:26px}
-.media-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.media-grid img{width:100%;height:150px;object-fit:cover;border-radius:6px}
-.courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
-.course{background:#fff;border-radius:8px;overflow:hidden;text-decoration:none;box-shadow:0 2px 10px rgba(14,58,54,.12)}
-.course img{width:100%;height:200px;object-fit:cover}
-.course span{display:block;padding:14px;font-family:var(--font-nav);font-size:20px;color:var(--title);text-align:center}
-
-/* Views slider — the one deliberate animation on the page */
+.hero-photo{justify-self:center;max-width:420px;filter:drop-shadow(0 18px 30px rgba(0,0,0,.45))}
+.media-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.media-strip img{width:100%;height:150px;object-fit:cover;border-radius:6px}
 .slider{position:relative;max-width:440px;margin:0 auto;aspect-ratio:503/671;overflow:hidden;border-radius:14px;background:#f3f6f4;box-shadow:0 10px 30px rgba(14,58,54,.18)}
 .slider img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .8s}
+.slider img.on{opacity:1}
 .slide-nav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:var(--title);font-size:22px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);z-index:2}
 .slide-nav.prev{left:10px}.slide-nav.next{right:10px}
-.slider img.on{opacity:1}
 .dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
 .dots button{width:11px;height:11px;border-radius:50%;border:0;background:#b9c9c4;cursor:pointer;padding:0}
 .dots button.on{background:var(--accent)}
-
 .fun{position:relative;color:#fff;text-align:center;padding:110px 20px;background:center/cover no-repeat}
 .fun::before{content:"";position:absolute;inset:0;background:rgba(10,40,35,.55)}
-.fun > *{position:relative}
-.fun h2{font-family:var(--font-title);font-size:clamp(30px,5vw,54px);margin:0 0 20px;color:#fff}
-
-.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
-.post{background:#fff;border-radius:8px;overflow:hidden;text-decoration:none;box-shadow:0 2px 10px rgba(14,58,54,.12)}
-.post img{width:100%;height:190px;object-fit:cover;background:var(--alt-bg)}
-.post span{display:block;padding:14px;font-weight:600;color:var(--title)}
-
+.fun>*{position:relative}.fun h2{font-family:var(--font-title);font-size:clamp(30px,5vw,54px);margin:0 0 20px;color:#fff}
 .join{background:var(--hero-bg);color:var(--hero-text);text-align:center;padding:60px 20px}
 .join h2{font-family:var(--font-title);color:var(--gold);margin:0 0 8px;font-size:clamp(24px,3vw,34px)}
 .join p{margin:0 auto 22px;max-width:620px}
-footer{background:#0b1f1b;color:#cfd8d5;padding:46px 0 calc(16px + env(safe-area-inset-bottom,0));font-size:15px}
-.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px}
-footer h3{font-family:var(--font-nav);font-weight:500;color:var(--gold);font-size:19px;margin:0 0 12px}
-footer a{color:#cfd8d5;text-decoration:none}footer a:hover{color:#fff;text-decoration:underline}
-footer ul{list-style:none;margin:0;padding:0;line-height:1.95}
-.foot-socials{display:flex;gap:8px;margin-top:14px}.foot-socials img{width:30px;height:30px}
-.copy{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:16px;text-align:center;font-size:13.5px;color:#9fb0ab}
-@media (max-width:820px){.foot-grid{grid-template-columns:1fr;text-align:center}.foot-socials{justify-content:center}}
-
-/* ---------- Mobile ---------- */
-@media (max-width:820px){
-  .head-row{grid-template-columns:auto 1fr;}
-  .head-side{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center}
-  .menu-toggle{display:block;width:100%;background:var(--nav-bg);color:#fff;border:0;font-family:var(--font-nav);font-size:18px;padding:12px}
-  .nav ul{display:none;flex-direction:column}
-  .nav.open ul{display:flex}
-  .nav .sub{position:static;display:flex;padding-left:16px}
-  .hero .wrap{grid-template-columns:1fr;text-align:center}
-  .rule{margin:0 auto 18px}
-}
-@media (prefers-reduced-motion:reduce){.slider img{transition:none}html{scroll-behavior:auto}}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr;text-align:center}.rule{margin:0 auto 18px}}
 </style>
-</head>
-<body>
-<div id="app"></div>
-
-<script>
-/* ======================================================================
-   CONTENT — all text, links and images of the homepage live here.
-   To change anything, edit this block only.
-   ====================================================================== */
-const IMG = (id, w) => `https://static.wixstatic.com/media/${id}/v1/fit/w_${w||800},h_${w||800},q_85/file.jpg`;
-const SITE = {
-  name: 'Prof. Vinod Kumar Verma',
-  subtitle: 'Department of Mechanical Engineering<br>Engineering College Ajmer, Rajasthan, India',
-  logo: 'https://static.wixstatic.com/media/b90d41_2891d42aeac74eb783f9e95cded38f1e~mv2.png',
-  loginUrl: 'https://www.vkvsir.com/apply',
-  socials: [
-    ['YouTube','https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1','a1b09fe8b7f04378a9fe076748ad4a6a.png'],
-    ['LinkedIn','https://www.linkedin.com/in/vkvsir','48a2a42b19814efaa824450f23e8a253.png'],
-    ['Facebook','https://www.facebook.com/vkvsir','e316f544f9094143b9eac01f1f19e697.png'],
-    ['Twitter','https://www.twitter.com/vkvsir','9c4b521dd2404cd5a05ed6115f3a0dc8.png'],
-    ['Instagram','https://www.instagram.com/vkvsir','8d6893330740455c96d218258a458aa4.png'],
-    ['Telegram','https://t.me/vkvsir','11062b_e98838ff3ed04690a4d6de29d5936f77~mv2.png']
-  ],
-  menu: [
-    ['Home','/'],['Courses','https://www.vkvsir.com/courses'],['About','https://www.vkvsir.com/about'],
-    ['R&D, Projects & Innovation','https://www.vkvsir.com/research-project-innovation'],
-    ['Media','https://www.vkvsir.com/media'],['Test and Analysis','https://www.vkvsir.com/test-and-analysis'],
-    ['Blog & Linkedin','https://www.vkvsir.com/blog'],['FAQ','https://www.vkvsir.com/faq'],
-    ['Contact','https://www.vkvsir.com/contact'],
-    ['Members Area','https://www.vkvsir.com/members',[
-      ['Automobile Engineering','https://www.vkvsir.com/automobile-engineering'],
-      ['Hybrid and Electric Vehicles','https://www.vkvsir.com/hev'],
-      ['Workshop Practice','https://www.vkvsir.com/workshop-practice'],
-      ['Quiz','https://www.vkvsir.com/quiz'],
-      ['New Product Design & Launching','https://www.vkvsir.com/pdl']]]
-  ],
-  hero: {
-    name: 'Vinod Kr. Verma',
-    lines: ['a professor by profession,','an innovator by intelligence,','a motivator by mood,','brilliant with brain &','humble with heart.'],
-    quote: '"In today\'s era, there is nothing better than human networking!!" … VKVSir',
-    glitter: 'https://static.wixstatic.com/media/b90d41_e5271db4c18e44dd8994106817fddc9c~mv2.png',
-    photo: 'https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_433,h_519,al_c,q_85/vinod3_edited.png',
-    button: ['Know more about him','https://www.vkvsir.com/about']
-  },
-  media: {
-    title: 'Media Appearances of VKVSir',
-    text: 'This is a section showing the media appearances of VKV sir.',
-    images: ['b90d41_f8d7b46bf8ef4e02a2f843e58c2fdf16~mv2.jpg','b90d41_ae1e83e73dd6481598341637786512d7~mv2.jpg','b90d41_f092db602bf744719a308a9403cb38a4~mv2.jpg','b90d41_de1bdfb6fbee45d48ef1c051f74ae05e~mv2.jpeg','b90d41_37ebd5a8adc548abab515507462c8ccb~mv2.jpeg','b90d41_1fb7211d22994a669b0071c450a3e3ed~mv2.jpg','b90d41_3092ac066fe54b44a1a853116385b953~mv2.jpg','b90d41_b3fa9e02c8af40e6bd557244e44df2ef~mv2.jpg','b90d41_13e95f61ad114a59b38860e2a7316532~mv2.jpg','b90d41_0504ef60c2e14cea83781638f9bac1de~mv2.jpeg'],
-    button: ['View More Media','https://www.vkvsir.com/media']
-  },
-  courses: {
-    title: 'Courses Conducted',
-    text: "He loves to teach his students by meeting them at their level. Once the students feel comfortable with him, they begin to ask questions and engage fully in VKV Sir's class. VKV Sir believes in his students and allows them to make their own choices, whether right or wrong.",
-    items: [
-      ['Automobile Engineering','https://www.vkvsir.com/automobile-engineering','11062b_42b9ecea6a1540668defdedea80d1a9d~mv2.jpg'],
-      ['Workshop Practice','https://www.vkvsir.com/workshop-practice','e592d5b87e234c849e8363ee949932a0.jpg'],
-      ['Hybrid & Electric Vehicles','https://www.vkvsir.com/hev','nsplsh_7d668a14fefe4074a5acad37439a215e~mv2.jpg']
-    ]
-  },
-  views: {
-    title: 'His Views for Teachers & Students',
-    slides: ['b90d41_4b0b2e74e44241968531a826ee177608~mv2.png','b90d41_1eceb170101d4e18a61b447ab23b4892~mv2.png','b90d41_883c935dac5a4542a30294f91f8fb922~mv2.png','b90d41_d75231deb0d84b6caa5cd3ff86bd9cd5~mv2.png','b90d41_b13b4fe9d1964223a95e5da29c2073a3~mv2.png','b90d41_e2e15e52de6e4d9f9c2342a5dfd74afa~mv2.png','b90d41_6cc1a4a2b7cd432bb5fd1d633638432d~mv2.png','b90d41_142d5d1f99f6466bba10646d3e681be9~mv2.png'],
-    seconds: 4
-  },
-  fun: { title: 'Learning Online is Fun', image: '11062b_07608b0b281a42bcafaea6a99b070d47f000.jpg', button: ['View Online Courses','https://www.vkvsir.com/courses'] },
-  posts: {
-    title: 'Posts & Articles',
-    text: "By posting good content and information, he would like to help and update his peers so we can help each other directly or indirectly. In today's world networking is the key to success!",
-    items: [
-      ['Happy Diwali 2025','https://www.vkvsir.com/post/happy-diwali-2025',''],
-      ['Happy Holi 2025','https://www.vkvsir.com/post/happy-holi-2025','b90d41_5f5acec029d5489f9dbfa23fbbd446f9f003.jpg'],
-      ['Happy Republic Day','https://www.vkvsir.com/post/happy-republic-day-2','b90d41_e49c252c6a3c4e72adf95e845d8212c7~mv2.jpg']
-    ],
-    button: ['View More Blogs','https://www.vkvsir.com/blog']
-  },
-  join: {
-    title: 'Get free PDFs, MCQs & full lectures',
-    text: 'Membership is free for our YouTube subscribers. Sign in with the Google account you use on YouTube and get access in seconds.',
-    button: ['Join Membership – Free','https://www.vkvsir.com/apply']
-  },
-  footer: '©2026 Website created & handled by Reeva Verma',
-  contact: { email: 'vinodvermavkvsir@gmail.com', place: 'Engineering College Ajmer, Rajasthan, India' }
-};
-
-/* ======================================================================
-   PAGE BUILDER — turns the CONTENT above into the page. Rarely needs edits.
-   ====================================================================== */
-const wix = (id, w) => `https://static.wixstatic.com/media/${id}/v1/fill/w_${w},h_${Math.round(w*0.75)},al_c,q_85/img.jpg`;
-const S = SITE;
-const menuHtml = S.menu.map(([t,u,sub]) => `<li><a href="${u}"${u==='/'?' aria-current="page"':''}>${t}${sub?' ▾':''}</a>${sub?`<div class="sub">${sub.map(([st,su])=>`<a href="${su}">${st}</a>`).join('')}</div>`:''}</li>`).join('');
-
-document.getElementById('app').innerHTML = `
-<header class="site-header"><div class="head-row">
-  <a class="logo" href="/"><img src="${S.logo}" alt="Logo of vkvsir"></a>
-  <div class="titles"><h1>${S.name}</h1><p>${S.subtitle}</p></div>
-  <div class="head-side"><a class="login" href="${S.loginUrl}">Log In</a>
-    <div class="socials">${S.socials.map(([n,u,i])=>`<a href="${u}" target="_blank" rel="noopener" aria-label="${n}"><img src="https://static.wixstatic.com/media/${i}" alt="${n}"></a>`).join('')}</div></div>
-</div></header>
-<nav class="nav" id="nav"><button class="menu-toggle" aria-expanded="false" aria-controls="menu">☰ Menu</button><ul id="menu">${menuHtml}</ul></nav>
-
 <section class="hero"><div class="wrap">
-  <div>
-    <span class="rule" aria-hidden="true"></span>
-    <h2>${S.hero.name}</h2>
-    <p class="he">He is</p>
-    <div class="lines">${S.hero.lines.map(l=>`<p>${l}</p>`).join('')}</div>
-    <blockquote>${S.hero.quote}</blockquote>
-    <p style="margin-top:26px"><a class="btn gold" href="${S.hero.button[1]}">${S.hero.button[0]}</a></p>
-  </div>
-  <img class="hero-photo" src="${S.hero.photo}" alt="Image of VKV Sir">
+  <div><span class="rule" aria-hidden="true"></span><h1>Vinod Kr. Verma</h1><p class="he">He is</p>
+    <div class="lines"><p>a professor by profession,</p><p>an innovator by intelligence,</p><p>a motivator by mood,</p><p>brilliant with brain &amp;</p><p>humble with heart.</p></div>
+    <blockquote>"In today's era, there is nothing better than human networking!!" … VKVSir</blockquote>
+    <p style="margin-top:26px"><a class="btn gold" href="about">Know more about him</a></p></div>
+  <img class="hero-photo" src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_433,h_519,al_c,q_85/vinod3_edited.png" alt="Prof. Vinod Kumar Verma">
 </div></section>
+<section class="block"><div class="wrap"><h2>Media Appearances of VKVSir</h2><p class="lead">This is a section showing the media appearances of VKV sir.</p>
+  <div class="media-strip"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_f8d7b46bf8ef4e02a2f843e58c2fdf16~mv2.jpg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_f8d7b46bf8ef4e02a2f843e58c2fdf16~mv2.jpg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_ae1e83e73dd6481598341637786512d7~mv2.jpg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_ae1e83e73dd6481598341637786512d7~mv2.jpg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_f092db602bf744719a308a9403cb38a4~mv2.jpg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_f092db602bf744719a308a9403cb38a4~mv2.jpg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_de1bdfb6fbee45d48ef1c051f74ae05e~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_de1bdfb6fbee45d48ef1c051f74ae05e~mv2.jpeg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_37ebd5a8adc548abab515507462c8ccb~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_37ebd5a8adc548abab515507462c8ccb~mv2.jpeg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_1fb7211d22994a669b0071c450a3e3ed~mv2.jpg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_1fb7211d22994a669b0071c450a3e3ed~mv2.jpg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_3092ac066fe54b44a1a853116385b953~mv2.jpg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_3092ac066fe54b44a1a853116385b953~mv2.jpg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_b3fa9e02c8af40e6bd557244e44df2ef~mv2.jpg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_b3fa9e02c8af40e6bd557244e44df2ef~mv2.jpg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_13e95f61ad114a59b38860e2a7316532~mv2.jpg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_13e95f61ad114a59b38860e2a7316532~mv2.jpg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_0504ef60c2e14cea83781638f9bac1de~mv2.jpeg/v1/fill/w_400,h_300,al_c,q_85/img.jpg" data-full="https://static.wixstatic.com/media/b90d41_0504ef60c2e14cea83781638f9bac1de~mv2.jpeg/v1/fit/w_1600,h_1600,q_90/img.jpg" alt="Media appearance of VKV Sir" class="g"></div>
+  <div class="center"><a class="btn" href="media">View More Media</a></div></div></section>
+<section class="block alt"><div class="wrap"><h2>Courses Conducted</h2>
+  <p class="lead">He loves to teach his students by meeting them at their level. Once the students feel comfortable with him, they begin to ask questions and engage fully in VKV Sir's class. VKV Sir believes in his students and allows them to make their own choices, whether right or wrong.</p>
+  <div class="grid"><a class="card" href="https://www.vkvsir.com/automobile-engineering"><img loading="lazy" src="https://static.wixstatic.com/media/11062b_42b9ecea6a1540668defdedea80d1a9d~mv2.jpg/v1/fill/w_600,h_396,al_c,q_85/img.jpg" alt="Automobile Engineering"><div class="body"><span class="t" style="text-align:center">Automobile Engineering</span></div></a><a class="card" href="https://www.vkvsir.com/workshop-practice"><img loading="lazy" src="https://static.wixstatic.com/media/e592d5b87e234c849e8363ee949932a0.jpg/v1/fill/w_600,h_396,al_c,q_85/img.jpg" alt="Workshop Practice"><div class="body"><span class="t" style="text-align:center">Workshop Practice</span></div></a><a class="card" href="https://www.vkvsir.com/hev"><img loading="lazy" src="https://static.wixstatic.com/media/nsplsh_7d668a14fefe4074a5acad37439a215e~mv2.jpg/v1/fill/w_600,h_396,al_c,q_85/img.jpg" alt="Hybrid & Electric Vehicles"><div class="body"><span class="t" style="text-align:center">Hybrid & Electric Vehicles</span></div></a></div>
+  <div class="center"><a class="btn ghost" href="courses">See all courses</a></div></div></section>
+<section class="block"><div class="wrap"><h2>His Views for Teachers &amp; Students</h2>
+  <div class="slider" id="slider"><img src="https://static.wixstatic.com/media/b90d41_4b0b2e74e44241968531a826ee177608~mv2.png/v1/fit/w_880,h_1180,q_90/v.png" alt="VKV Sir's view 1" class="on" ><img src="https://static.wixstatic.com/media/b90d41_1eceb170101d4e18a61b447ab23b4892~mv2.png/v1/fit/w_880,h_1180,q_90/v.png" alt="VKV Sir's view 2" class="" loading=lazy><img src="https://static.wixstatic.com/media/b90d41_883c935dac5a4542a30294f91f8fb922~mv2.png/v1/fit/w_880,h_1180,q_90/v.png" alt="VKV Sir's view 3" class="" loading=lazy><img src="https://static.wixstatic.com/media/b90d41_d75231deb0d84b6caa5cd3ff86bd9cd5~mv2.png/v1/fit/w_880,h_1180,q_90/v.png" alt="VKV Sir's view 4" class="" loading=lazy><img src="https://static.wixstatic.com/media/b90d41_b13b4fe9d1964223a95e5da29c2073a3~mv2.png/v1/fit/w_880,h_1180,q_90/v.png" alt="VKV Sir's view 5" class="" loading=lazy><img src="https://static.wixstatic.com/media/b90d41_e2e15e52de6e4d9f9c2342a5dfd74afa~mv2.png/v1/fit/w_880,h_1180,q_90/v.png" alt="VKV Sir's view 6" class="" loading=lazy><img src="https://static.wixstatic.com/media/b90d41_6cc1a4a2b7cd432bb5fd1d633638432d~mv2.png/v1/fit/w_880,h_1180,q_90/v.png" alt="VKV Sir's view 7" class="" loading=lazy><img src="https://static.wixstatic.com/media/b90d41_142d5d1f99f6466bba10646d3e681be9~mv2.png/v1/fit/w_880,h_1180,q_90/v.png" alt="VKV Sir's view 8" class="" loading=lazy><button class="slide-nav prev" aria-label="Previous view">‹</button><button class="slide-nav next" aria-label="Next view">›</button></div>
+  <div class="dots" id="dots"><button aria-label="Show view 1" class="on"></button><button aria-label="Show view 2" class=""></button><button aria-label="Show view 3" class=""></button><button aria-label="Show view 4" class=""></button><button aria-label="Show view 5" class=""></button><button aria-label="Show view 6" class=""></button><button aria-label="Show view 7" class=""></button><button aria-label="Show view 8" class=""></button></div></div></section>
+<section class="fun" style="background-image:url('https://static.wixstatic.com/media/11062b_07608b0b281a42bcafaea6a99b070d47f000.jpg/v1/fill/w_1600,h_900,al_c,q_80/fun.jpg')"><h2>Learning Online is Fun</h2><a class="btn gold" href="courses">View Online Courses</a></section>
+<section class="block"><div class="wrap"><h2>Posts &amp; Articles</h2>
+  <p class="lead">By posting good content and information, he would like to help and update his peers so we can help each other directly or indirectly. In today's world networking is the key to success!</p>
+  <div class="grid"><a class="card" href="https://www.vkvsir.com/post/happy-diwali-2025" data-year="2025"><img alt="" style="background:linear-gradient(135deg,#f5c242,#e8742b)"><div class="body"><span class="tag">Post · 20 Oct 2025</span><span class="t">Happy Diwali 2025</span></div></a>
+<a class="card" href="https://www.vkvsir.com/post/happy-holi-2025" data-year="2025"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_5f5acec029d5489f9dbfa23fbbd446f9f003.jpg/v1/fill/w_600,h_420,al_c,q_85/img.jpg" alt="Happy Holi 2025"><div class="body"><span class="tag">Video · 14 Mar 2025</span><span class="t">Happy Holi 2025</span></div></a>
+<a class="card" href="https://www.vkvsir.com/post/happy-republic-day-2" data-year="2025"><img loading="lazy" src="https://static.wixstatic.com/media/b90d41_16fb7f02a62a4aecbab920b6c0425978~mv2.jpg/v1/fill/w_600,h_420,al_c,q_85/img.jpg" alt="Happy Republic Day"><div class="body"><span class="tag">Post · 26 Jan 2025</span><span class="t">Happy Republic Day</span></div></a></div>
+  <div class="center"><a class="btn" href="blog">View More Blogs</a></div></div></section>
+<section class="join"><h2>Get free PDFs, MCQs &amp; full lectures</h2><p>Membership is free for our YouTube subscribers. Sign in with the Google account you use on YouTube and get access in seconds.</p><a class="btn yt" href="https://www.vkvsir.com/apply">Join Membership – Free</a></section>
 
-<section class="block"><div class="wrap">
-  <h2>${S.media.title}</h2><p class="lead">${S.media.text}</p>
-  <div class="media-grid">${S.media.images.map(i=>`<img loading="lazy" src="${wix(i,400)}" alt="Media appearance of VKV Sir">`).join('')}</div>
-  <div class="center"><a class="btn" href="${S.media.button[1]}">${S.media.button[0]}</a></div>
-</div></section>
-
-<section class="block alt"><div class="wrap">
-  <h2>${S.courses.title}</h2><p class="lead">${S.courses.text}</p>
-  <div class="courses">${S.courses.items.map(([t,u,i])=>`<a class="course" href="${u}"><img loading="lazy" src="${wix(i,600)}" alt="${t}"><span>${t}</span></a>`).join('')}</div>
-</div></section>
-
-<section class="block"><div class="wrap">
-  <h2>${S.views.title}</h2>
-  <div class="slider" id="slider">${S.views.slides.map((i,n)=>`<img src="https://static.wixstatic.com/media/${i}/v1/fit/w_880,h_1180,q_90/v.png" alt="VKV Sir's view ${n+1}" class="${n?'':'on'}" ${n?'loading="lazy"':''}>`).join('')}<button class="slide-nav prev" aria-label="Previous view">‹</button><button class="slide-nav next" aria-label="Next view">›</button></div>
-  <div class="dots" id="dots">${S.views.slides.map((_,n)=>`<button aria-label="Show view ${n+1}" class="${n?'':'on'}"></button>`).join('')}</div>
-</div></section>
-
-<section class="fun" style="background-image:url('https://static.wixstatic.com/media/${S.fun.image}/v1/fill/w_1600,h_900,al_c,q_80/fun.jpg')">
-  <h2>${S.fun.title}</h2><a class="btn gold" href="${S.fun.button[1]}">${S.fun.button[0]}</a>
-</section>
-
-<section class="block"><div class="wrap">
-  <h2>${S.posts.title}</h2><p class="lead">${S.posts.text}</p>
-  <div class="posts">${S.posts.items.map(([t,u,i])=>`<a class="post" href="${u}">${i?`<img loading="lazy" src="${wix(i,500)}" alt="${t}">`:`<img alt="" style="background:linear-gradient(135deg,#f5c242,#e8742b)">`}<span>${t}</span></a>`).join('')}</div>
-  <div class="center"><a class="btn" href="${S.posts.button[1]}">${S.posts.button[0]}</a></div>
-</div></section>
-
-<section class="join"><h2>${S.join.title}</h2><p>${S.join.text}</p><a class="btn yt" href="${S.join.button[1]}">${S.join.button[0]}</a></section>
-<footer><div class="wrap"><div class="foot-grid">
-  <div><h3>${S.name}</h3><p>${S.contact.place}</p><p><a href="mailto:${S.contact.email}">${S.contact.email}</a></p>
-    <div class="foot-socials">${S.socials.map(([n,u,i])=>`<a href="${u}" target="_blank" rel="noopener" aria-label="${n}"><img src="https://static.wixstatic.com/media/${i}" alt="${n}"></a>`).join('')}</div></div>
-  <div><h3>Explore</h3><ul>${S.menu.slice(0,9).filter((_,k)=>[1,2,4,6,7,8].includes(k)).map(([t,u])=>`<li><a href="${u}">${t}</a></li>`).join('')}</ul></div>
-  <div><h3>Members area</h3><ul>${S.menu[9][2].map(([t,u])=>`<li><a href="${u}">${t}</a></li>`).join('')}<li><a href="${S.join.button[1]}">Join membership – free</a></li></ul></div>
-</div><p class="copy">${S.footer}</p></div></footer>`;
-
-/* menu toggle (mobile) */
-const nav = document.getElementById('nav');
-nav.querySelector('.menu-toggle').addEventListener('click', e => { const o = nav.classList.toggle('open'); e.currentTarget.setAttribute('aria-expanded', o); });
-
-/* views slider */
-(() => {
-  const imgs = [...document.querySelectorAll('#slider img')], dots = [...document.querySelectorAll('#dots button')];
-  let i = 0, timer;
-  const show = n => { imgs[i].classList.remove('on'); dots[i].classList.remove('on'); i = (n + imgs.length) % imgs.length; imgs[i].classList.add('on'); dots[i].classList.add('on'); };
-  const start = () => { if (!matchMedia('(prefers-reduced-motion: reduce)').matches) timer = setInterval(() => show(i + 1), S.views.seconds * 1000); };
-  const jump = n => { clearInterval(timer); show(n); start(); };
-  dots.forEach((d, n) => d.addEventListener('click', () => jump(n)));
-  document.querySelector('.slide-nav.prev').addEventListener('click', () => jump(i - 1));
-  document.querySelector('.slide-nav.next').addEventListener('click', () => jump(i + 1));
-  start();
-})();
+</main>
+<div id="site-footer"></div>
+<script src="assets/site.js"></script>
+<script>
+lightbox('.media-strip img.g');
+(() => { const imgs=[...document.querySelectorAll('#slider img')], dots=[...document.querySelectorAll('#dots button')]; let i=0, t;
+ const show=n=>{imgs[i].classList.remove('on');dots[i].classList.remove('on');i=(n+imgs.length)%imgs.length;imgs[i].classList.add('on');dots[i].classList.add('on');};
+ const start=()=>{ if(!matchMedia('(prefers-reduced-motion: reduce)').matches) t=setInterval(()=>show(i+1),4000); };
+ const jump=n=>{clearInterval(t);show(n);start();};
+ dots.forEach((d,n)=>d.onclick=()=>jump(n));
+ document.querySelector('.slide-nav.prev').onclick=()=>jump(i-1); document.querySelector('.slide-nav.next').onclick=()=>jump(i+1); start(); })();
 </script>
 </body>
 </html>
