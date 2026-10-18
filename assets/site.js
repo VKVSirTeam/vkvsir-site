@@ -65,7 +65,7 @@ const SITE = {
   </div></header><div class="scrim" id="scrim"></div>`;
   document.getElementById('site-footer').outerHTML = `
   <footer class="ftr"><div class="wrap"><div class="ftr-grid" style="grid-template-columns:1.3fr 1fr 1.2fr 1fr">
-    <div>${brand}<p style="margin-top:16px">${SITE.address}</p><p><a href="mailto:${SITE.email}">${SITE.email}</a></p><div class="soc">${soc}</div></div>
+    <div>${brand}<p style="margin-top:16px">${SITE.address}</p><p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${SITE.email}&su=Enquiry%20from%20vkvsir.com" target="_blank" rel="noopener">${SITE.email}</a></p><div class="soc">${soc}</div></div>
     <div><h3>Explore</h3><ul><li><a href="about">About</a></li><li><a href="research-project-innovation">R&amp;D &amp; Consultancy</a></li><li><a href="media">Media</a></li><li><a href="blog">Blog</a></li><li><a href="test-lab">Test Lab</a></li></ul></div>
     <div><h3>Courses</h3><ul>${SITE.courses.map(([t,u])=>`<li><a href="${u}">${t}</a></li>`).join('')}</ul></div>
     <div><h3>Help</h3><ul><li><a href="${SITE.joinUrl}">Join membership – free</a></li><li><a href="members">Members area</a></li><li><a href="faq">FAQ</a></li><li><a href="contact">Contact</a></li><li><a href="${OLD}/post/privacy-policy">Privacy policy</a></li></ul></div>
