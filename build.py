@@ -59,6 +59,8 @@ def page(slug, title, desc, body, script="", extra_ld=None, crumbs=None):
 </main>
 <div id="site-footer"></div>
 <script src="assets/site.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="assets/auth.js"></script>
 {script}
 </body>
 </html>
@@ -477,21 +479,21 @@ def course_public(slug, m):
 <section class="sec sec-mint"><div class="wrap"><div class="sec-head rv"><div><span class="kicker">Syllabus &amp; lecture plan</span><h2>Unit-wise outline</h2><p>Topics are listed openly. Videos, notes and quizzes unlock with free membership.</p></div><a class="link-more" href="{slug}">Members lecture plan</a></div><div id="syl"><p class="muted">Loading syllabus…</p></div></div></section>
 <section class="sec sec-white"><div class="wrap"><h2 class="rv" style="font-size:var(--step-2)">Recommended books</h2><div class="blur rv"><div class="books" aria-hidden="true">{''.join(f'<div class="book"><b>{t}</b><span>{a}</span></div>' for t,a in m["books"])}</div><div class="lockbox"><div>🔒 Book list is for members<br><a href="join">Join free in 30 seconds</a></div></div></div>
 <div style="margin-top:40px">{JOIN_BOX}</div></div></section>"""
-    js = f'<script>window.LIB_FALLBACK={json.dumps(FALLBACK.get(m["course"],[]),ensure_ascii=False)}</script><script src="assets/course.js"></script><script>renderPublic({json.dumps(m["course"])}, document.getElementById("syl"), document.getElementById("kpis"));</script>'
+    js = f'<script>window.LIB_FALLBACK={json.dumps([{k:v for k,v in r.items() if k in ("unit","lecture","topic","duration","item_type")} for r in FALLBACK.get(m["course"],[])],ensure_ascii=False)}</script><script src="assets/course.js"></script><script>renderPublic({json.dumps(m["course"])}, document.getElementById("syl"), document.getElementById("kpis"));</script>'
     page("course-"+slug, f'{m["title"]} – Free Course in Hindi & English | VKVSir', f'Free {m["title"]} course by Dr. Vinod Kumar Verma (VKVSir): syllabus, lecture plan, video lectures, PPT/PDF notes, quizzes and recommended books.', body, js, crumbs="Courses",
          extra_ld={"@context":"https://schema.org","@type":"Course","name":html.unescape(m["title"]),"description":html.unescape(m["lead"]),"provider":{"@id":DOMAIN+"/#person"},"inLanguage":["en","hi"],"isAccessibleForFree":True,"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online"}})
 
 def course_members(slug, m):
     body = banner(f'{m["title"]} · Members', "Complete lecture plan with video, PPT/PDF notes, quizzes and Test Lab practice.", "Members") + f"""
 <section class="sec sec-white"><div class="wrap">
-<div class="notice rv">🔒 Members resource. Membership is free forever. Not a member yet? <a href="join">Join in 30 seconds</a>.</div>
+
 <div class="kpis rv" id="kpis"></div>
 <input class="search" id="q" type="search" placeholder="Search a topic, e.g. clutch, steering, battery" aria-label="Search lectures">
 <div id="plan"><p class="muted">Loading lecture plan…</p></div>
-<h2 style="font-size:var(--step-2);margin-top:40px">Recommended books</h2><div class="books">{''.join(f'<div class="book"><b>{t}</b><span>{a}</span></div>' for t,a in m["books"])}</div>
+<div class="members-only" hidden><h2 style="font-size:var(--step-2);margin-top:40px">Recommended books</h2><div class="books">{''.join(f'<div class="book"><b>{t}</b><span>{a}</span></div>' for t,a in m["books"])}</div></div>
 <p style="margin-top:30px"><a class="btn btn-ghost" href="course-{slug}">Course overview</a> <a class="btn btn-gold" href="test-lab">Practise on Test Lab</a></p>
 </div></section>"""
-    js = f'<script>window.LIB_FALLBACK={json.dumps(FALLBACK.get(m["course"],[]),ensure_ascii=False)}</script><script src="assets/course.js"></script><script>renderMembers({json.dumps(m["course"])}, document.getElementById("plan"), document.getElementById("kpis"), document.getElementById("q"));</script>'
+    js = f'<script src="assets/course.js"></script><script>renderMembers({json.dumps(m["course"])}, document.getElementById("plan"), document.getElementById("kpis"), document.getElementById("q"));</script>'
     page(slug, f'{m["title"]} – Members Lecture Plan, Videos, Notes & Quiz | VKVSir', f'{m["title"]} members resources by VKVSir: unit-wise lecture plan with YouTube videos, PPT/PDF notes, quizzes and Test Lab practice.', body, js, crumbs="Members")
 
 for slug, m in CMETA.items():
@@ -505,7 +507,7 @@ hub = banner("Members area","Everything you need to learn, revise and practise, 
 <section class="sec sec-mint" id="downloads"><div class="wrap"><div class="sec-head rv"><div><span class="kicker">Notes &amp; downloads</span><h2>PPT &amp; PDF resources</h2><p>Lecture slides and notes, linked beside every lecture in each members course page.</p></div><a class="btn btn-primary" href="automobile-engineering">Automobile Engineering notes</a></div></div></section>
 <section class="sec sec-white" id="quizzes"><div class="wrap"><div class="sec-head rv"><div><span class="kicker">Quizzes &amp; practice tests</span><h2>Check your understanding</h2><p>Topic quizzes beside each lecture, plus timed unit tests on Test Lab.</p></div><a class="btn btn-gold" href="test-lab">Open Test Lab</a></div></div></section>
 <section class="sec sec-gold" id="projects"><div class="wrap"><div class="sec-head rv"><div><span class="kicker" style="color:#8a6a1e">Project &amp; innovation ideas</span><h2>Ideas for your next project</h2><p>Starter ideas for mini, major and hackathon projects, with guidance available to members.</p></div></div>
-<div class="grid">{''.join(f'<div class="card rv" style="padding:20px"><span class="tag">Idea</span><h3 style="margin:.5em 0 .3em">{t}</h3><p>{d}</p></div>' for t,d in IDEAS)}</div></div></section>
+<div class="grid">{''.join(f'<div class="card rv" style="padding:20px"><span class="tag">Idea</span><h3 style="margin:.5em 0 .3em">{t}</h3><p>{d}</p><a class="btn btn-primary" style="align-self:flex-start;margin-top:14px" href="mailto:vinodvermavkvsir@gmail.com?subject=Project%20idea%3A%20{t.replace(" ","%20")}">Discuss / collaborate</a></div>' for t,d in IDEAS)}</div></div></section>
 <section class="sec sec-white"><div class="wrap">{JOIN_BOX}</div></section>"""
 page("members","Members Area – Free Lectures, Notes, Quizzes & Project Ideas | VKVSir","VKVSir members area: free lecture plans with videos, PPT/PDF notes, quizzes, Test Lab practice and project ideas. Free forever for YouTube subscribers.", hub, crumbs="Members")
 
@@ -557,14 +559,14 @@ START = OLD + "/_functions/start"     # Google sign-in check (runs on the Wix me
 STEP_CSS = '<style>.jsteps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}.js{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}.js i{font-style:normal;font-family:var(--f-head);font-weight:800;background:var(--gold);color:#1a1a1a;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-bottom:10px}.js b{font-family:var(--f-head);display:block;color:var(--g800);margin-bottom:4px}.js p{margin:0;color:var(--muted);font-size:15px}.bigcta{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;background:linear-gradient(120deg,var(--g800),var(--g700));color:#e4ece8;border-radius:var(--r-lg);padding:clamp(26px,5vw,48px)}.bigcta h2{color:#fff;margin:0}.bigcta .btn{font-size:18px;padding:16px 30px}@media(max-width:760px){.jsteps{grid-template-columns:1fr}}</style>'
 join = STEP_CSS + banner("Join VKVSir membership – free","Free forever for our YouTube family. One-time sign-up, about 30 seconds.","Join") + f"""
 <section class="sec sec-white"><div class="narrow">
-<div class="bigcta rv"><h2>Get every lecture, note and quiz</h2><p style="margin:0">Sign in with the Google account you use on YouTube.</p><a class="btn btn-gold" href="{START}">▶ Join now – Continue with Google</a><a style="color:var(--lime)" href="https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1" target="_blank" rel="noopener">Not subscribed yet? Subscribe first</a></div>
+<div class="bigcta rv"><h2>Get every lecture, note and quiz</h2><p style="margin:0">Sign in with the Google account you use on YouTube.</p><button class="btn btn-gold" onclick="joinWithGoogle()">▶ Join now – Continue with Google</button><div id="jcheck" hidden style="background:rgba(255,255,255,.08);border-radius:12px;padding:14px 18px;max-width:560px"></div><a style="color:var(--lime)" href="https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1" target="_blank" rel="noopener">Not subscribed yet? Subscribe first</a></div>
 <div class="jsteps"><div class="js rv"><i>1</i><b>Choose your account</b><p>Pick the Google account you use on YouTube. It must be at least 1 month old.</p></div><div class="js rv rv-d1"><i>2</i><b>"Google hasn't verified this app"?</b><p>That's normal while Google reviews our new app. Click <b>Advanced</b> → <b>Go to vkvsir.com</b>.</p></div><div class="js rv rv-d2"><i>3</i><b>Keep YouTube ticked</b><p>Keep "View your YouTube account" ticked and press Continue. We only read your subscription.</p></div></div>
 <h2 class="rv" style="font-size:var(--step-2);margin-top:30px">What you will see (it is safe)</h2><p class="rv muted">Google shows these screens because our app is new and still under Google review. Just follow the red arrows.</p>
 <div class="guide"><figure class="rv"><img src="assets/img/guide-1-advanced.png" data-full="assets/img/guide-1-advanced.png" alt="Step 1: click Advanced on the Google warning" loading="lazy"><figcaption><b>Step 1</b>Click "Advanced".</figcaption></figure><figure class="rv rv-d1"><img src="assets/img/guide-2-continue.png" data-full="assets/img/guide-2-continue.png" alt="Step 2: click Go to vkvsir.com" loading="lazy"><figcaption><b>Step 2</b>Click "Go to vkvsir.com (unsafe)". It is safe.</figcaption></figure><figure class="rv rv-d2"><img src="assets/img/guide-3-youtube.png" data-full="assets/img/guide-3-youtube.png" alt="Step 3: tick View your YouTube account and Continue" loading="lazy"><figcaption><b>Step 3</b>Tick "View your YouTube account", then Continue.</figcaption></figure></div>
 
 <p class="rv" style="color:var(--muted);text-align:center;margin-top:20px">Subscribers are approved instantly. Others get an email with the last step and are approved automatically. <a href="privacy-policy">Privacy policy</a></p>
 </div></section>"""
-page("join","Join VKVSir Membership – Free Lectures, Notes & Quizzes","Join VKVSir membership free: sign in with your YouTube Google account to unlock lecture videos, PPT/PDF notes, quizzes and Test Lab practice.", join, "<script>lightbox('.guide img')</script>", crumbs="Join")
+page("join","Join VKVSir Membership – Free Lectures, Notes & Quizzes","Join VKVSir membership free: sign in with your YouTube Google account to unlock lecture videos, PPT/PDF notes, quizzes and Test Lab practice.", join, "<script>lightbox('.guide img');runJoinCheck(document.getElementById('jcheck'))</script>", crumbs="Join")
 pend = STEP_CSS + banner("Almost there – one step left","Your membership request is received and we've emailed you the details.","Join") + f"""
 <section class="sec sec-white"><div class="narrow"><div class="bigcta rv"><h2>Subscribe with the same Google account</h2><p style="margin:0">You'll be approved automatically within about an hour and get a welcome email.</p><a class="btn btn-yt" href="https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1" target="_blank" rel="noopener">▶ Subscribe on YouTube</a></div>
 <div class="jsteps"><div class="js"><b>Already subscribed?</b><p>Your YouTube account may be under 1 month old; you'll be approved when it turns 1 month.</p></div><div class="js"><b>Different account?</b><p>Apply again using the Google account you subscribed with.</p></div><div class="js"><b>Prefer comments?</b><p>Genuine comments on 5+ of our videos also qualify you.</p></div></div>
@@ -572,7 +574,7 @@ pend = STEP_CSS + banner("Almost there – one step left","Your membership reque
 page("membership-pending","Membership request received | VKVSir","Your VKVSir membership request is received.", pend)
 helpp = STEP_CSS + banner("Let's try that again","We couldn't complete your membership check. It usually takes 30 seconds to fix.","Join") + f"""
 <section class="sec sec-white"><div class="narrow"><div class="jsteps"><div class="js"><b>YouTube box not ticked</b><p>On Google's permission screen keep "View your YouTube account" ticked.</p></div><div class="js"><b>Clicked "Back to safety"?</b><p>Click Advanced → Go to vkvsir.com. It is safe; Google's review is in progress.</p></div><div class="js"><b>Page left open too long</b><p>Just start again below.</p></div></div>
-<div class="bigcta"><a class="btn btn-gold" href="{START}">Try again – Continue with Google</a><p style="margin:0">Still stuck? <a style="color:var(--lime)" href="mailto:vinodvermavkvsir@gmail.com">Email us</a> with a screenshot.</p></div></div></section>"""
+<div class="bigcta"><button class="btn btn-gold" onclick="joinWithGoogle()">Try again – Continue with Google</button><p style="margin:0">Still stuck? <a style="color:var(--lime)" href="mailto:vinodvermavkvsir@gmail.com">Email us</a> with a screenshot.</p></div></div></section>"""
 page("membership-help","Membership – try again | VKVSir","Help with VKVSir membership sign-in.", helpp)
 pp = banner("Privacy policy","Last updated: 18 October 2026","Privacy policy") + """<section class="sec sec-white"><div class="narrow prose">
 <p>This Privacy Policy explains how www.vkvsir.com ("VKV Sir", "we", "us"), run by Dr. Vinod Kumar Verma, collects and uses information when you visit the website or apply for free membership.</p>
@@ -584,6 +586,14 @@ pp = banner("Privacy policy","Last updated: 18 October 2026","Privacy policy") +
 <h2>6. Contact</h2><p>Dr. Vinod Kumar Verma, Department of Mechanical Engineering, Engineering College Ajmer, Rajasthan, India. Email: vinodvermavkvsir@gmail.com.</p></div></section>"""
 page("privacy-policy","Privacy Policy | VKVSir","Privacy policy of vkvsir.com and the VKV Sir Membership app, including Google API Limited Use.", pp, crumbs="Privacy policy")
 
+import re as _re, glob as _g, urllib.parse as _up
+def _gm(m):
+    subj = _up.unquote(m.group(1)) if m.group(1) else 'Enquiry from vkvsir.com'
+    return 'href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=vinodvermavkvsir@gmail.com&amp;su=' + _up.quote(subj) + '" target="_blank" rel="noopener"'
+for _f in _g.glob('*.html'):
+    _t = open(_f).read()
+    _t = _re.sub(r'href="mailto:vinodvermavkvsir@gmail\.com(?:\?subject=([^"]*))?"(?: target=_blank rel=noopener| target="_blank" rel="noopener")?', _gm, _t)
+    open(_f,'w').write(_t)
 # SEO files
 pages = ["","about","courses","test-lab","members","join","privacy-policy","research-project-innovation","media","blog","faq","contact"] + [p for sl in CMETA for p in ("course-"+sl, sl)]
 today = date.today().isoformat()
