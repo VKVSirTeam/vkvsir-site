@@ -28,16 +28,18 @@
 <main id="main">
 <section class="banner"><div class="wrap"><p class="crumbs"><a href="./">Home</a> › Members</p><h1>Machine Drawing · Members</h1><p>Complete lecture plan with video, PPT/PDF notes, quizzes and Test Lab practice.</p></div></section>
 <section class="sec sec-white"><div class="wrap">
-<div class="notice rv">🔒 Members resource. Membership is free forever. Not a member yet? <a href="join">Join in 30 seconds</a>.</div>
+
 <div class="kpis rv" id="kpis"></div>
 <input class="search" id="q" type="search" placeholder="Search a topic, e.g. clutch, steering, battery" aria-label="Search lectures">
 <div id="plan"><p class="muted">Loading lecture plan…</p></div>
-<h2 style="font-size:var(--step-2);margin-top:40px">Recommended books</h2><div class="books"><div class="book"><b>Machine Drawing</b><span>N. D. Bhatt</span></div><div class="book"><b>Machine Drawing</b><span>K. L. Narayana</span></div></div>
+<div class="members-only" hidden><h2 style="font-size:var(--step-2);margin-top:40px">Recommended books</h2><div class="books"><div class="book"><b>Machine Drawing</b><span>N. D. Bhatt</span></div><div class="book"><b>Machine Drawing</b><span>K. L. Narayana</span></div></div></div>
 <p style="margin-top:30px"><a class="btn btn-ghost" href="course-machine-drawing">Course overview</a> <a class="btn btn-gold" href="test-lab">Practise on Test Lab</a></p>
 </div></section>
 </main>
 <div id="site-footer"></div>
 <script src="assets/site.js"></script>
-<script>window.LIB_FALLBACK=[]</script><script src="assets/course.js"></script><script>renderMembers("Machine Drawing", document.getElementById("plan"), document.getElementById("kpis"), document.getElementById("q"));</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="assets/auth.js"></script>
+<script src="assets/course.js"></script><script>renderMembers("Machine Drawing", document.getElementById("plan"), document.getElementById("kpis"), document.getElementById("q"));</script>
 </body>
 </html>
