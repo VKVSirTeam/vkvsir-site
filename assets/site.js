@@ -3,8 +3,13 @@
    ===================================================================== */
 const OLD = 'https://www.vkvsir.com';
 const TESTLAB = 'https://test.vkvsir.com';
+/* Shared data source (Test Lab database). Same for GitHub and Wix, so links never break. */
+const DB = { url: 'https://thrpqwnjwewhdhimmgpu.supabase.co', key: 'sb_publishable_EgH3u5RbDFJPMH7svguFaQ_zuGZ2zVJ' };
+async function dbGet(path){ const r = await fetch(DB.url + '/rest/v1/' + path, { headers: { apikey: DB.key, Authorization: 'Bearer ' + DB.key } }); if (!r.ok) throw new Error(r.status); return r.json(); }
+async function dbRpc(fn){ const r = await fetch(DB.url + '/rest/v1/rpc/' + fn, { method: 'POST', headers: { apikey: DB.key, Authorization: 'Bearer ' + DB.key, 'Content-Type': 'application/json' }, body: '{}' }); if (!r.ok) throw new Error(r.status); return r.json(); }
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const SITE = {
-  name: 'Prof. Vinod Kumar Verma',
+  name: 'Dr. Vinod Kumar Verma',
   short: 'Mechanical Engg. · Engineering College Ajmer',
   logo: 'https://static.wixstatic.com/media/b90d41_2891d42aeac74eb783f9e95cded38f1e~mv2.png/v1/fit/w_120,h_120,q_90/logo.png',
   joinUrl: OLD + '/apply',
@@ -18,18 +23,23 @@ const SITE = {
     ['Instagram','https://www.instagram.com/vkvsir','8d6893330740455c96d218258a458aa4.png'],
     ['Telegram','https://t.me/vkvsir','11062b_e98838ff3ed04690a4d6de29d5936f77~mv2.png']
   ],
+  courses: [
+    ['Automobile Engineering','course-automobile-engineering'],
+    ['Hybrid & Electric Vehicles','course-hev'],
+    ['Workshop Practice','course-workshop-practice'],
+    ['Machine Drawing','course-machine-drawing'],
+    ['Casting Process','course-casting-process'],
+    ['New Product Design & Launching','course-pdl']
+  ],
   members: [
-    ['Automobile Engineering', OLD + '/automobile-engineering'],
-    ['Hybrid & Electric Vehicles', OLD + '/hev'],
-    ['Workshop Practice', OLD + '/workshop-practice'],
-    ['Quiz', OLD + '/quiz'],
-    ['New Product Design & Launching', OLD + '/pdl']
+    ['Lecture plans & videos','members#lectures'],
+    ['Notes & PPT/PDF downloads','members#downloads'],
+    ['Quizzes & practice tests','members#quizzes'],
+    ['Project & innovation ideas','members#projects']
   ],
   menu: [
-    ['Home','./'],['About','about'],['Courses','courses'],['Test Lab', TESTLAB],
-    ['R&D','research-project-innovation'],['Media','media'],['Blog','blog'],
-    ['More',null,[['Test and Analysis','test-and-analysis'],['FAQ','faq'],['Contact','contact']]],
-    ['Members',null,'members']
+    ['Home','./'],['About','about'],['Courses',null,'courses'],['Test Lab','test-lab'],
+    ['R&D','research-project-innovation'],['Media','media'],['Blog','blog'],['Members',null,'members']
   ],
   footer: '©2026 Website created & handled by Reeva Verma'
 };
@@ -41,7 +51,7 @@ const SITE = {
   const A = (t,u) => `<a href="${u}"${cur(u)?' aria-current="page"':''}${ext(u)&&u.startsWith(TESTLAB)?' target="_blank" rel="noopener"':''}>${t}</a>`;
   const items = SITE.menu.map(([t,u,sub]) => {
     if (!sub) return `<li>${A(t,u)}</li>`;
-    const list = sub === 'members' ? [...SITE.members, ['Join membership – free', SITE.joinUrl]] : sub;
+    const list = sub === 'members' ? [['Members home','members'], ...SITE.members, ['Join membership – free', SITE.joinUrl]] : sub === 'courses' ? [['All courses','courses'], ...SITE.courses] : sub;
     return `<li><button aria-expanded="false" aria-haspopup="true">${t} <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button><ul class="drop">${list.map(([a,b])=>`<li>${A(a,b)}</li>`).join('')}</ul></li>`;
   }).join('');
   const soc = SITE.socials.map(([n,u,i])=>`<a href="${u}" target="_blank" rel="noopener" aria-label="${n}"><img src="https://static.wixstatic.com/media/${i}/v1/fit/w_44,h_44/s.png" alt="" width="22" height="22" loading="lazy"></a>`).join('');
@@ -53,11 +63,11 @@ const SITE = {
     <ul class="menu" id="menu">${items}<li><a class="cta" href="${SITE.joinUrl}">Join free</a></li></ul>
   </div></header><div class="scrim" id="scrim"></div>`;
   document.getElementById('site-footer').outerHTML = `
-  <footer class="ftr"><div class="wrap"><div class="ftr-grid">
+  <footer class="ftr"><div class="wrap"><div class="ftr-grid" style="grid-template-columns:1.3fr 1fr 1.2fr 1fr">
     <div>${brand}<p style="margin-top:16px">${SITE.address}</p><p><a href="mailto:${SITE.email}">${SITE.email}</a></p><div class="soc">${soc}</div></div>
-    <div><h3>Explore</h3><ul><li><a href="about">About</a></li><li><a href="courses">Courses</a></li><li><a href="research-project-innovation">R&amp;D &amp; Innovation</a></li><li><a href="media">Media</a></li><li><a href="blog">Blog</a></li></ul></div>
-    <div><h3>Learn</h3><ul><li><a href="${TESTLAB}" target="_blank" rel="noopener">Test Lab</a></li><li><a href="test-and-analysis">Test and Analysis</a></li>${SITE.members.map(([t,u])=>`<li><a href="${u}">${t}</a></li>`).join('')}</ul></div>
-    <div><h3>Help</h3><ul><li><a href="${SITE.joinUrl}">Join membership – free</a></li><li><a href="faq">FAQ</a></li><li><a href="contact">Contact</a></li><li><a href="${OLD}/post/privacy-policy">Privacy policy</a></li></ul></div>
+    <div><h3>Explore</h3><ul><li><a href="about">About</a></li><li><a href="research-project-innovation">R&amp;D &amp; Consultancy</a></li><li><a href="media">Media</a></li><li><a href="blog">Blog</a></li><li><a href="test-lab">Test Lab</a></li></ul></div>
+    <div><h3>Courses</h3><ul>${SITE.courses.map(([t,u])=>`<li><a href="${u}">${t}</a></li>`).join('')}</ul></div>
+    <div><h3>Help</h3><ul><li><a href="${SITE.joinUrl}">Join membership – free</a></li><li><a href="members">Members area</a></li><li><a href="faq">FAQ</a></li><li><a href="contact">Contact</a></li><li><a href="${OLD}/post/privacy-policy">Privacy policy</a></li></ul></div>
   </div><div class="copy"><span>${SITE.footer}</span><span>Learning with VKVSir is fun.</span></div></div></footer>`;
 
   const body = document.body, burger = document.querySelector('.burger');
