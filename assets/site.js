@@ -10,9 +10,9 @@ async function dbRpc(fn){ const r = await fetch(DB.url + '/rest/v1/rpc/' + fn, {
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const SITE = {
   name: 'Dr. Vinod Kumar Verma',
-  short: 'Mechanical Engg. · Engineering College Ajmer',
+  short: 'Mechanical Engg. · Engineering College Ajmer, Rajasthan, India',
   logo: 'https://static.wixstatic.com/media/b90d41_2891d42aeac74eb783f9e95cded38f1e~mv2.png/v1/fit/w_120,h_120,q_90/logo.png',
-  joinUrl: OLD + '/apply',
+  joinUrl: 'join',
   email: 'vinodvermavkvsir@gmail.com',
   address: 'NB-202, New Building, Engineering College Ajmer, Rajasthan, India – 305025',
   socials: [
@@ -44,6 +44,7 @@ const SITE = {
   footer: '©2026 Website created & handled by Reeva Verma'
 };
 
+const LOGO = '<svg class="logo" viewBox="0 0 120 100" width="52" height="43" aria-hidden="true">  <g fill="var(--logo-fill,#0f3b33)" stroke="var(--logo-line,#ffffff)" stroke-width="2.4" stroke-linejoin="round" paint-order="stroke">    <path d="M58 6 L96 18 L58 30 L20 18 Z"/>  <path d="M38 24 L38 33 Q58 41 78 33 L78 24 L58 30 Z"/>  <path d="M92 19 L92 36" fill="none" stroke-width="3"/>  <circle cx="92" cy="39" r="3.6"/>    <path d="M6 40 L24 40 L38 78 L52 40 L66 40 L45 96 L31 96 Z"/>    <path d="M70 40 L84 40 L84 62 L102 40 L118 40 L96 66 L118 96 L101 96 L84 72 L84 96 L70 96 Z"/> </g></svg>';
 (function render(){
   const here = (location.pathname.split('/').pop() || '').replace('.html','') || './';
   const cur = u => u === here || (u === './' && (here === './' || here === 'index'));
@@ -55,7 +56,7 @@ const SITE = {
     return `<li><button aria-expanded="false" aria-haspopup="true">${t} <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button><ul class="drop">${list.map(([a,b])=>`<li>${A(a,b)}</li>`).join('')}</ul></li>`;
   }).join('');
   const soc = SITE.socials.map(([n,u,i])=>`<a href="${u}" target="_blank" rel="noopener" aria-label="${n}"><img src="https://static.wixstatic.com/media/${i}/v1/fit/w_44,h_44/s.png" alt="" width="22" height="22" loading="lazy"></a>`).join('');
-  const brand = `<a class="brand" href="./" aria-label="Home – ${SITE.name}"><img src="${SITE.logo}" alt="VKVSir logo" width="46" height="39"><span><b>${SITE.name}</b><small>${SITE.short}</small></span></a>`;
+  const brand = `<a class="brand" href="./" aria-label="Home – ${SITE.name}">${LOGO}<span><b>${SITE.name}</b><small>${SITE.short}</small></span></a>`;
   document.getElementById('site-header').outerHTML = `
   <a class="skip" href="#main">Skip to content</a>
   <header class="hdr" id="hdr"><div class="wrap hdr-in">${brand}
