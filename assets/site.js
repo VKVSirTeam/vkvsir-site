@@ -27,6 +27,7 @@ const SITE = {
     ['Automobile Engineering','course-automobile-engineering'],
     ['Hybrid & Electric Vehicles','course-hev'],
     ['Workshop Practice','course-workshop-practice'],
+    ['Manufacturing Processes','course-manufacturing-processes'],
     ['Machine Drawing','course-machine-drawing'],
     ['Casting Process','course-casting-process'],
     ['New Product Design & Launching','course-pdl']
@@ -44,7 +45,6 @@ const SITE = {
   footer: '©2026 Website created & handled by Reeva Verma'
 };
 
-const LOGO = '<svg class="logo" viewBox="0 0 120 100" width="52" height="43" aria-hidden="true">  <g fill="var(--logo-fill,#0f3b33)" stroke="var(--logo-line,#ffffff)" stroke-width="2.4" stroke-linejoin="round" paint-order="stroke">    <path d="M58 6 L96 18 L58 30 L20 18 Z"/>  <path d="M38 24 L38 33 Q58 41 78 33 L78 24 L58 30 Z"/>  <path d="M92 19 L92 36" fill="none" stroke-width="3"/>  <circle cx="92" cy="39" r="3.6"/>    <path d="M6 40 L24 40 L38 78 L52 40 L66 40 L45 96 L31 96 Z"/>    <path d="M70 40 L84 40 L84 62 L102 40 L118 40 L96 66 L118 96 L101 96 L84 72 L84 96 L70 96 Z"/> </g></svg>';
 (function render(){
   const here = (location.pathname.split('/').pop() || '').replace('.html','') || './';
   const cur = u => u === here || (u === './' && (here === './' || here === 'index'));
@@ -56,7 +56,7 @@ const LOGO = '<svg class="logo" viewBox="0 0 120 100" width="52" height="43" ari
     return `<li><button aria-expanded="false" aria-haspopup="true">${t} <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button><ul class="drop">${list.map(([a,b])=>`<li>${A(a,b)}</li>`).join('')}</ul></li>`;
   }).join('');
   const soc = SITE.socials.map(([n,u,i])=>`<a href="${u}" target="_blank" rel="noopener" aria-label="${n}"><img src="https://static.wixstatic.com/media/${i}/v1/fit/w_44,h_44/s.png" alt="" width="22" height="22" loading="lazy"></a>`).join('');
-  const brand = `<a class="brand" href="./" aria-label="Home – ${SITE.name}">${LOGO}<span><b>${SITE.name}</b><small>${SITE.short}</small></span></a>`;
+  const brand = `<a class="brand" href="./" aria-label="Home – ${SITE.name}"><img class="logo" src="${SITE.logo}" alt="VKVSir logo" width="52" height="44"><span><b>${SITE.name}</b><small>${SITE.short}</small></span></a>`;
   document.getElementById('site-header').outerHTML = `
   <a class="skip" href="#main">Skip to content</a>
   <header class="hdr" id="hdr"><div class="wrap hdr-in">${brand}
@@ -105,3 +105,6 @@ function lightbox(selector){
   box.onclick = e => { if (e.target === box) close(); };
   document.addEventListener('keydown', e => { if (!box.classList.contains('open')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1); });
 }
+
+/* Round a live count down to a clean figure with + (never overstates) */
+function plus(n){ n=+n||0; const step = n>=1000?1000 : n>=100?100 : n>=50?10 : 5; const r=Math.floor(n/step)*step; return (r||n).toLocaleString('en-IN')+'+'; }
