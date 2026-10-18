@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" role="img" aria-label="VKVSir logo">
+  <!-- Fill uses --logo-fill, outline uses --logo-line, so the mark reads on light and dark backgrounds -->
+  <g fill="var(--logo-fill,#0f3b33)" stroke="var(--logo-line,#ffffff)" stroke-width="2.4" stroke-linejoin="round" paint-order="stroke">
+    <!-- mortarboard -->
+    <path d="M58 6 L96 18 L58 30 L20 18 Z"/>
+    <path d="M38 24 L38 33 Q58 41 78 33 L78 24 L58 30 Z"/>
+    <path d="M92 19 L92 36" fill="none" stroke-width="3"/>
+    <circle cx="92" cy="39" r="3.6"/>
+    <!-- V -->
+    <path d="M6 40 L24 40 L38 78 L52 40 L66 40 L45 96 L31 96 Z"/>
+    <!-- K -->
+    <path d="M70 40 L84 40 L84 62 L102 40 L118 40 L96 66 L118 96 L101 96 L84 72 L84 96 L70 96 Z"/>
+  </g>
+</svg>
