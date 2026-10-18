@@ -28,10 +28,12 @@
 <main id="main">
 <style>.jsteps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:24px 0}.js{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}.js i{font-style:normal;font-family:var(--f-head);font-weight:800;background:var(--gold);color:#1a1a1a;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;margin-bottom:10px}.js b{font-family:var(--f-head);display:block;color:var(--g800);margin-bottom:4px}.js p{margin:0;color:var(--muted);font-size:15px}.bigcta{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;background:linear-gradient(120deg,var(--g800),var(--g700));color:#e4ece8;border-radius:var(--r-lg);padding:clamp(26px,5vw,48px)}.bigcta h2{color:#fff;margin:0}.bigcta .btn{font-size:18px;padding:16px 30px}@media(max-width:760px){.jsteps{grid-template-columns:1fr}}</style><section class="banner"><div class="wrap"><p class="crumbs"><a href="./">Home</a> › Join</p><h1>Let's try that again</h1><p>We couldn't complete your membership check. It usually takes 30 seconds to fix.</p></div></section>
 <section class="sec sec-white"><div class="narrow"><div class="jsteps"><div class="js"><b>YouTube box not ticked</b><p>On Google's permission screen keep "View your YouTube account" ticked.</p></div><div class="js"><b>Clicked "Back to safety"?</b><p>Click Advanced → Go to vkvsir.com. It is safe; Google's review is in progress.</p></div><div class="js"><b>Page left open too long</b><p>Just start again below.</p></div></div>
-<div class="bigcta"><a class="btn btn-gold" href="https://www.vkvsir.com/_functions/start">Try again – Continue with Google</a><p style="margin:0">Still stuck? <a style="color:var(--lime)" href="mailto:vinodvermavkvsir@gmail.com">Email us</a> with a screenshot.</p></div></div></section>
+<div class="bigcta"><button class="btn btn-gold" onclick="joinWithGoogle()">Try again – Continue with Google</button><p style="margin:0">Still stuck? <a style="color:var(--lime)" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=vinodvermavkvsir@gmail.com&amp;su=Enquiry%20from%20vkvsir.com" target="_blank" rel="noopener">Email us</a> with a screenshot.</p></div></div></section>
 </main>
 <div id="site-footer"></div>
 <script src="assets/site.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="assets/auth.js"></script>
 
 </body>
 </html>
