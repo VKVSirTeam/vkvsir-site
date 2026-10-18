@@ -12,7 +12,7 @@ def IMG(i, w, h, alt, cls="", eager=False):
     return (f'<img src="{W(i,w,h)}" srcset="{W(i,w//2,h//2)} {w//2}w, {W(i,w,h)} {w}w" sizes="(max-width:600px) 100vw, {w}px" '
             f'width="{w}" height="{h}" alt="{E(alt)}"{" class="+chr(34)+cls+chr(34) if cls else ""} {"fetchpriority=high" if eager else "loading=lazy decoding=async"}>')
 
-PERSON = {"@type":"Person","@id":DOMAIN+"/#person","name":"Prof. Vinod Kumar Verma","alternateName":["VKVSir","Vinod Kr. Verma","VKV Sir"],
+PERSON = {"@type":"Person","@id":DOMAIN+"/#person","name":"Dr. Vinod Kumar Verma","honorificPrefix":"Dr.","alternateName":["VKVSir","Vinod Kr. Verma","VKV Sir","Prof. Vinod Kumar Verma"],
  "jobTitle":"Professor, Department of Mechanical Engineering","url":DOMAIN,"email":"mailto:vinodvermavkvsir@gmail.com",
  "image":"https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png",
  "worksFor":{"@type":"CollegeOrUniversity","name":"Government Engineering College Ajmer","address":{"@type":"PostalAddress","streetAddress":"NH-8, Barliya Circle","addressLocality":"Ajmer","addressRegion":"Rajasthan","postalCode":"305025","addressCountry":"IN"}},
@@ -36,7 +36,7 @@ def page(slug, title, desc, body, script="", extra_ld=None, crumbs=None):
 <meta name="description" content="{E(desc)}">
 <link rel="canonical" href="{url}">
 <meta name="robots" content="index, follow, max-image-preview:large">
-<meta name="author" content="Prof. Vinod Kumar Verma">
+<meta name="author" content="Dr. Vinod Kumar Verma">
 <meta name="theme-color" content="#0f3b33">
 <meta property="og:type" content="website"><meta property="og:site_name" content="VKVSir">
 <meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}">
@@ -78,14 +78,14 @@ def post_cards(items, reveal=False):
         out.append(f'<a class="card{rv}" href="{p["url"]}" data-year="{p["date"][:4]}"><div class="ph">{ph}</div><div class="bd"><span class="tag">{p["kind"]} · {d}</span><h3>{E(p["title"])}</h3>{ex}<span class="go link-more">Read post</span></div></a>')
     return "\n".join(out)
 
-COURSES = [("Automobile Engineering","11062b_42b9ecea6a1540668defdedea80d1a9d~mv2.jpg",f"{OLD}/automobile-engineering","Engines, transmission, steering, brakes and vehicle systems explained with animations."),
- ("Hybrid & Electric Vehicles","11062b_0d56d33639234010a96c69ca297bf60a~mv2.jpg",f"{OLD}/hev","Batteries, motors, controllers and the technology shaping electric mobility."),
- ("Workshop Practice","e592d5b87e234c849e8363ee949932a0.jpg",f"{OLD}/workshop-practice","Welding, fitting, carpentry, smithy and safe shop-floor practice."),
- ("Machine Drawing","7fba3905ea184ee29642cf0def056821.jpg",f"{OLD}/automobile-engineering","Projections, sections, fasteners and assembly drawings, step by step."),
- ("Casting Process","aef2ab657d574a17adc9dc6a7312c958.jpg",f"{OLD}/automobile-engineering","Patterns, moulds, melting and defects in metal casting."),
- ("New Product Design & Launching","9d090cf24c96432db9c956dbdac792f6.jpg",f"{OLD}/pdl","From idea to market: design thinking, prototyping and launch strategy.")]
+COURSES = [("Automobile Engineering","11062b_42b9ecea6a1540668defdedea80d1a9d~mv2.jpg","course-automobile-engineering","Engines, transmission, steering, brakes and vehicle systems explained with animations."),
+ ("Hybrid & Electric Vehicles","11062b_0d56d33639234010a96c69ca297bf60a~mv2.jpg","course-hev","Batteries, motors, controllers and the technology shaping electric mobility."),
+ ("Workshop Practice","e592d5b87e234c849e8363ee949932a0.jpg","course-workshop-practice","Welding, fitting, carpentry, smithy and safe shop-floor practice."),
+ ("Machine Drawing","7fba3905ea184ee29642cf0def056821.jpg","course-machine-drawing","Projections, sections, fasteners and assembly drawings, step by step."),
+ ("Casting Process","aef2ab657d574a17adc9dc6a7312c958.jpg","course-casting-process","Patterns, moulds, melting and defects in metal casting."),
+ ("New Product Design & Launching","9d090cf24c96432db9c956dbdac792f6.jpg","course-pdl","From idea to market: design thinking, prototyping and launch strategy.")]
 def course_cards(reveal=True):
-    return "".join(f'<a class="card{" rv rv-d"+str(n%3+1) if reveal else ""}" href="{u}"><div class="ph">{IMG(i,600,400,t)}</div><div class="bd"><h3>{t}</h3><p>{d}</p><span class="go link-more">View full course</span></div></a>' for n,(t,i,u,d) in enumerate(COURSES))
+    return "".join(f'<a class="card{" rv rv-d"+str(n%3+1) if reveal else ""}" href="{u}"><div class="ph">{IMG(i,600,400,t)}</div><div class="bd"><h3>{t}</h3><p>{d}</p><span class="go link-more">Course details</span></div></a>' for n,(t,i,u,d) in enumerate(COURSES))
 
 MEDIA = [("b90d41_92b1f87de246438386291d40d248e62b~mv2.jpg","PCRA"),("b90d41_ba9d6f25da3d449eaffd545359b5f097~mv2.jpeg","Dainik NavJyoti, 23 May 2018"),("b90d41_6e032864d49c412f9950856d0d3ee018~mv2.jpg","Bhaskar & Patrika, 17 Aug 2017"),("b90d41_963bdfc7ea9d4260838aaced8793fc8a~mv2.jpeg","Dainik Bhaskar, 23 May 2018"),("b90d41_6f3957c5d8504c8d845fc6fc8ead26d2~mv2.jpg","Bhaskar, 30 June 2017"),("b90d41_7cec79804645421a83efd91284441225~mv2.jpg","Bhaskar, 19 Sep 2017"),("b90d41_2f515a0836eb4cf3b7303f9c41419bfb~mv2.jpg","Bhaskar, 7 Oct 2016"),("b90d41_72163043971a4e49a9479397ab2d1168~mv2.jpg","Automatic gear system"),("b90d41_eb2104b6597649e4a5c0b65bd44f0619~mv2.jpg","Anti-roll braking system"),("b90d41_22ccfd37e9384f73a0c6540086034ff0~mv2.jpg","Air Force seminar"),("b90d41_1323325e93a44bab99e23dcca99bb22f~mv2.jpg","Air Force seminar"),("b90d41_fabdd8eeadc5438fb668094ed3bd18e5~mv2.jpg","Bhaskar & Patrika, 17 Aug 2017"),("b90d41_d2b156d8092848489d33c90634c0b568~mv2.jpg","Bhaskar, 12 Aug 2016"),("b90d41_d87f56553ddc4852b747b20ab28cde90~mv2.png","Bhaskar – BAJA, 3 Sep 2018"),("b90d41_0a6314db80f148f2837606043d55ac01~mv2.jpg","Patrika, 17 Aug 2017"),("b90d41_00ace1642c7e41c883b7f5cc13a93806~mv2.jpg","Patrika, 17 Aug 2017"),("b90d41_b9aaebb9bd604fa8b5854408b7173a8b~mv2.jpg","Silicon Valley smart stick – Bhaskar, 23 July 2018"),("b90d41_2b0fabb766804dd18cac674d3abd6f79~mv2.jpeg","Bhaskar, 16 March 2021"),("b90d41_efc2ea2689de462b91981f586dd4ba01~mv2.jpeg","Dainik NavJyoti, 23 May 2018"),("b90d41_9f2ea0acbea04b7bacba6478d1de33ae~mv2.jpg","Dainik Bhaskar, 23 May 2018"),("b90d41_0c3c0aba71354922833dfb52621aea4d~mv2.jpeg","Bhaskar, 20 March 2021"),("b90d41_ea9d919649d64b1a8ab7028e786125ff~mv2.jpeg","Navjyoti, 16 March 2021"),("b90d41_9bb6427654b3401f839048387e53d890~mv2.jpg","Dainik Navjyoti Ajmer, 16 March 2021"),("b90d41_707b8c2b5b8a4269a47936ebb093cf24~mv2.jpg","Rajasthan Patrika Ajmer, 16 March 2021"),("b90d41_139f4d7b832a4ca08979443334c181c7~mv2.jpg","Media appearance"),
  ("b90d41_f8d7b46bf8ef4e02a2f843e58c2fdf16~mv2.jpg","Media appearance"),("b90d41_ae1e83e73dd6481598341637786512d7~mv2.jpg","Media appearance"),("b90d41_f092db602bf744719a308a9403cb38a4~mv2.jpg","Media appearance"),("b90d41_de1bdfb6fbee45d48ef1c051f74ae05e~mv2.jpeg","Media appearance"),("b90d41_37ebd5a8adc548abab515507462c8ccb~mv2.jpeg","Media appearance"),("b90d41_1fb7211d22994a669b0071c450a3e3ed~mv2.jpg","Media appearance"),("b90d41_3092ac066fe54b44a1a853116385b953~mv2.jpg","Media appearance"),("b90d41_b3fa9e02c8af40e6bd557244e44df2ef~mv2.jpg","Experimenting in lab"),("b90d41_13e95f61ad114a59b38860e2a7316532~mv2.jpg","College campus"),("b90d41_0504ef60c2e14cea83781638f9bac1de~mv2.jpeg","Students on a break")]
@@ -167,12 +167,12 @@ H_CSS = """<style>
 home = H_CSS + f"""
 <section class="hero"><div class="wrap">
   <div class="rv in">
-    <h1><span>Prof. Vinod Kumar Verma · VKVSir</span>Vinod Kr. Verma</h1>
+    <h1><span>VKVSir · Engineering College Ajmer</span>Dr. Vinod Kr. Verma</h1>
     <p class="he">He is <em>a professor by profession</em>, an innovator by intelligence, a motivator by mood, brilliant with brain &amp; humble with heart.</p>
     <p class="quote">"In today's era, there is nothing better than human networking!!" … VKVSir</p>
     <div class="actions"><a class="btn btn-gold" href="courses">Explore courses</a><a class="btn btn-light" href="{TESTLAB}" target="_blank" rel="noopener">Take a free test</a></div>
   </div>
-  <div class="hero-ph"><img src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_440,h_531,al_c,q_85,enc_auto/vkvsir.png" width="440" height="531" alt="Prof. Vinod Kumar Verma (VKVSir), Engineering College Ajmer" fetchpriority="high"></div>
+  <div class="hero-ph"><img src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_440,h_531,al_c,q_85,enc_auto/vkvsir.png" width="440" height="531" alt="Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer" fetchpriority="high"></div>
 </div>
 <div class="wrap stats-wrap"><div class="stats">
   <div><b>18+</b><span>years teaching</span></div><div><b>5+</b><span>years in industry</span></div><div><b>60+</b><span>seminars &amp; workshops</span></div><div><b>1</b><span>patent granted</span></div>
@@ -181,8 +181,8 @@ home = H_CSS + f"""
 <section class="sec sec-white" id="about"><div class="wrap split">
   <img class="rv" src="https://static.wixstatic.com/media/b90d41_4866adbee9464682abf4a1dfda66fb69~mv2.png/v1/crop/x_185,y_93,w_1153,h_1407/fill/w_520,h_634,al_c,q_85,enc_auto/vkv.png" width="520" height="634" loading="lazy" alt="VKVSir portrait">
   <div class="rv rv-d1"><span class="kicker">About VKVSir</span><h2 style="font-size:var(--step-3)">Teacher, innovator and mentor since 2008</h2>
-    <p>Faculty in the Department of Mechanical Engineering at Engineering College Ajmer, known for excellence in Automobile Engineering, Renewable Energy, Marketing and New Product Design &amp; Launching.</p>
-    <ul class="ticks"><li>Topper in Diploma · B.E. MBM Jodhpur · M.Tech IIT Jodhpur · Ph.D.* · MBA Symbiosis</li><li>Appreciated by Former President Late Shri Pranab Mukherjee and many dignitaries</li><li>SAE founder at ECA, BAJA main round, free career counseling for students</li></ul>
+    <p>Faculty in the Department of Mechanical Engineering at Engineering College Ajmer since 2008, recognised for excellence in Automobile Engineering, Renewable Energy, Marketing and New Product Design &amp; Launching.</p>
+    <ul class="ticks"><li>Topper in Diploma · B.E. MBM Jodhpur · M.Tech IIT Jodhpur · Ph.D. · MBA Symbiosis</li><li>Industrial consultancy for government projects; expert examiner for RPSC, RTU Kota, MPUAT, Rajasthan Board &amp; Rajasthan University</li><li>SAE founder at ECA, BAJA main round, free career counseling for students</li></ul>
     <a class="btn btn-primary" href="about">Know more about him</a></div>
 </div></section>
 
@@ -192,10 +192,10 @@ home = H_CSS + f"""
 </div></section>
 
 <section class="sec sec-deep" id="test-lab"><div class="wrap lab">
-  <div class="rv"><span class="kicker">New · VKV Sir Test Lab</span><h2 style="font-size:var(--step-3)">Practise like the real exam</h2>
-    <p>Free online MCQ tests for B.Tech Mechanical subjects, built from VKVSir's own question bank, with GATE/ESE/PSU-style questions.</p>
+  <div class="rv"><span class="kicker">VKV Sir Test Lab</span><h2 style="font-size:var(--step-3)">Practise like the real exam</h2>
+    <p><b style="color:var(--gold)" data-stat="total">5,000+</b> MCQs across three tracks: <b>Foundation</b> (internal exams &amp; viva), <b>Competitive exams</b> (GATE, PSU, RTO/MVI, SSC) and <b>Career &amp; interview</b> preparation.</p>
     <div class="feat"><div><b>Topic &amp; unit tests</b><span>Pick a unit or a single topic and start in one tap.</span></div><div><b>Fair timing</b><span>Per-question timers with extra time for numericals.</span></div><div><b>Easy → hard mix</b><span>Balanced difficulty, from concepts to analytical problems.</span></div><div><b>Instant results</b><span>See your score and correct answers right away.</span></div></div>
-    <div class="actions" style="justify-content:flex-start"><a class="btn btn-gold" href="{TESTLAB}" target="_blank" rel="noopener">Open Test Lab</a><a class="btn btn-light" href="test-and-analysis">More practice</a></div></div>
+    <div class="actions" style="justify-content:flex-start"><a class="btn btn-gold" href="{TESTLAB}" target="_blank" rel="noopener">Open Test Lab</a><a class="btn btn-light" href="test-lab">How Test Lab works</a></div></div>
   <div class="mock rv rv-d2" aria-hidden="true"><div class="top"><span>Automobile Engg. · Unit 3</span><span class="timer">⏱ 00:42</span></div><div class="bar"><i></i></div>
     <h4>Q 6 / 10 · Which component converts reciprocating motion into rotary motion?</h4>
     <div class="opt"><b>A</b> Camshaft</div><div class="opt ok"><b>B</b> Crankshaft ✓</div><div class="opt"><b>C</b> Flywheel</div><div class="opt"><b>D</b> Connecting rod</div></div>
@@ -222,8 +222,10 @@ home = H_CSS + f"""
 
 <section class="sec sec-dark" id="members"><div class="wrap">
   <div class="sec-head rv"><div><span class="kicker">Members area · free</span><h2>Get every PDF, PPT &amp; MCQ</h2><p>Membership is free for our YouTube subscribers and fully automatic.</p></div></div>
+  <div class="steps" style="grid-template-columns:repeat(4,1fr)"><div class="step rv"><i>▶</i><b>Lecture plans &amp; videos</b><span>40–50 structured lectures per subject</span></div><div class="step rv"><i>⬇</i><b>Notes &amp; PPT/PDF</b><span>Download-ready lecture resources</span></div><div class="step rv"><i>✎</i><b>Quizzes &amp; tests</b><span>Topic quizzes linked to Test Lab</span></div><div class="step rv"><i>💡</i><b>Project ideas</b><span>Innovation and final-year project ideas</span></div></div>
+  <p style="margin:6px 0 18px;color:var(--gold);font-family:var(--f-head);font-weight:700">Free forever. One-time 30-second sign-up:</p>
   <div class="steps"><div class="step rv"><i>1</i><b>Subscribe</b><span>Subscribe to the VKVSir YouTube channel (account 1+ month old).</span></div><div class="step rv rv-d1"><i>2</i><b>Sign in with Google</b><span>Use the same Google account on the join page.</span></div><div class="step rv rv-d2"><i>3</i><b>Start learning</b><span>Access all courses, notes and quizzes instantly.</span></div></div>
-  <div class="actions" style="justify-content:flex-start"><a class="btn btn-gold" href="{OLD}/apply">Join membership – free</a><a class="btn btn-light" href="https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a></div>
+  <div class="actions" style="justify-content:flex-start"><a class="btn btn-gold" href="{OLD}/apply">Join membership – free</a><a class="btn btn-light" href="members">Explore members area</a></div>
 </div></section>
 
 <section class="sec sec-white" id="blog"><div class="wrap">
@@ -252,35 +254,35 @@ let x0=null;s.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:
 new IntersectionObserver(es=>es.forEach(e=>{clearInterval(t);if(e.isIntersecting)start();})).observe(s);})();
 </script>"""
 faq_ld = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":html.unescape(q),"acceptedAnswer":{"@type":"Answer","text":html.unescape(a)}} for q,a in FAQS]}
-page("index","VKVSir – Prof. Vinod Kumar Verma | Automobile Engineering, EV & Workshop Courses",
- "Free Automobile Engineering, Hybrid & Electric Vehicles, Workshop Practice and Machine Drawing lectures in Hindi & English by Prof. Vinod Kumar Verma (VKVSir), Engineering College Ajmer. PPTs, PDFs, MCQs and online tests.",
- home, home_js)
+page("index","VKVSir – Dr. Vinod Kumar Verma | Automobile Engineering, EV & Workshop Courses",
+ "Free Automobile Engineering, Hybrid & Electric Vehicles, Workshop Practice and Machine Drawing lectures in Hindi & English by Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer. PPTs, PDFs, MCQs and online tests.",
+ home, home_js.replace("</script>", "dbRpc('get_public_stats').then(s=>document.querySelectorAll('[data-stat=total]').forEach(e=>e.textContent=s.total_questions.toLocaleString('en-IN'))).catch(()=>{});</script>"))
 
 # =================== ABOUT ===================
-about = banner("About VKVSir","Vinod Kumar Verma (Ph.D.*, M.Tech., MBA): professor, innovator and mentor at Engineering College Ajmer.","About") + """
-<style>.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}.fact{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:var(--r);padding:22px;box-shadow:var(--sh)}.fact h3{font-size:var(--step-1);margin-bottom:.4em}.fact p{margin:0;color:var(--muted)}.split{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,60px);align-items:start}.split img{border-radius:var(--r-lg);box-shadow:var(--sh-lg);position:sticky;top:calc(var(--hh) + 20px)}.sk{text-align:center;font-size:var(--step-2);font-family:var(--f-head);color:var(--g800);margin-top:40px}@media(max-width:900px){.split{grid-template-columns:1fr}.split img{position:static;max-width:420px;margin:0 auto}}</style>
+about = banner("About VKVSir","Dr. Vinod Kumar Verma (Ph.D., M.Tech., MBA): professor, innovator, consultant and mentor at Engineering College Ajmer.","About") + """
+<style>.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}.fact{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:var(--r);padding:22px;box-shadow:var(--sh)}.fact h3{font-size:var(--step-1);margin-bottom:.4em}.fact p,.fact li{color:var(--muted)}.fact p{margin:0}.fact ul{margin:0;padding-left:18px}.split{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,60px);align-items:start}.split img{border-radius:var(--r-lg);box-shadow:var(--sh-lg);position:sticky;top:calc(var(--hh) + 20px)}.sk{text-align:center;font-size:var(--step-2);font-family:var(--f-head);color:var(--g800);margin-top:40px}@media(max-width:900px){.split{grid-template-columns:1fr}.split img{position:static;max-width:420px;margin:0 auto}}</style>
 <section class="sec sec-white"><div class="wrap"><div class="facts">
- <div class="fact rv"><h3>Bio</h3><p>Mr. Vinod Kr. Verma is a faculty in the Department of Mechanical Engineering at Engineering College Ajmer, since 2008. He is known for his excellence in the field of Automobile Engineering, Renewable Energy, Marketing, and New Product Design &amp; Launching.</p></div>
- <div class="fact rv rv-d1"><h3>Education</h3><p>He was a Topper in Diploma (Govt. Polytechnic Kota), B.E (MBM Jodhpur), M. Tech (IIT Jodhpur), Ph.D.* and MBA-Marketing (Symbiosis University).</p></div>
- <div class="fact rv rv-d2"><h3>Experience</h3><p>He has 5 Yr+ Industrial experience (2 Yr in Dubai &amp; Afghanistan + 3 Yrs in India) &amp; 14 Yr+ Teaching experience with a goal to enhance &amp; strengthen the young generation with good quality education and to create tremendous opportunities for them.</p></div>
- <div class="fact rv"><h3>Achievements</h3><p>He received many awards &amp; appreciations from Former President Late Mr. Pranab Mukherjee, MHRD Minister Mr. Satyapal Singh, the Education Minister of Rajasthan, the District Collector of Ajmer, and many more dignitaries.</p></div>
- <div class="fact rv rv-d1"><h3>Milestones</h3><p>One patent, publications in many reputed National &amp; International Journals, SAE Founder at ECA, participation in BAJA main round, 60+ seminars/tours/workshops organized for students, and many lectures delivered as an expert and keynote speaker.</p></div>
- <div class="fact rv rv-d2"><h3>Beyond the classroom</h3><p>Coordinator in the training and placement cell, bridging academia and industry with leading companies and HR professionals. Free career counseling for students.</p></div>
+ <div class="fact rv"><h3>Profile</h3><p>Dr. Vinod Kumar Verma has served as a faculty member in the Department of Mechanical Engineering at Engineering College Ajmer since 2008. He is recognised for his expertise in Automobile Engineering, Renewable Energy, Marketing, and New Product Design &amp; Launching.</p></div>
+ <div class="fact rv rv-d1"><h3>Education</h3><p>Diploma topper (Govt. Polytechnic, Kota); B.E. (MBM Engineering College, Jodhpur); M.Tech. (IIT Jodhpur); Ph.D.; and MBA in Marketing (Symbiosis, Pune).</p></div>
+ <div class="fact rv rv-d2"><h3>Experience</h3><p>More than five years in industry, including two years as a project manager in Dubai and Afghanistan, and over seventeen years in teaching, with a mission to empower the young generation through quality education and meaningful opportunities.</p></div>
+ <div class="fact rv"><h3>Awards &amp; recognition</h3><p>Honoured and appreciated by the Former President of India, Late Shri Pranab Mukherjee; the Union MHRD Minister, Dr. Satyapal Singh; the Education Minister of Rajasthan; the District Collector of Ajmer; and many other dignitaries.</p></div>
+ <div class="fact rv rv-d1"><h3>Consultancy &amp; expert roles</h3><ul><li>Successfully completed several industrial consultancy assignments for government projects.</li><li>Expert in examination and evaluation for statutory bodies including RPSC, Rajasthan Board, MPUAT, RTU Kota and the University of Rajasthan.</li></ul></div>
+ <div class="fact rv rv-d2"><h3>Milestones</h3><ul><li>Granted patent on an automatic fire-extinguishing and window-breaking system for cars.</li><li>Publications in reputed national and international journals.</li><li>Founder of SAEINDIA at ECA; team reached the BAJA main round.</li><li>Organised 60+ seminars, industrial tours and workshops; invited expert and keynote speaker.</li></ul></div>
 </div><p class="sk rv">सर्वे भवन्तु सुखिनः · Jai Hind!</p></div></section>
 <section class="sec sec-mint"><div class="wrap split">
- <img class="rv" src="https://static.wixstatic.com/media/b90d41_4866adbee9464682abf4a1dfda66fb69~mv2.png/v1/crop/x_185,y_93,w_1153,h_1407/fill/w_520,h_634,al_c,q_85,enc_auto/vkv.png" width="520" height="634" loading="lazy" alt="Prof. Vinod Kumar Verma">
+ <img class="rv" src="https://static.wixstatic.com/media/b90d41_4866adbee9464682abf4a1dfda66fb69~mv2.png/v1/crop/x_185,y_93,w_1153,h_1407/fill/w_520,h_634,al_c,q_85,enc_auto/vkv.png" width="520" height="634" loading="lazy" alt="Dr. Vinod Kumar Verma">
  <div class="rv rv-d1"><span class="kicker">More about VKVSir</span><h2 style="font-size:var(--step-3)">Where education, innovation and mentorship meet</h2>
- <p>Welcome to the official website of Prof. Vinod Kumar Verma, affectionately known as VKVSir, a distinguished figure in the realm of automobile engineering, manufacturing processes, and innovation.</p>
- <p>With over two decades of combined experience in both corporate and academic spheres, Prof. Vinod Kumar Verma brings a wealth of knowledge and expertise to the table. Having spent five years in the corporate world, including a two-year stint abroad as a project manager, he possesses invaluable insights into real-world challenges and solutions.</p>
- <p>However, it is his passion for education and innovation that truly sets him apart. With more than 17 years of teaching experience, Prof. Verma has nurtured countless young minds, guiding them towards their academic and professional aspirations. He is renowned for his dedication to fostering innovation, evident in his numerous research publications and a patented invention in his name.</p>
- <p>Beyond academia, Prof. Verma is celebrated for his role as a mentor and motivator. Students flock to him for career advice and personal guidance, drawn by his genuine desire to see them succeed. As a coordinator in the training and placement cell, he bridges the gap between academia and industry, forging partnerships with leading companies and HR professionals.</p>
- <p>Prof. Verma's academic journey is equally illustrious, with a graduation from MBM Engineering College, Jodhpur, followed by research endeavors at the prestigious Indian Institute of Technology, Jodhpur, and an MBA from Symbiosis, Pune.</p>
- <p>Always at the forefront of networking and engagement, Prof. Verma maintains an active presence on <a href="https://www.linkedin.com/in/vkvsir" target="_blank" rel="noopener">LinkedIn</a>, ensuring that his expertise and mentorship reach a global audience.</p>
- <p>Join us in exploring the multifaceted world of Prof. Vinod Kumar Verma, where education, innovation, and mentorship converge to shape the leaders of tomorrow.</p>
- <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-primary" href="contact">Contact VKVSir</a><a class="btn btn-ghost" href="research-project-innovation">See R&amp;D work</a></div></div>
+ <p>Welcome to the official website of Dr. Vinod Kumar Verma, affectionately known as VKVSir, a respected name in automobile engineering, manufacturing processes and innovation.</p>
+ <p>With more than two decades of combined corporate and academic experience, Dr. Verma brings practical insight to every classroom. His five years in industry, including two years abroad as a project manager, gave him a first-hand understanding of real-world engineering challenges and how to solve them.</p>
+ <p>What truly sets him apart is his passion for teaching and innovation. Over more than seventeen years in academia, he has guided countless students towards their academic and professional goals. His commitment to innovation is reflected in his research publications, a granted patent, and consultancy work delivered for government projects.</p>
+ <p>Beyond the classroom, Dr. Verma is valued as a mentor and motivator. Students regularly seek his advice on careers and personal growth, drawn by his genuine wish to see them succeed. As a coordinator of the Training and Placement Cell, he bridges academia and industry by building partnerships with leading companies and HR professionals. He also serves statutory bodies such as RPSC, RTU Kota, MPUAT, the Rajasthan Board and the University of Rajasthan as an expert in examination and evaluation.</p>
+ <p>His academic journey spans a B.E. from MBM Engineering College, Jodhpur, an M.Tech. from the Indian Institute of Technology Jodhpur, a Ph.D., and an MBA from Symbiosis, Pune.</p>
+ <p>An active voice on <a href="https://www.linkedin.com/in/vkvsir" target="_blank" rel="noopener">LinkedIn</a>, Dr. Verma shares his knowledge and mentorship with learners and professionals worldwide.</p>
+ <p>We invite you to explore the world of Dr. Vinod Kumar Verma, where education, innovation and mentorship come together to shape the leaders of tomorrow.</p>
+ <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-primary" href="contact">Contact VKVSir</a><a class="btn btn-ghost" href="research-project-innovation">R&amp;D &amp; consultancy</a></div></div>
 </div></section>"""
-page("about","About Prof. Vinod Kumar Verma (VKVSir) | Engineering College Ajmer",
- "Prof. Vinod Kumar Verma (VKVSir): Mechanical Engineering faculty at Engineering College Ajmer since 2008. B.E. MBM Jodhpur, M.Tech IIT Jodhpur, MBA Symbiosis. Automobile, EV, renewable energy and innovation.",
+page("about","About Dr. Vinod Kumar Verma (VKVSir) | Engineering College Ajmer",
+ "Dr. Vinod Kumar Verma (VKVSir): Mechanical Engineering faculty at Engineering College Ajmer since 2008. Ph.D., M.Tech IIT Jodhpur, MBA Symbiosis. Government consultancy, expert examiner for RPSC, RTU, MPUAT.",
  about, crumbs="About")
 
 # =================== COURSES ===================
@@ -311,32 +313,46 @@ rd = banner("R&amp;D, Projects &amp; Innovation","Research in renewable energy, 
 <div class="grid">{''.join(f'<div class="card rv rv-d{n%3+1}"><div class="ph">{IMG(i,600,400,t)}</div><div class="bd"><h3>{t}</h3><p>{d}</p></div></div>' for n,(i,t,d) in enumerate([("b90d41_72163043971a4e49a9479397ab2d1168~mv2.jpg","Automatic gear system","Microcontroller-based automatic gear shifting for auto-clutch bikes."),("b90d41_eb2104b6597649e4a5c0b65bd44f0619~mv2.jpg","Anti-roll braking","A braking concept to reduce vehicle roll-over risk."),("b90d41_b9aaebb9bd604fa8b5854408b7173a8b~mv2.jpg","Smart stick","Assistive smart stick project featured in Dainik Bhaskar."),("b90d41_d87f56553ddc4852b747b20ab28cde90~mv2.png","SAE BAJA","ECA team at the SAE BAJA main round."),("b90d41_b3fa9e02c8af40e6bd557244e44df2ef~mv2.jpg","Lab experiments","Hands-on experiments in renewable energy and automobile labs."),("b90d41_22ccfd37e9384f73a0c6540086034ff0~mv2.jpg","Air Force seminar","Seminars connecting students with defence and industry experts.")]))}</div></div></section>
 <section class="sec sec-mint"><div class="narrow"><div class="sec-head rv"><div><span class="kicker">Publications</span><h2>Selected research</h2></div><a class="link-more" href="https://scholar.google.com/citations?user=CDzm7o8AAAAJ" target="_blank" rel="noopener">Google Scholar</a></div>
 <div class="pubs">{''.join(f'<div class="pub rv"><b>{y}</b><div><h3>{E(t)}</h3><p>{E(j)}</p></div></div>' for t,j,y in pubs)}</div>
-<p style="margin-top:26px;text-align:center"><a class="btn btn-ghost" href="{OLD}/research-project-innovation">View the original R&amp;D page</a></p></div></section>"""
+</div></section>
+<section class="sec sec-deep"><div class="wrap"><div class="sec-head rv"><div><span class="kicker">Industrial consultancy</span><h2>Engineering analysis for real structures</h2><p>Structural and flow analysis services for government and industry: large tents, stainless-steel hangars, sheds and mechanical systems, designed for safety, economy and code compliance.</p></div><a class="btn btn-gold" href="contact">Discuss a project</a></div>
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))">
+ <figure class="card rv" style="margin:0"><div class="ph" style="aspect-ratio:16/10;background:#0b1f2a"><svg viewBox="0 0 400 250" width="100%" height="100%" role="img" aria-label="Representative stress plot of a large tent frame"><defs><linearGradient id="fea" x1="0" x2="1"><stop offset="0" stop-color="#1e3cff"/><stop offset=".3" stop-color="#00c2ff"/><stop offset=".5" stop-color="#2bd96b"/><stop offset=".72" stop-color="#ffe14d"/><stop offset="1" stop-color="#ff3b30"/></linearGradient></defs><rect width="400" height="250" fill="#0b1f2a"/><g stroke="url(#fea)" stroke-width="6" fill="none" stroke-linecap="round"><path d="M40 200 L120 80 L200 60 L280 80 L360 200"/><path d="M120 80 L120 200 M200 60 L200 200 M280 80 L280 200"/><path d="M40 200 L360 200"/></g><path d="M40 200 L120 80 L200 60 L280 80 L360 200Z" fill="url(#fea)" opacity=".18"/><g fill="#9fb5ad" font-family="Arial" font-size="11"><text x="14" y="22">Von Mises stress (MPa)</text></g><rect x="14" y="30" width="140" height="8" fill="url(#fea)"/><g fill="#cfd8d5" font-family="Arial" font-size="9"><text x="14" y="50">0</text><text x="140" y="50">185</text></g></svg></div><div class="bd"><span class="tag" style="background:#fff3cd;color:#7a5b00">Representative illustration · not actual project data</span><h3>Large tent &amp; pandal structures</h3><p>Static and wind-load analysis (ANSYS-type FEA) of tubular steel frames: member sizing, joint design and anchorage.</p></div></figure>
+ <figure class="card rv rv-d1" style="margin:0"><div class="ph" style="aspect-ratio:16/10;background:#0b1f2a"><svg viewBox="0 0 400 250" width="100%" height="100%" role="img" aria-label="Representative airflow plot around a stainless-steel hangar"><defs><linearGradient id="cfd" x1="0" x2="1"><stop offset="0" stop-color="#1e3cff"/><stop offset=".4" stop-color="#00c2ff"/><stop offset=".65" stop-color="#2bd96b"/><stop offset=".85" stop-color="#ffe14d"/><stop offset="1" stop-color="#ff3b30"/></linearGradient></defs><rect width="400" height="250" fill="#0b1f2a"/><g fill="none" stroke="url(#cfd)" stroke-width="2.2" opacity=".9"><path d="M0 60 C120 60 150 40 200 40 S300 60 400 60"/><path d="M0 85 C110 85 140 62 200 62 S300 85 400 85"/><path d="M0 110 C100 110 130 86 200 86 S310 110 400 110"/><path d="M0 135 C100 135 120 112 200 112 S320 140 400 135"/><path d="M0 225 C140 225 260 228 400 222"/></g><path d="M110 210 L110 160 Q200 100 290 160 L290 210Z" fill="#9aa9b3" stroke="#e6edf0" stroke-width="2"/><g stroke="#6f808a" stroke-width="1"><path d="M140 210 L140 145 M170 210 L170 128 M200 210 L200 124 M230 210 L230 128 M260 210 L260 145"/></g><rect x="0" y="210" width="400" height="40" fill="#13303a"/><g fill="#9fb5ad" font-family="Arial" font-size="11"><text x="14" y="22">Wind velocity (m/s)</text></g><rect x="14" y="30" width="140" height="8" fill="url(#cfd)"/><g fill="#cfd8d5" font-family="Arial" font-size="9"><text x="14" y="50">0</text><text x="140" y="50">42</text></g></svg></div><div class="bd"><span class="tag" style="background:#fff3cd;color:#7a5b00">Representative illustration · not actual project data</span><h3>Stainless-steel hangars &amp; sheds</h3><p>CFD wind-flow and structural checks for large-span SS hangars: pressure loads, deflection and fatigue-safe design.</p></div></figure>
+</div>
+<div class="grid rv" style="margin-top:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))"><div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:16px"><b style="font-family:var(--f-head);color:#fff">Structural FEA</b><p style="margin:4px 0 0;color:#b9cbc4;font-size:15px">Stress, deflection and buckling of frames and supports</p></div><div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:16px"><b style="font-family:var(--f-head);color:#fff">CFD analysis</b><p style="margin:4px 0 0;color:#b9cbc4;font-size:15px">Wind and air-flow loads, ventilation and cooling</p></div><div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:16px"><b style="font-family:var(--f-head);color:#fff">Design review</b><p style="margin:4px 0 0;color:#b9cbc4;font-size:15px">Drawings, BOQ and code-compliance checks</p></div><div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:16px"><b style="font-family:var(--f-head);color:#fff">Expert opinion</b><p style="margin:4px 0 0;color:#b9cbc4;font-size:15px">Technical evaluation for government departments</p></div></div>
+<p style="margin-top:22px;text-align:center"><a class="btn btn-light" href="{OLD}/research-project-innovation">View the original R&amp;D page</a></p></div></section>"""
 page("research-project-innovation","R&D, Projects & Innovation | VKVSir – Patent, Research & Student Projects",
- "Research and innovation by Prof. Vinod Kumar Verma: granted patent on an automatic fire extinguisher and window breaking system for cars, solar receiver research, EV and vehicle safety publications, and student projects.",
+ "Research, innovation and consultancy by Dr. Vinod Kumar Verma: structural FEA and CFD consultancy, granted patent on an automatic fire extinguisher and window breaking system for cars, solar receiver research, EV and vehicle safety publications, and student projects.",
  rd, crumbs="R&D, Projects & Innovation")
 
 # =================== MEDIA ===================
-mbody = banner("Media appearances","Newspaper coverage, seminars and innovations. Tap any picture to view it large.","Media") + f"""
-<style>.masonry{{columns:4 240px;column-gap:16px}}.masonry figure{{margin:0 0 16px;break-inside:avoid;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}}.masonry img{{width:100%;height:auto}}.masonry figcaption{{font-family:var(--f-head);font-size:13.5px;color:var(--muted);padding:10px 12px}}</style>
-<section class="sec sec-white"><div class="wrap"><div class="masonry">
-{''.join(f'<figure class="rv"><img src="https://static.wixstatic.com/media/{i}/v1/fit/w_480,h_900,q_80,enc_auto/m.jpg" data-full="{FIT(i)}" loading="lazy" decoding="async" alt="{E(c)}"><figcaption>{E(c)}</figcaption></figure>' for i,c in MEDIA)}
-</div></div></section>"""
+def mcat(c):
+    c2=c.lower()
+    if any(k in c2 for k in ["gear","braking","smart stick","baja"]): return "innovation"
+    if any(k in c2 for k in ["seminar","pcra","lab"]): return "events"
+    if any(k in c2 for k in ["campus","students"]): return "campus"
+    if any(k in c2 for k in ["bhaskar","patrika","navjyoti"]): return "press"
+    return "events"
+cats=[("all","All"),("press","Newspaper coverage"),("innovation","Student innovations"),("events","Seminars & events"),("campus","Campus life")]
+counts={k:sum(1 for i,c in MEDIA if mcat(c)==k) for k,_ in cats[1:]}
+mbody = banner("Media appearances","Press coverage, student innovations, seminars and campus moments from 2016 onwards. Tap any picture to view it in full.","Media") + f"""
+<style>.mstats{{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}}.mstats div{{background:var(--g100);border-radius:var(--r);padding:18px;text-align:center}}.mstats b{{display:block;font-family:var(--f-head);font-size:var(--step-3);color:var(--g800);line-height:1}}.mstats span{{font-family:var(--f-head);font-size:14px;color:var(--muted)}}
+.filters{{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}}.filters button{{font-family:var(--f-head);font-weight:600;font-size:15px;border:1.5px solid var(--line);background:#fff;color:var(--g800);padding:8px 18px;border-radius:999px;cursor:pointer}}.filters button.on{{background:var(--g800);border-color:var(--g800);color:#fff}}
+.masonry{{columns:4 240px;column-gap:16px}}.masonry figure{{margin:0 0 16px;break-inside:avoid;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);position:relative;transition:transform .2s}}.masonry figure:hover{{transform:translateY(-3px)}}.masonry img{{width:100%;height:auto}}.masonry figcaption{{font-family:var(--f-head);font-size:13.5px;color:var(--muted);padding:10px 12px;display:flex;justify-content:space-between;gap:8px}}.masonry figcaption i{{font-style:normal;color:var(--g500);font-size:12px;white-space:nowrap}}
+.ytband{{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:linear-gradient(120deg,#1a0f0f,#3a1212);color:#fff;border-radius:var(--r-lg);padding:clamp(24px,4vw,40px);margin-top:40px}}.ytband h2{{color:#fff;margin:0 0 6px}}.ytband p{{margin:0;color:#e6caca}}
+@media(max-width:700px){{.mstats{{grid-template-columns:repeat(2,1fr)}}}}</style>
+<section class="sec sec-white"><div class="wrap">
+<div class="mstats rv">{''.join(f'<div><b>{counts[k]}</b><span>{t}</span></div>' for k,t in cats[1:])}</div>
+<div class="filters" role="group" aria-label="Filter media">{''.join(f'<button data-c="{k}" class="{"on" if k=="all" else ""}">{t}</button>' for k,t in cats)}</div>
+<div class="masonry" id="mgrid">
+{''.join(f'<figure data-c="{mcat(c)}"><img src="https://static.wixstatic.com/media/{i}/v1/fit/w_480,h_900,q_80,enc_auto/m.jpg" data-full="{FIT(i)}" loading="lazy" decoding="async" alt="{E(c)}"><figcaption>{E(c)}<i>{dict(cats)[mcat(c)]}</i></figcaption></figure>' for i,c in MEDIA)}
+</div>
+<div class="ytband rv"><div><h2>Watch the lectures on YouTube</h2><p>Free full courses in Hindi &amp; English with animations. New videos every month.</p></div><a class="btn btn-yt" href="https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1" target="_blank" rel="noopener">▶ Subscribe on YouTube</a></div>
+</div></section>"""
+mjs = "<script>lightbox('#mgrid img');document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('#mgrid figure').forEach(f=>f.hidden=!(b.dataset.c==='all'||f.dataset.c===b.dataset.c));});</script>"
 page("media","Media Appearances of VKVSir | Newspaper Coverage & Seminars",
- "Media appearances of Prof. Vinod Kumar Verma (VKVSir): Dainik Bhaskar, Rajasthan Patrika and Navjyoti coverage of seminars, student innovations, BAJA and awards.",
- mbody, "<script>lightbox('.masonry img')</script>", crumbs="Media")
-
-# =================== TEST & ANALYSIS ===================
-tbody = banner("Test and analysis","Check your understanding with timed tests, quizzes and practice sheets.","Test and Analysis") + f"""
-<section class="sec sec-white"><div class="wrap"><div class="grid">
- <a class="card rv" href="{TESTLAB}" target="_blank" rel="noopener" style="border-top:5px solid var(--gold)"><div class="bd"><span class="tag">Recommended</span><h3>VKV Sir Test Lab</h3><p>Topic and unit tests with per-question timers, extra time for numericals and instant results.</p><span class="go link-more">Open Test Lab</span></div></a>
- <a class="card rv rv-d1" href="https://forms.gle/uDEB4LovbrKjtFTH9" target="_blank" rel="noopener"><div class="bd"><span class="tag">Practice</span><h3>MVSI / RTO Inspector Practice Sheet 1</h3><p>Exam-style questions in Google Forms.</p><span class="go link-more">Open sheet</span></div></a>
- <a class="card rv rv-d2" href="{OLD}/quiz"><div class="bd"><span class="tag">Members</span><h3>Course quizzes</h3><p>Unit-wise quizzes in the free Members Area.</p><span class="go link-more">Open quizzes</span></div></a>
- <a class="card rv" href="courses"><div class="bd"><span class="tag">Courses</span><h3>PPTs, PDFs &amp; full lectures</h3><p>For more quizzes and PPT/PDFs visit the full course pages (Membership Area).</p><span class="go link-more">View courses</span></div></a>
-</div></div></section>"""
-page("test-and-analysis","Online Tests & Quizzes | VKVSir Test and Analysis",
- "Free online MCQ tests, quizzes and practice sheets by VKVSir for B.Tech Mechanical, Automobile Engineering and MVSI/RTO Inspector exams.",
- tbody, crumbs="Test and Analysis")
+ "Media appearances of Dr. Vinod Kumar Verma (VKVSir): Dainik Bhaskar, Rajasthan Patrika and Navjyoti coverage of seminars, student innovations, BAJA and awards.",
+ mbody, mjs, crumbs="Media")
 
 # =================== BLOG ===================
 years = sorted({p["date"][:4] for p in posts}, reverse=True)
@@ -347,7 +363,7 @@ bbody = banner("Blog &amp; LinkedIn","Posts, wishes, events and thoughts from VK
 <div class="grid grid-3" id="posts">{post_cards(posts)}</div>
 <p style="text-align:center;margin-top:40px"><a class="btn btn-ghost" href="https://www.linkedin.com/in/vkvsir" target="_blank" rel="noopener">Follow on LinkedIn</a></p></div></section>"""
 bjs = "<script>document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('#posts .card').forEach(c=>c.hidden=!(b.dataset.y==='all'||c.dataset.year===b.dataset.y));});</script>"
-page("blog","Blog & LinkedIn | VKVSir Posts and Articles","Posts, wishes, events, webinars and thoughts by Prof. Vinod Kumar Verma (VKVSir), Engineering College Ajmer.", bbody, bjs, crumbs="Blog")
+page("blog","Blog & LinkedIn | VKVSir Posts and Articles","Posts, wishes, events, webinars and thoughts by Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer.", bbody, bjs, crumbs="Blog")
 
 # =================== FAQ ===================
 fbody = FAQ_CSS + banner("Frequently asked questions","Membership, lectures, internships and career counseling.","FAQ") + f"""
@@ -366,16 +382,140 @@ ctbody = banner("Contact &amp; follow","Questions, guest lectures, internships o
 {''.join(f'<a class="c rv" href="{u}" {"" if u.startswith("mailto") else "target=_blank rel=noopener"}>{ic(i)}<div><b>{t}</b><span>{s}</span></div></a>' for t,s,u,i in contacts)}
 </div></div></section>
 <section class="sec sec-mint"><div class="wrap addr">
- <div class="rv"><span class="kicker">Address</span><h2 style="font-size:var(--step-3)">Visit the department</h2><p>Prof. Vinod Kumar Verma<br>NB-202, New Building,<br>Engineering College Ajmer<br>Rajasthan, India – 305025</p><a class="btn btn-primary" href="mailto:vinodvermavkvsir@gmail.com">Send an email</a></div>
+ <div class="rv"><span class="kicker">Address</span><h2 style="font-size:var(--step-3)">Visit the department</h2><p>Dr. Vinod Kumar Verma<br>NB-202, New Building,<br>Engineering College Ajmer<br>Rajasthan, India – 305025</p><a class="btn btn-primary" href="mailto:vinodvermavkvsir@gmail.com">Send an email</a></div>
  <iframe class="rv rv-d1" loading="lazy" title="Map of Engineering College Ajmer" src="https://www.google.com/maps?q=Government+Engineering+College+Ajmer&output=embed" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div></section>"""
-page("contact","Contact VKVSir | Prof. Vinod Kumar Verma, Engineering College Ajmer",
- "Contact Prof. Vinod Kumar Verma (VKVSir) by email, YouTube, LinkedIn, Instagram, Facebook, Twitter, Telegram or visit NB-202, Engineering College Ajmer, Rajasthan 305025.", ctbody, crumbs="Contact")
+page("contact","Contact VKVSir | Dr. Vinod Kumar Verma, Engineering College Ajmer",
+ "Contact Dr. Vinod Kumar Verma (VKVSir) by email, YouTube, LinkedIn, Instagram, Facebook, Twitter, Telegram or visit NB-202, Engineering College Ajmer, Rajasthan 305025.", ctbody, crumbs="Contact")
 
 page("404","Page not found | VKVSir","Page not found", banner("Page not found","This page has moved. Try the menu above or go back home.")+'<section class="sec sec-white"><div class="wrap" style="text-align:center"><a class="btn btn-primary" href="./">Go to homepage</a></div></section>')
 
+
+# =================== COURSE & MEMBERS PAGES ===================
+JOIN_BOX = f"""<div class="free rv"><div><span class="kicker">Members only · free forever</span><h2>Unlock videos, notes &amp; quizzes</h2><p>Membership is completely free, and will always stay free. It takes about 30 seconds, only once:</p><ol><li>Subscribe to the VKVSir YouTube channel (account at least 1 month old).</li><li>Click <b>Join free</b> and sign in with the same Google account.</li><li>Access is granted instantly.</li></ol></div><div class="actions"><a class="btn btn-gold" href="{OLD}/apply">Join free now</a><a class="btn btn-light" href="https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1" target="_blank" rel="noopener">Subscribe on YouTube</a></div></div>"""
+CMETA = {
+ "automobile-engineering": dict(title="Automobile Engineering", course="Automobile Engineering", img="11062b_42b9ecea6a1540668defdedea80d1a9d~mv2.jpg",
+   lead="A complete 36-hour course (about 6 weeks) covering the modern vehicle from chassis to air-conditioning, in easy Hindi &amp; English with animations.",
+   why=["The core subject for Mechanical and Automobile students in Diploma, B.Tech and AMIE programmes.","Directly useful for RTO / MVI Inspector, GATE, PSU and automotive industry interviews.","Builds the foundation for electric and hybrid vehicle technology."],
+   learn=["Chassis, frames and automotive materials","Clutches, gearboxes, automatic transmission and differentials","Brakes, steering geometry and suspension systems","Wheels, tyres, axles and drive layouts","Battery, starting, charging, ignition and lighting systems","Automotive air-conditioning and refrigerants"],
+   books=[("Automobile Engineering, Vol. 1","Dr. Kirpal Singh"),("A Textbook of Automobile Engineering – I","P. S. Gill"),("Automobile Engineering","R. B. Gupta"),("Automotive Mechanics","N. K. Giri")]),
+ "hev": dict(title="Hybrid & Electric Vehicles", course="Hybrid & Electric Vehicles", img="11062b_0d56d33639234010a96c69ca297bf60a~mv2.jpg",
+   lead="From batteries and motors to power electronics and charging: understand the technology driving electric mobility.",
+   why=["Electric mobility is the fastest-growing area in the automotive industry.","Essential for EV-focused jobs, projects and research.","Connects mechanical, electrical and electronics knowledge."],
+   learn=["EV and HEV architectures","Battery types, BMS and charging","Electric motors and controllers","Regenerative braking and energy management"],
+   books=[("Electric and Hybrid Vehicles: Design Fundamentals","Iqbal Husain"),("Modern Electric, Hybrid Electric and Fuel Cell Vehicles","M. Ehsani et al.")]),
+ "workshop-practice": dict(title="Workshop Practice", course="Workshop Practice", img="e592d5b87e234c849e8363ee949932a0.jpg",
+   lead="Hands-on fundamentals of the engineering workshop: tools, processes and safe practice.",
+   why=["Compulsory first-year subject for all engineering branches.","Builds practical skills valued in labs and industry.","Foundation for manufacturing and production subjects."],
+   learn=["Fitting, carpentry and smithy","Welding and sheet-metal work","Measuring instruments","Workshop safety"],
+   books=[("Elements of Workshop Technology, Vol. 1 & 2","Hajra Choudhury"),("Workshop Technology","W. A. J. Chapman")]),
+ "machine-drawing": dict(title="Machine Drawing", course="Machine Drawing", img="7fba3905ea184ee29642cf0def056821.jpg",
+   lead="Read and create engineering drawings with confidence: projections, sections, fasteners and assemblies.",
+   why=["The language of engineers across design and manufacturing.","Essential for CAD, design roles and university exams.","Improves visualisation and precision."],
+   learn=["Orthographic projections and sections","Fasteners, keys and couplings","Limits, fits and tolerances","Assembly and detail drawings"],
+   books=[("Machine Drawing","N. D. Bhatt"),("Machine Drawing","K. L. Narayana")]),
+ "casting-process": dict(title="Casting Process", course="Casting Process", img="aef2ab657d574a17adc9dc6a7312c958.jpg",
+   lead="Metal casting from pattern to finished part: moulding, melting, pouring and defect control.",
+   why=["A core manufacturing process asked in university, GATE and PSU exams.","Widely used in automotive and heavy industry.","Links materials science with production."],
+   learn=["Patterns and allowances","Moulding sands and methods","Gating and risering","Special casting processes and defects"],
+   books=[("Manufacturing Technology, Vol. 1","P. N. Rao"),("Manufacturing Processes for Engineering Materials","Kalpakjian &amp; Schmid")]),
+ "pdl": dict(title="New Product Design & Launching", course="New Product Design & Launching", img="9d090cf24c96432db9c956dbdac792f6.jpg",
+   lead="Turn ideas into successful products: design thinking, prototyping, validation and market launch.",
+   why=["Bridges engineering with marketing and entrepreneurship.","Useful for start-ups, innovation challenges and product roles.","Builds a structured approach to innovation."],
+   learn=["Identifying customer needs","Concept generation and selection","Prototyping and testing","Pricing, positioning and launch strategy"],
+   books=[("Product Design and Development","K. T. Ulrich &amp; S. D. Eppinger"),("Marketing Management","Philip Kotler")]),
+}
+AE_UNITS={"Lec 0":1,"Lec 1":1,"Lec 2":1,"Lec 3":1,"Lec 4":1,"Lec 5":2,"Lec 6":2,"Lec 7":2,"Lec 8":3,"Lec 9":3,"Lec 10":4,"Lec 10B":4,"Lec 11":4,"Lec 12":4,"Lec 13":4,"Lec 14":4,"Lec 15":5,"Lec 16":5,"Lec 17":5,"Lec 18":6,"Lec 19":6,"Lec 20":6,"Lec 21":6,"Lec 22":7,"Lec 23":7,"Lec 24":7,"Lec 25":7,"Lec 26":8,"Lec 27":8,"Lec 28":8,"Lec 29":9,"Lec 30":9,"Lec 31":9,"Lec 32":9,"Lec 33":9,"Lec 34":9,"Lec 35A":10,"Lec 35B":10,"Lec 36A":10,"Lec 36B":10,"Lec 37A":10,"Lec 37B":10}
+AE_UN={1:"Introduction, Chassis & Materials",2:"Clutch & Fluid Coupling",3:"Brakes",4:"Gearbox & Transmission",5:"Final Drive, Axles & Drive Layouts",6:"Wheels & Tyres",7:"Steering System",8:"Suspension System",9:"Automotive Electrical Systems",10:"Automotive Air Conditioning"}
+FALLBACK={"Automobile Engineering":[dict(item_type="lecture",unit=f"Unit {AE_UNITS[x['lec']]}: {AE_UN[AE_UNITS[x['lec']]]}",lecture=x['lec'],topic=x['topic'],duration=x['dur'],url=x['video'] or None,ppt_url=x['ppt'] or None,quiz_url=(x['quizUrl'] if 'forms.gle' in x['quizUrl'] else None),extra_videos=(['https://youtu.be/tpDPlVveAYo'] if x['lec']=='Lec 10B' else [])) for x in json.load(open('data_ae.json'))]}
+def course_public(slug, m):
+    body = banner(m["title"], m["lead"], "Courses") + f"""
+<section class="sec sec-white"><div class="wrap"><div class="kpis rv" id="kpis"></div>
+<div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,50px);align-items:start">
+ <div class="rv"><h2 style="font-size:var(--step-2)">Why this subject matters</h2><ul class="ticks" style="list-style:none;padding:0">{''.join(f'<li style="margin-bottom:10px">✔ {w}</li>' for w in m["why"])}</ul>
+ <h2 style="font-size:var(--step-2);margin-top:26px">What you will learn</h2><ul>{''.join(f'<li>{w}</li>' for w in m["learn"])}</ul></div>
+ <div class="rv rv-d1">{IMG(m["img"],640,420,m["title"])}<p style="margin-top:16px;color:var(--muted)">Every lecture comes with a video, downloadable notes and, where available, a topic quiz, all inside the free Members Area.</p><a class="btn btn-primary" href="{slug}">Open members page</a></div>
+</div></div></section>
+<section class="sec sec-mint"><div class="wrap"><div class="sec-head rv"><div><span class="kicker">Syllabus &amp; lecture plan</span><h2>Unit-wise outline</h2><p>Topics are listed openly. Videos, notes and quizzes unlock with free membership.</p></div><a class="link-more" href="{slug}">Members lecture plan</a></div><div id="syl"><p class="muted">Loading syllabus…</p></div></div></section>
+<section class="sec sec-white"><div class="wrap"><h2 class="rv" style="font-size:var(--step-2)">Recommended books</h2><div class="books rv">{''.join(f'<div class="book"><b>{t}</b><span>{a}</span></div>' for t,a in m["books"])}</div>
+<div style="margin-top:40px">{JOIN_BOX}</div></div></section>"""
+    js = f'<script>window.LIB_FALLBACK={json.dumps(FALLBACK.get(m["course"],[]),ensure_ascii=False)}</script><script src="assets/course.js"></script><script>renderPublic({json.dumps(m["course"])}, document.getElementById("syl"), document.getElementById("kpis"));</script>'
+    page("course-"+slug, f'{m["title"]} – Free Course in Hindi & English | VKVSir', f'Free {m["title"]} course by Dr. Vinod Kumar Verma (VKVSir): syllabus, lecture plan, video lectures, PPT/PDF notes, quizzes and recommended books.', body, js, crumbs="Courses",
+         extra_ld={"@context":"https://schema.org","@type":"Course","name":html.unescape(m["title"]),"description":html.unescape(m["lead"]),"provider":{"@id":DOMAIN+"/#person"},"inLanguage":["en","hi"],"isAccessibleForFree":True,"hasCourseInstance":{"@type":"CourseInstance","courseMode":"online"}})
+
+def course_members(slug, m):
+    body = banner(f'{m["title"]} · Members', "Complete lecture plan with video, PPT/PDF notes, quizzes and Test Lab practice.", "Members") + f"""
+<section class="sec sec-white"><div class="wrap">
+<div class="notice rv">🔒 Members resource. Membership is free forever. Not a member yet? <a href="{OLD}/apply">Join in 30 seconds</a>.</div>
+<div class="kpis rv" id="kpis"></div>
+<input class="search" id="q" type="search" placeholder="Search a topic, e.g. clutch, steering, battery" aria-label="Search lectures">
+<div id="plan"><p class="muted">Loading lecture plan…</p></div>
+<h2 style="font-size:var(--step-2);margin-top:40px">Recommended books</h2><div class="books">{''.join(f'<div class="book"><b>{t}</b><span>{a}</span></div>' for t,a in m["books"])}</div>
+<p style="margin-top:30px"><a class="btn btn-ghost" href="course-{slug}">Course overview</a> <a class="btn btn-gold" href="test-lab">Practise on Test Lab</a></p>
+</div></section>"""
+    js = f'<script>window.LIB_FALLBACK={json.dumps(FALLBACK.get(m["course"],[]),ensure_ascii=False)}</script><script src="assets/course.js"></script><script>renderMembers({json.dumps(m["course"])}, document.getElementById("plan"), document.getElementById("kpis"), document.getElementById("q"));</script>'
+    page(slug, f'{m["title"]} – Members Lecture Plan, Videos, Notes & Quiz | VKVSir', f'{m["title"]} members resources by VKVSir: unit-wise lecture plan with YouTube videos, PPT/PDF notes, quizzes and Test Lab practice.', body, js, crumbs="Members")
+
+for slug, m in CMETA.items():
+    course_public(slug, m); course_members(slug, m)
+
+# Members hub
+IDEAS = [("Auto fire-safety system","Sensor-based fire detection with automatic extinguishing for cars."),("EV battery health monitor","Low-cost BMS dashboard using a microcontroller and app."),("Smart parking assist","Ultrasonic sensing with audio-visual guidance for drivers."),("Solar-assisted e-cycle","Hybrid human-solar drive for short commutes."),("Regenerative braking demo rig","Bench setup to measure energy recovery."),("Tyre wear analyser","Image-based tread-depth estimation using a phone camera.")]
+hub = banner("Members area","Everything you need to learn, revise and practise, free forever for our YouTube family.","Members") + f"""
+<section class="sec sec-white" id="lectures"><div class="wrap"><div class="sec-head rv"><div><span class="kicker">Lecture plans &amp; videos</span><h2>Structured courses</h2><p>40–50 lectures per subject, unit by unit, each with a video and notes.</p></div></div>
+<div class="grid grid-3">{''.join(f'<a class="card rv" href="{sl}"><div class="ph">{IMG(m["img"],600,400,m["title"])}</div><div class="bd"><h3>{m["title"]}</h3><p>Lecture plan · videos · notes · quizzes</p><span class="go link-more">Open</span></div></a>' for sl,m in CMETA.items())}</div></div></section>
+<section class="sec sec-mint" id="downloads"><div class="wrap"><div class="sec-head rv"><div><span class="kicker">Notes &amp; downloads</span><h2>PPT &amp; PDF resources</h2><p>Lecture slides and notes, linked beside every lecture in each members course page.</p></div><a class="btn btn-primary" href="automobile-engineering">Automobile Engineering notes</a></div></div></section>
+<section class="sec sec-white" id="quizzes"><div class="wrap"><div class="sec-head rv"><div><span class="kicker">Quizzes &amp; practice tests</span><h2>Check your understanding</h2><p>Topic quizzes beside each lecture, plus timed unit tests on Test Lab.</p></div><a class="btn btn-gold" href="test-lab">Open Test Lab</a></div></div></section>
+<section class="sec sec-gold" id="projects"><div class="wrap"><div class="sec-head rv"><div><span class="kicker" style="color:#8a6a1e">Project &amp; innovation ideas</span><h2>Ideas for your next project</h2><p>Starter ideas for mini, major and hackathon projects, with guidance available to members.</p></div></div>
+<div class="grid">{''.join(f'<div class="card rv" style="padding:20px"><span class="tag">Idea</span><h3 style="margin:.5em 0 .3em">{t}</h3><p>{d}</p></div>' for t,d in IDEAS)}</div></div></section>
+<section class="sec sec-white"><div class="wrap">{JOIN_BOX}</div></section>"""
+page("members","Members Area – Free Lectures, Notes, Quizzes & Project Ideas | VKVSir","VKVSir members area: free lecture plans with videos, PPT/PDF notes, quizzes, Test Lab practice and project ideas. Free forever for YouTube subscribers.", hub, crumbs="Members")
+
+# =================== TEST LAB ===================
+CAT_FALLBACK = json.loads(r'''[{"track": "foundation", "grp": "Mechanical Engineering", "subgrp": "Diploma · UG · PG", "title": "Automobile Engineering", "description": "Unit and topic MCQs for internal exams, viva and semester preparation.", "subject_id": "AE", "status": "live"}, {"track": "foundation", "grp": "Mechanical Engineering", "subgrp": "Diploma · UG · PG", "title": "Manufacturing Processes", "description": "Casting, welding, forming and machining from basics to analytical level.", "subject_id": "MP", "status": "live"}, {"track": "foundation", "grp": "Mechanical Engineering", "subgrp": "Diploma · UG · PG", "title": "Hybrid & Electric Vehicles", "description": "Batteries, motors, controllers and EV architecture.", "subject_id": null, "status": "coming"}, {"track": "foundation", "grp": "Mechanical Engineering", "subgrp": "Diploma · UG", "title": "Workshop Practice", "description": "Shop-floor processes, tools and safety.", "subject_id": null, "status": "planned"}, {"track": "foundation", "grp": "Mechanical Engineering", "subgrp": "UG · PG", "title": "New Product Design & Launching", "description": "Design thinking, prototyping and launch strategy.", "subject_id": null, "status": "planned"}, {"track": "foundation", "grp": "Research", "subgrp": "PG · PhD", "title": "Research Methodology & Viva", "description": "Fundamentals for PG/PhD coursework and viva.", "subject_id": null, "status": "planned"}, {"track": "competitive", "grp": "Engineering Exams", "subgrp": "Transport", "title": "RTO / MVI Inspector", "description": "Previous-year style questions for MVSI / RTO / MVI exams.", "subject_id": "RTO", "status": "live"}, {"track": "competitive", "grp": "Engineering Exams", "subgrp": "GATE · ESE · PSU", "title": "GATE / ESE / PSU – Mechanical", "description": "Analytical and numerical practice, with long problems broken into steps.", "subject_id": null, "status": "coming"}, {"track": "competitive", "grp": "Engineering Exams", "subgrp": "ISRO · DRDO", "title": "Scientist / Engineer Exams", "description": "Mechanical core for ISRO, DRDO and similar exams.", "subject_id": null, "status": "planned"}, {"track": "competitive", "grp": "General Exams", "subgrp": "SSC · Banking · State", "title": "General Knowledge", "description": "Static GK and current affairs.", "subject_id": null, "status": "planned"}, {"track": "competitive", "grp": "General Exams", "subgrp": "SSC · Banking · State", "title": "Quantitative Aptitude", "description": "Arithmetic, data interpretation and speed maths.", "subject_id": null, "status": "planned"}, {"track": "competitive", "grp": "General Exams", "subgrp": "SSC · Banking · State", "title": "Reasoning (Logical & Analytical)", "description": "LR, AR, puzzles and pattern problems.", "subject_id": null, "status": "planned"}, {"track": "competitive", "grp": "Innovation", "subgrp": "Hackathons", "title": "Hackathon & Innovation Challenges", "description": "Problem-solving rounds for hackathons and innovation contests.", "subject_id": null, "status": "planned"}, {"track": "career", "grp": "Interview Preparation", "subgrp": "Freshers", "title": "Fresher Interview Readiness", "description": "Fundamentals to moderate level, mapped to the company, role and job description you target.", "subject_id": null, "status": "research"}, {"track": "career", "grp": "Interview Preparation", "subgrp": "Experienced", "title": "Mid-level Role Switch", "description": "Applied, domain-specific and design-level questions for professionals switching roles.", "subject_id": null, "status": "research"}, {"track": "career", "grp": "Interview Preparation", "subgrp": "Experienced", "title": "Senior & Leadership Roles", "description": "Emerging technology, R&D-stage concepts and strategic thinking.", "subject_id": null, "status": "research"}, {"track": "career", "grp": "Interview Modes", "subgrp": "All levels", "title": "Step-by-step Problem Solving", "description": "Long PSU/GATE/ISRO problems asked as a chain: formula, units, next step, final answer.", "subject_id": null, "status": "research"}, {"track": "career", "grp": "Interview Modes", "subgrp": "All levels", "title": "Group Discussion & HR", "description": "GD topics, communication and HR rounds.", "subject_id": null, "status": "research"}]''')
+TRACKS = [("foundation","Foundation","For internal exams, practicals, viva and semester preparation: Diploma, UG, PG and PhD.","📘"),
+          ("competitive","Competitive exams","GATE, ESE, PSU, ISRO, RTO/MVI, SSC, aptitude and reasoning, grouped by level and domain.","🏆"),
+          ("career","Career &amp; interview","Job, interview and role-switch preparation for freshers to senior professionals. In research.","🚀")]
+tl = """<style>.tl-hero{background:radial-gradient(900px 500px at 85% 10%,#1f6253 0,transparent 60%),var(--g900);color:#dfe9e4;padding:clamp(54px,8vw,96px) 0}.tl-hero h1{color:#fff;font-size:var(--step-4);margin:.1em 0 .3em}.tl-hero p{max-width:720px;font-size:var(--step-1);color:#c6d6cf}
+.live{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border-radius:var(--r);overflow:hidden;margin-top:36px}.live div{background:rgba(255,255,255,.05);padding:20px;text-align:center}.live b{display:block;font-family:var(--f-head);font-size:var(--step-3);color:var(--gold);line-height:1}.live span{font-family:var(--f-head);font-size:14px;color:#b9cbc4}
+.track{border-radius:var(--r-lg);padding:clamp(24px,4vw,40px);margin-bottom:24px;border:1px solid var(--line);background:#fff;box-shadow:var(--sh)}.track h2{font-size:var(--step-3);margin:.2em 0}.track .ico{font-size:34px}
+.track.foundation{border-top:6px solid var(--g500)}.track.competitive{border-top:6px solid var(--gold)}.track.career{border-top:6px solid #6b4bd8;background:linear-gradient(180deg,#f6f3ff,#fff)}
+.cgroup{margin-top:20px}.cgroup h3{font-size:16px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.items{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr))}
+.item{border:1px solid var(--line);border-radius:var(--r);padding:16px;background:#fff;text-decoration:none;color:var(--ink);display:flex;flex-direction:column;gap:6px;transition:transform .2s,box-shadow .2s}.item:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.item b{font-family:var(--f-head);color:var(--g800)}.item p{margin:0;font-size:14.5px;color:var(--muted)}
+.st{font-family:var(--f-head);font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;align-self:flex-start}.st.live{background:#e3f5ea;color:#1e7a46}.st.coming{background:var(--gold-soft);color:#7a5b00}.st.planned{background:#eef1f0;color:#5a6663}.st.research{background:#ece7ff;color:#5536c9}
+.qn{font-family:var(--f-head);font-size:13px;color:var(--g500)}
+.how{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:16px}.how div{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px}.how b{font-family:var(--f-head);display:block;color:var(--g800);margin-bottom:4px}
+@media(max-width:700px){.live{grid-template-columns:repeat(2,1fr)}}</style>
+<section class="tl-hero"><div class="wrap"><p class="crumbs"><a href="./">Home</a> › Test Lab</p><span class="kicker">VKV Sir Test Lab</span><h1>Practise smarter. Score higher.</h1><p>A free online test platform built on VKVSir's own question bank, from semester basics to competitive exams and, soon, interview readiness.</p>
+<div class="actions" style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-gold" href="TESTLAB" target="_blank" rel="noopener">Start a free test</a><a class="btn btn-light" href="#tracks">Explore tracks</a></div>
+<div class="live" id="live"><div><b data-k="total">5,000+</b><span>questions</span></div><div><b data-k="subjects">3</b><span>subjects &amp; exams live</span></div><div><b data-k="tests">4</b><span>ready-made tests</span></div><div><b>3</b><span>learning tracks</span></div></div></div></section>
+<section class="sec sec-paper" id="tracks"><div class="wrap"><div id="trackwrap">""" + "".join(f'<div class="track {k} rv" id="{k}"><span class="ico">{ic}</span><h2>{t}</h2><p style="color:var(--muted);max-width:760px">{d}</p><div class="cg" data-track="{k}"><p class="muted">Loading…</p></div></div>' for k,t,d,ic in TRACKS) + """</div></div></section>
+<section class="sec sec-white"><div class="wrap"><div class="sec-head rv"><div><span class="kicker">How it works</span><h2>Designed for real exam conditions</h2></div></div><div class="how rv">
+<div><b>Pick your scope</b>A whole subject, a unit, or a single topic.</div><div><b>Fair timing</b>Per-question timers, extra time for numericals.</div><div><b>Balanced difficulty</b>Easy, moderate and hard questions mixed sensibly.</div><div><b>Step-wise problems</b>Long GATE/PSU problems broken into steps: formula, units, next step, answer.</div><div><b>Instant results</b>Score and correct answers right after the test.</div><div><b>Interview mode</b>Coming soon: chained questions that test complete problem-solving.</div></div></div></section>
+<section class="sec sec-mint"><div class="wrap" style="display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))">
+ <a class="card rv" href="https://forms.gle/uDEB4LovbrKjtFTH9" target="_blank" rel="noopener"><div class="bd"><span class="tag">Practice sheet</span><h3>MVSI / RTO Inspector Practice Sheet 1</h3><p>Exam-style questions in Google Forms.</p><span class="go link-more">Open</span></div></a>
+ <a class="card rv rv-d1" href="members#quizzes"><div class="bd"><span class="tag">Members</span><h3>Lecture-wise quizzes</h3><p>Short quizzes beside every lecture in the members area.</p><span class="go link-more">Open</span></div></a>
+ <a class="card rv rv-d2" href="courses"><div class="bd"><span class="tag">Courses</span><h3>Learn first, then test</h3><p>Video lectures and notes for each subject.</p><span class="go link-more">View courses</span></div></a>
+</div></section>""".replace("TESTLAB", TESTLAB)
+tljs = """<script>
+const STL={live:'Live',coming:'Coming soon',planned:'Planned',research:'In research'};
+Promise.all([dbRpc('get_public_stats').catch(()=>null), dbGet('catalog?select=*&active=eq.true&order=track,sort').catch(()=>window.CAT_FALLBACK||[])]).then(([s,cat])=>{
+ const qmap={}; if(s){ document.querySelector('[data-k=total]').textContent=s.total_questions.toLocaleString('en-IN'); document.querySelector('[data-k=subjects]').textContent=s.subjects.length; document.querySelector('[data-k=tests]').textContent=s.tests_listed; s.subjects.forEach(x=>qmap[x.id]=x.questions); }
+ document.querySelectorAll('.cg').forEach(el=>{ const rows=cat.filter(c=>c.track===el.dataset.track); if(!rows.length){el.innerHTML='<p class="muted">Categories will appear here soon.</p>';return;}
+  const groups={}; rows.forEach(r=>(groups[r.grp]=groups[r.grp]||[]).push(r));
+  el.innerHTML=Object.entries(groups).map(([g,rs])=>`<div class="cgroup"><h3>${esc(g)}</h3><div class="items">${rs.map(r=>{const href=r.url||(r.status==='live'?TESTLAB:'');const tag=href?'a':'div';return `<${tag} class="item" ${href?`href="${esc(href)}" target="_blank" rel="noopener"`:''}><span class="st ${r.status}">${STL[r.status]||r.status}</span><b>${esc(r.title)}</b><p>${esc(r.description||'')}</p><span class="qn">${esc(r.subgrp||'')}${r.subject_id&&qmap[r.subject_id]?' · '+qmap[r.subject_id].toLocaleString('en-IN')+' questions':''}</span></${tag}>`}).join('')}</div></div>`).join('');});
+});
+</script>"""
+tljs = "<script>window.CAT_FALLBACK=" + json.dumps(CAT_FALLBACK) + "</script>" + tljs
+page("test-lab","VKV Sir Test Lab – Free Online MCQ Tests for Engineering, GATE, PSU, RTO & Interviews",
+ "Free online MCQ tests by VKVSir: 5,000+ questions for internal exams and viva, competitive exams (GATE, PSU, RTO/MVI, SSC) and upcoming interview preparation.", tl, tljs, crumbs="Test Lab")
+# old Test & Analysis → Test Lab
+open("test-and-analysis.html","w").write('<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Test Lab | VKVSir</title><link rel="canonical" href="'+DOMAIN+'/test-lab"><meta http-equiv="refresh" content="0; url=test-lab"><meta name="robots" content="noindex"></head><body><p>Moved to <a href="test-lab">Test Lab</a>.</p></body></html>')
+
 # SEO files
-pages = ["","about","courses","research-project-innovation","media","test-and-analysis","blog","faq","contact"]
+pages = ["","about","courses","test-lab","members","research-project-innovation","media","blog","faq","contact"] + [p for sl in CMETA for p in ("course-"+sl, sl)]
 today = date.today().isoformat()
 open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f'  <url><loc>{DOMAIN}/{p}</loc><lastmod>{today}</lastmod><priority>{"1.0" if not p else "0.8"}</priority></url>\n' for p in pages) + "</urlset>\n")
 open("robots.txt","w").write(f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")
