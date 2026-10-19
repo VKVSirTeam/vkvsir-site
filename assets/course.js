@@ -22,7 +22,7 @@ async function renderPublic(course, el, statsEl){
     if (!rows.length) { el.innerHTML = '<p class="muted">The detailed lecture plan for this course is being prepared. Join free to be notified when it goes live.</p>'; return; }
     const units = groupUnits(rows), hrs = rows.reduce((a,r)=>a+mins(r.duration),0)/60;
     if (statsEl) statsEl.innerHTML = `<div><b>${units.length}</b><span>units</span></div><div><b>${plus(rows.length)}</b><span>lectures</span></div><div><b>${plus(Math.round(hrs))}</b><span>hours of learning</span></div><div><b>${rows.some(r=>r.ppt_url||r.has_ppt)?plus(rows.filter(r=>r.ppt_url||r.has_ppt).length):'Many'}</b><span>notes &amp; quizzes</span></div>`;
-    el.innerHTML = units.map(([u, ls], n) => `<details class="unit"${n===0?' open':''}><summary><span>${esc(u)}</span><em>${ls.length} lectures</em></summary><ol>${ls.map(l=>`<li><b>${esc(l.lecture||'')}</b> ${esc(l.topic)} <span class="lock" title="Members only">🔒 video · notes · quiz</span></li>`).join('')}</ol></details>`).join('');
+    el.innerHTML = units.map(([u, ls], n) => `<details class="unit"${n===0?' open':''}><summary><span>${esc(u)}</span><em>${ls.length} lectures</em></summary><ol>${ls.map(l=>`<li><b>${esc(l.lecture||'')}</b> ${esc(l.topic)} ${l.url?`<a class="lk v sm" href="${esc(l.url)}" target="_blank" rel="noopener">▶ Video</a>`:''} <span class="lock" title="Members only">🔒 notes · quiz</span></li>`).join('')}</ol></details>`).join('');
   } catch(e) { el.innerHTML = '<p class="muted">Syllabus could not be loaded right now. Please refresh in a moment.</p>'; }
 }
 
@@ -32,9 +32,9 @@ async function renderMembers(course, el, statsEl, searchEl){
   if (!m.member) {
     const rows = (await loadOutline(course)).filter(r => r.item_type === 'lecture');
     document.querySelectorAll('.members-only').forEach(x => x.hidden = true);
-    el.innerHTML = `<div class="free" style="margin-bottom:24px"><div><span class="kicker">🔒 Members only · free forever</span><h2>${m.signed_in ? 'Finish your free membership' : 'Sign in to open this page'}</h2><p>${m.signed_in ? esc(m.reason==='not_subscribed'?'Subscribe to our YouTube channel with the same Google account, then check again.':'Complete the YouTube check to unlock videos, notes and quizzes.') : 'Videos, PPT/PDF notes, Test Lab quizzes and books open after a one-time, 30-second sign-up.'}</p></div><div class="actions"><button class="btn btn-gold" onclick="joinWithGoogle()">${m.signed_in ? 'Check again' : 'Join free with Google'}</button><a class="btn btn-light" href="join">How it works</a></div></div>`
-      + groupUnits(rows).map(([u, ls]) => `<details class="unit"><summary><span>${esc(u)}</span><em>${ls.length} lectures</em></summary><ol>${ls.map(l=>`<li><b>${esc(l.lecture||'')}</b> ${esc(l.topic)} <span class="lock">🔒</span></li>`).join('')}</ol></details>`).join('');
-    if (statsEl) statsEl.innerHTML = `<div><b>${plus(rows.length)}</b><span>lectures</span></div><div><b>🔒</b><span>videos</span></div><div><b>🔒</b><span>notes</span></div><div><b>🔒</b><span>quizzes</span></div>`;
+    el.innerHTML = `<div class="free" style="margin-bottom:24px"><div><span class="kicker">🔒 Members only · free forever</span><h2>${m.signed_in ? 'Finish your free membership' : 'Sign in to open this page'}</h2><p>${m.signed_in ? esc(m.reason==='not_subscribed'?'Subscribe to our YouTube channel with the same Google account, then check again.':'Complete the YouTube check to unlock notes and quizzes.') : 'Lecture videos are free for everyone. PPT/PDF notes, Test Lab quizzes and books open after a one-time, 30-second sign-up.'}</p></div><div class="actions"><button class="btn btn-gold" onclick="joinWithGoogle()">${m.signed_in ? 'Check again' : 'Join free with Google'}</button><a class="btn btn-light" href="join">How it works</a></div></div>`
+      + groupUnits(rows).map(([u, ls], n) => `<details class="unit"${n===0?' open':''}><summary><span>${esc(u)}</span><em>${ls.length} lectures</em></summary><ol>${ls.map(l=>`<li><b>${esc(l.lecture||'')}</b> ${esc(l.topic)} ${l.url?`<a class="lk v sm" href="${esc(l.url)}" target="_blank" rel="noopener">▶ Video</a>`:''} <span class="lock">🔒 notes · quiz</span></li>`).join('')}</ol></details>`).join('');
+    if (statsEl) statsEl.innerHTML = `<div><b>${plus(rows.length)}</b><span>lectures</span></div><div><b>▶</b><span>videos free</span></div><div><b>🔒</b><span>notes</span></div><div><b>🔒</b><span>quizzes</span></div>`;
     if (searchEl) searchEl.hidden = true;
     return;
   }
@@ -48,3 +48,6 @@ async function renderMembers(course, el, statsEl, searchEl){
     if (searchEl) searchEl.oninput = () => { const q = searchEl.value.trim().toLowerCase(); el.querySelectorAll('tbody tr').forEach(tr => tr.hidden = q && !tr.dataset.q.includes(q)); el.querySelectorAll('details').forEach(d => { d.hidden = q && ![...d.querySelectorAll('tbody tr')].some(tr => !tr.hidden); if (q) d.open = true; }); };
   } catch(e) { el.innerHTML = '<p class="muted">Lecture plan could not be loaded right now. Please refresh in a moment.</p>'; }
 }
+
+/* one-time hints on course pages */
+setTimeout(() => { const s = document.querySelector('#plan details summary, #syl details summary'); if (s && window.siteGuide) siteGuide(s, 'Tap a unit to see its lectures. Videos are free to watch'); }, 1500);
