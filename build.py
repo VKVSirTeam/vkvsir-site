@@ -225,7 +225,7 @@ H_CSS = """<style>
 .about-flow .cutout{float:left;width:clamp(240px,34%,400px);height:auto;margin:0 clamp(18px,3vw,40px) 10px 0;mix-blend-mode:multiply;
   shape-outside:polygon(0 0,58% 0,66% 8%,68% 30%,64% 42%,74% 50%,96% 56%,100% 66%,100% 100%,0 100%);shape-margin:14px;
   -webkit-mask-image:linear-gradient(#000 88%,transparent);mask-image:linear-gradient(#000 88%,transparent)}
-.about-flow h2{font-size:var(--step-3)!important;margin-top:.2em}
+.about-flow h2{font-size:var(--step-3)!important;margin-top:.2em;margin-bottom:.6em}
 .about-flow .ticks{display:block}.about-flow .ticks li{margin-bottom:10px;padding-left:0}.about-flow .ticks li::before{position:relative;display:inline-block;top:3px;left:0;margin-right:10px;vertical-align:baseline}
 @media(max-width:640px){.about-flow .cutout{width:44%;margin-right:14px}.about-flow h2{font-size:22px!important}}
 </style>"""
@@ -238,15 +238,15 @@ home = H_CSS + f"""
     <p class="quote">"In today's era, there is nothing better than human networking!!" … VKVSir</p>
     <div class="actions"><a class="btn btn-gold" href="courses">Explore courses</a><a class="btn btn-light" href="{TESTLAB}" target="_blank" rel="noopener">Take a free test</a></div>
   </div>
-  <div class="hero-ph"><span class="halo" aria-hidden="true"></span><span class="chip c1">Ph.D. · M.Tech IIT Jodhpur · MBA</span><span class="chip c2">🌍 Dubai · Afghanistan · India</span><span class="chip c3">🏅 Patent granted</span><img src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_620,h_748,al_c,q_88,enc_auto/vkvsir.png" width="620" height="748" alt="Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer" fetchpriority="high"></div>
+  <div class="hero-ph"><span class="halo" aria-hidden="true"></span><span class="chip c1">🎓 IITian M.Tech · Ph.D. &amp; MBA</span><span class="chip c2">🌍 Dubai · Afghanistan · India</span><span class="chip c3">🏅 Patent granted</span><img src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_620,h_748,al_c,q_88,enc_auto/vkvsir.png" width="620" height="748" alt="Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer" fetchpriority="high"></div>
 </div>
 <div class="wrap stats-wrap"><div class="stats">
   <div><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11v5c3 2 7 2 10 0v-5"/></svg><b>18+</b><span><i class="lg">years teaching</i><i class="sm">yrs teaching</i></span></div><div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><b>5+</b><span><i class="lg">years industry · India &amp; abroad</i><i class="sm">yrs industry</i></span></div><div><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg><b>10+</b><span><i class="lg">consultancy &amp; expert · industry &amp; govt.</i><i class="sm">consultancy &amp; expert</i></span></div><div><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><b>60+</b><span><i class="lg">seminars &amp; workshops</i><i class="sm">seminars</i></span></div><div><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg><b>1</b><span><i class="lg">patent granted</i><i class="sm">patent</i></span></div>
 </div></div></section>
 
 <section class="sec sec-white" id="about"><div class="wrap about-flow rv">
-  <img class="cutout" src="https://static.wixstatic.com/media/b90d41_4866adbee9464682abf4a1dfda66fb69~mv2.png/v1/crop/x_185,y_93,w_1153,h_1407/fill/w_520,h_634,al_c,q_85,enc_auto/vkv.png" width="520" height="634" loading="lazy" alt="Dr. Vinod Kumar Verma">
   <span class="kicker">About VKVSir</span><h2 style="font-size:var(--step-3)">Teacher, innovator and mentor since 2008</h2>
+  <img class="cutout" src="https://static.wixstatic.com/media/b90d41_4866adbee9464682abf4a1dfda66fb69~mv2.png/v1/crop/x_185,y_93,w_1153,h_1407/fill/w_520,h_634,al_c,q_85,enc_auto/vkv.png" width="520" height="634" loading="lazy" alt="Dr. Vinod Kumar Verma">
     <p>Faculty in the Department of Mechanical Engineering at Engineering College Ajmer since 2008, recognised for excellence in Automobile Engineering, Renewable Energy, Marketing and New Product Design &amp; Launching.</p>
     <ul class="ticks"><li>International experience as a Project Manager in Dubai &amp; Afghanistan, and General Manager in Indian industry</li><li>Topper in Diploma · B.E. MBM Jodhpur · M.Tech IIT Jodhpur · Ph.D. · MBA Symbiosis</li><li>Consultancy for various industries &amp; government projects; expert examiner for RPSC, RTU Kota, MPUAT, Rajasthan Board, Rajasthan University, etc.</li><li>SAE founder at ECA, BAJA main round, free career counseling for students</li></ul>
     <a class="btn btn-primary" href="about">Know more about him</a>
