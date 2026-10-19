@@ -20,18 +20,19 @@ PERSON = {"@type":"Person","@id":DOMAIN+"/#person","name":"Dr. Vinod Kumar Verma
  "knowsAbout":["Automobile Engineering","Hybrid and Electric Vehicles","Renewable Energy","Workshop Technology","Machine Drawing","Manufacturing Processes","New Product Design and Launching"],
  "sameAs":["https://www.youtube.com/@vkvsirdotcom","https://www.linkedin.com/in/vkvsir","https://www.facebook.com/vkvsir","https://www.instagram.com/vkvsir","https://www.twitter.com/vkvsir","https://t.me/vkvsir","https://scholar.google.com/citations?user=CDzm7o8AAAAJ"]}
 
-def page(slug, title, desc, body, script="", extra_ld=None, crumbs=None):
+def page(slug, title, desc, body, script="", extra_ld=None, crumbs=None, og_img=None):
     url = DOMAIN + ("/" if slug == "index" else "/" + slug)
     ld = [{"@context":"https://schema.org","@type":"WebSite","@id":DOMAIN+"/#site","name":"VKVSir","url":DOMAIN+"/","inLanguage":"en-IN","publisher":{"@id":DOMAIN+"/#person"}},
           dict({"@context":"https://schema.org"}, **PERSON)]
     if crumbs: ld.append({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":DOMAIN+"/"},{"@type":"ListItem","position":2,"name":crumbs,"item":url}]})
     if extra_ld: ld.append(extra_ld)
     fname = "index.html" if slug == "index" else slug + ".html"
+    base = '<base href="/">\n' if "/" in slug else ""
     open(fname,"w").write(f"""<!doctype html>
 <html lang="en-IN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{base}<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{E(title)}</title>
 <meta name="description" content="{E(desc)}">
 <link rel="canonical" href="{url}">
@@ -40,7 +41,7 @@ def page(slug, title, desc, body, script="", extra_ld=None, crumbs=None):
 <meta name="theme-color" content="#0f3b33">
 <meta property="og:type" content="website"><meta property="og:site_name" content="VKVSir">
 <meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}">
-<meta property="og:image" content="https://static.wixstatic.com/media/b90d41_c42d4694683b4a9b8599e2321e7a0d1f~mv2.jpg/v1/fit/w_1200,h_630,al_c/og.jpg">
+<meta property="og:image" content="{og_img or 'https://static.wixstatic.com/media/b90d41_c42d4694683b4a9b8599e2321e7a0d1f~mv2.jpg/v1/fit/w_1200,h_630,al_c/og.jpg'}">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@vkvsir">
 <meta name="google-site-verification" content="6SKN6jL13ZKnwFayefSH5_D0gb4olI3XBhQWLGzdgRY">
@@ -69,7 +70,8 @@ def page(slug, title, desc, body, script="", extra_ld=None, crumbs=None):
 def banner(title, sub="", crumb=None):
     return f'<section class="banner"><div class="wrap"><p class="crumbs"><a href="./">Home</a> › {crumb or title}</p><h1>{title}</h1>{f"<p>{sub}</p>" if sub else ""}</div></section>'
 
-posts = [dict(title=t,url=OLD+"/post/"+sl,date=d,img=im,kind=k,excerpt=ex) for t,sl,d,im,k,ex in POSTS]
+from posts_extra import EXTRA
+posts = [dict(title=t,slug=sl,url="post/"+sl,date=d,img=im or (W(EXTRA.get(sl,{}).get("img",""),600,420) if EXTRA.get(sl,{}).get("img") else ""),kind=k,excerpt=ex) for t,sl,d,im,k,ex in POSTS]
 def post_cards(items, reveal=False):
     out=[]
     for n,p in enumerate(items):
@@ -461,6 +463,25 @@ bbody = banner("Blog &amp; LinkedIn","Posts, wishes, events and thoughts from VK
 bjs = "<script>document.querySelectorAll('.filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.filters button').forEach(x=>x.classList.toggle('on',x===b));document.querySelectorAll('#posts .card').forEach(c=>c.hidden=!(b.dataset.y==='all'||c.dataset.year===b.dataset.y));});</script>"
 page("blog","Blog & LinkedIn | VKVSir Posts and Articles","Posts, wishes, events, webinars and thoughts by Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer.", bbody, bjs, crumbs="Blog")
 
+# =================== POST PAGES ===================
+import os
+os.makedirs("post", exist_ok=True)
+PCSS = '<style>.pwrap{max-width:820px}.pmedia{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-lg);background:#000;margin:0 0 26px}.pmedia img,.pmedia video{width:100%;height:auto;display:block;max-height:80vh;object-fit:contain;background:#0b1f1b}.pmedia iframe{width:100%;aspect-ratio:16/9;border:0;display:block}.ptext{font-size:var(--step-1);line-height:1.75;white-space:pre-line}.pnav{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}.pnav a{border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--ink);background:#fff}.pnav small{display:block;color:var(--muted);font-family:var(--f-head)}.pnav b{font-family:var(--f-head);color:var(--g800)}.pnav a:last-child{text-align:right}.pfollow{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}@media(max-width:600px){.pnav{grid-template-columns:1fr}.pnav a:last-child{text-align:left}}</style>'
+for k, p in enumerate(posts):
+    ex = EXTRA.get(p["slug"], {})
+    full = p["img"].replace("w_600,h_420","w_1200,h_1200").replace("/fill/","/fit/") if p["img"] else ""
+    if ex.get("yt"): media = f'<div class="pmedia"><iframe src="https://www.youtube-nocookie.com/embed/{ex["yt"]}" title="{E(p["title"])}" loading="lazy" allowfullscreen></iframe></div>'
+    elif ex.get("video"): media = f'<div class="pmedia"><video controls playsinline preload="metadata" poster="{full}"><source src="{ex["video"]}" type="video/mp4"></video></div>'
+    elif full: media = f'<div class="pmedia"><img src="{full}" alt="{E(p["title"])}"></div>'
+    else: media = ""
+    text = ex.get("text", p["excerpt"] or "")
+    newer = posts[k-1] if k > 0 else None; older = posts[k+1] if k+1 < len(posts) else None
+    d = date.fromisoformat(p["date"]).strftime("%d %B %Y")
+    nav = '<div class="pnav">' + (f'<a href="{newer["url"]}"><small>← Newer</small><b>{E(newer["title"])}</b></a>' if newer else '<span></span>') + (f'<a href="{older["url"]}"><small>Older →</small><b>{E(older["title"])}</b></a>' if older else '<span></span>') + '</div>'
+    body = PCSS + f'<section class="banner"><div class="wrap pwrap"><p class="crumbs"><a href="./">Home</a> › <a href="blog">Blog</a></p><h1 style="font-size:clamp(28px,4.4vw,46px)">{E(p["title"].strip())}</h1><p>{d} · Dr. Vinod Kumar Verma</p></div></section><section class="sec sec-white"><div class="wrap pwrap">{media}' + (f'<div class="ptext">{E(text)}</div>' if text else '') + '<div class="pfollow"><a class="btn btn-primary" href="https://www.linkedin.com/in/vkvsir" target="_blank" rel="noopener">Follow on LinkedIn</a><a class="btn btn-yt" href="https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1" target="_blank" rel="noopener">▶ Subscribe on YouTube</a><a class="btn btn-ghost" href="blog">All posts</a></div>' + nav + '</div></section>'
+    page("post/" + p["slug"], p["title"].strip() + " | VKVSir Blog", (text or p["title"])[:155], body, crumbs="Blog", og_img=full or None,
+         extra_ld={"@context":"https://schema.org","@type":"BlogPosting","headline":p["title"].strip(),"datePublished":p["date"],"author":{"@id":DOMAIN+"/#person"},"image":full or None,"url":DOMAIN+"/post/"+p["slug"]})
+
 # =================== FAQ ===================
 fbody = FAQ_CSS + banner("Frequently asked questions","Membership, lectures, internships and career counseling.","FAQ") + f"""
 <section class="sec sec-mint"><div class="narrow faq">{faq_html(FAQS)}
@@ -658,7 +679,7 @@ for _f in _g.glob('*.html'):
     _t = _re.sub(r'href="mailto:vinodvermavkvsir@gmail\.com(?:\?subject=([^"]*))?"(?: target=_blank rel=noopener| target="_blank" rel="noopener")?', _gm, _t)
     open(_f,'w').write(_t)
 # SEO files
-pages = ["","about","courses","test-lab","members","join","privacy-policy","research-project-innovation","media","blog","faq","contact"] + [p for sl in CMETA for p in ("course-"+sl, sl)]
+pages = ["","about","courses","test-lab","members","join","privacy-policy"] + ["post/"+p["slug"] for p in posts] + ["research-project-innovation","media","blog","faq","contact"] + [p for sl in CMETA for p in ("course-"+sl, sl)]
 today = date.today().isoformat()
 open("sitemap.xml","w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(f'  <url><loc>{DOMAIN}/{p}</loc><lastmod>{today}</lastmod><priority>{"1.0" if not p else "0.8"}</priority></url>\n' for p in pages) + "</urlset>\n")
 open("robots.txt","w").write(f"User-agent: *\nAllow: /\n\nSitemap: {DOMAIN}/sitemap.xml\n")
