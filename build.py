@@ -113,15 +113,17 @@ H_CSS = """<style>
 .hero h1 span{display:block;color:var(--gold);font-size:.42em;font-weight:600;letter-spacing:.02em;margin-bottom:.4em}
 .he{font-size:var(--step-1);line-height:1.6;color:#cfe0d9;margin:0 0 1.2em}
 .he em{color:var(--lime);font-style:normal}
+.intl{font-family:var(--f-head);font-size:15px;color:#d8e6e0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:7px 14px;display:inline-block;margin:0 0 16px}.intl b{color:var(--gold)}
+.aph{position:relative;border-radius:var(--r-lg);background:radial-gradient(circle at 50% 70%,var(--g100) 0,#f3f8f1 60%,#fff 100%);padding:18px 18px 0;overflow:hidden;box-shadow:var(--sh)}.aph img{box-shadow:none!important;border-radius:0!important;width:100%;mix-blend-mode:multiply}
 .quote{border-left:3px solid var(--gold);padding:4px 0 4px 16px;font-style:italic;color:#e9dcb8;margin:0 0 28px}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
 .hero-ph{align-self:end;justify-self:center;position:relative;max-width:470px}
 .hero-ph::before{content:"";position:absolute;inset:12% 6% 0;background:radial-gradient(circle,var(--gold) 0,transparent 68%);opacity:.28;filter:blur(10px)}
 .hero-ph img{position:relative;filter:drop-shadow(0 24px 40px rgba(0,0,0,.45))}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.1);border-radius:var(--r) var(--r) 0 0;overflow:hidden;margin-top:-1px}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.1);border-radius:var(--r) var(--r) 0 0;overflow:hidden;margin-top:-1px}
 .stats div{background:rgba(255,255,255,.04);padding:22px 18px;text-align:center}
 .stats b{display:block;font-family:var(--f-head);font-size:var(--step-3);color:var(--gold);line-height:1}
-.stats span{font-family:var(--f-head);font-size:14px;color:#b9cbc4}
+.stats span{font-family:var(--f-head);font-size:14px;color:#b9cbc4}.stats i{font-style:normal}
 .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,64px);align-items:center}
 .split img{border-radius:var(--r-lg);box-shadow:var(--sh-lg);width:100%}
 .ticks{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:10px}
@@ -165,8 +167,23 @@ H_CSS = """<style>
 .cta-band::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,41,36,.75),rgba(10,41,36,.85))}
 .cta-band>*{position:relative}.cta-band h2{color:#fff;font-size:var(--step-4);margin-bottom:.3em}.cta-band p{color:#d5e2dd;max-width:620px;margin:0 auto 28px;font-size:var(--step-1)}
 .cta-band .actions{justify-content:center}
-@media (max-width:640px){.hero h1{font-size:clamp(34px,10vw,44px)}.he{font-size:17px}.stats div{padding:16px 8px}.stats b{font-size:28px}.hero-ph{max-width:260px}.hero .wrap:not(.stats-wrap)>div:first-child{padding-bottom:0}.cta-band{padding:56px 16px}.mock{padding:16px}.mock h4{font-size:16px}}
-@media (max-width:900px){.hero .wrap:not(.stats-wrap),.split,.lab,.rd,.views{grid-template-columns:1fr}.hero .wrap:not(.stats-wrap){text-align:center}.actions{justify-content:center}.quote{text-align:left}.hero-ph{max-width:320px}.stats{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.mock{transform:none}}
+@media (max-width:640px){
+ .hero .wrap:not(.stats-wrap){grid-template-columns:1fr 34%!important;gap:10px!important;text-align:left!important;padding-top:18px!important;align-items:end!important}
+ .hero .wrap:not(.stats-wrap)>div:first-child{padding-bottom:14px!important}
+ .hero h1{font-size:clamp(28px,8.4vw,34px);margin:.05em 0 .25em}.hero h1 span{font-size:.42em}
+ .he{font-size:14.5px;line-height:1.5;margin-bottom:10px}
+ .intl{font-size:12px;padding:5px 10px;border-radius:12px;margin-bottom:10px}
+ .quote{display:none}
+ .actions{justify-content:flex-start!important;gap:8px}.hero .actions .btn{padding:10px 14px;font-size:14px}
+ .hero-ph{max-width:none!important;width:100%;align-self:end}.hero-ph::before{inset:20% 0 0}
+ .stats{grid-template-columns:repeat(5,1fr)!important;border-radius:12px 12px 0 0}
+ .stats div{padding:10px 3px}.stats b{font-size:19px}.stats span{font-size:9.5px;line-height:1.25;display:block;margin-top:3px}
+ .split{grid-template-columns:34% 1fr!important;gap:14px!important;align-items:start!important}
+ .aph{padding:8px 8px 0;border-radius:14px;position:sticky;top:calc(var(--hh) + 10px)}
+ .split h2{font-size:22px!important}
+.cta-band{padding:56px 16px}.mock{padding:16px}.mock h4{font-size:16px}}
+@media (max-width:900px) and (min-width:641px){.hero .wrap:not(.stats-wrap),.split{grid-template-columns:1fr}}
+@media (max-width:900px){.lab,.rd,.views{grid-template-columns:1fr}.hero .wrap:not(.stats-wrap){text-align:center}.actions{justify-content:center}.quote{text-align:left}.hero-ph{max-width:320px}.stats{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.mock{transform:none}}
 @media (max-width:520px){.feat{gap:10px}.feat div{padding:12px}.feat b{font-size:14.5px}.feat span{font-size:13px}}
 </style>"""
 home = H_CSS + f"""
@@ -174,20 +191,21 @@ home = H_CSS + f"""
   <div class="rv in">
     <h1><span>VKVSir · Engineering College Ajmer</span>Dr. Vinod Kr. Verma</h1>
     <p class="he">He is <em>a professor by profession</em>, an innovator by intelligence, a motivator by mood, brilliant with brain &amp; humble with heart.</p>
+    <p class="intl">🌍 Former Project Manager in <b>Dubai &amp; Afghanistan</b> · General Manager in Indian industry</p>
     <p class="quote">"In today's era, there is nothing better than human networking!!" … VKVSir</p>
     <div class="actions"><a class="btn btn-gold" href="courses">Explore courses</a><a class="btn btn-light" href="{TESTLAB}" target="_blank" rel="noopener">Take a free test</a></div>
   </div>
   <div class="hero-ph"><img src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_440,h_531,al_c,q_85,enc_auto/vkvsir.png" width="440" height="531" alt="Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer" fetchpriority="high"></div>
 </div>
 <div class="wrap stats-wrap"><div class="stats">
-  <div><b>18+</b><span>years teaching</span></div><div><b>5+</b><span>years in industry</span></div><div><b>60+</b><span>seminars &amp; workshops</span></div><div><b>1</b><span>patent granted</span></div>
+  <div><b>18+</b><span><i class="lg">years teaching</i><i class="sm">yrs teaching</i></span></div><div><b>5+</b><span><i class="lg">years industry · India &amp; abroad</i><i class="sm">yrs industry</i></span></div><div><b>10+</b><span><i class="lg">consultancy &amp; expert · industry &amp; govt. projects</i><i class="sm">consultancy</i></span></div><div><b>60+</b><span><i class="lg">seminars &amp; workshops</i><i class="sm">seminars</i></span></div><div><b>1</b><span><i class="lg">patent granted</i><i class="sm">patent</i></span></div>
 </div></div></section>
 
 <section class="sec sec-white" id="about"><div class="wrap split">
-  <img class="rv" src="https://static.wixstatic.com/media/b90d41_4866adbee9464682abf4a1dfda66fb69~mv2.png/v1/crop/x_185,y_93,w_1153,h_1407/fill/w_520,h_634,al_c,q_85,enc_auto/vkv.png" width="520" height="634" loading="lazy" alt="VKVSir portrait">
+  <div class="aph rv"><img src="https://static.wixstatic.com/media/b90d41_4866adbee9464682abf4a1dfda66fb69~mv2.png/v1/crop/x_185,y_93,w_1153,h_1407/fill/w_520,h_634,al_c,q_85,enc_auto/vkv.png" width="520" height="634" loading="lazy" alt="VKVSir portrait"></div>
   <div class="rv rv-d1"><span class="kicker">About VKVSir</span><h2 style="font-size:var(--step-3)">Teacher, innovator and mentor since 2008</h2>
     <p>Faculty in the Department of Mechanical Engineering at Engineering College Ajmer since 2008, recognised for excellence in Automobile Engineering, Renewable Energy, Marketing and New Product Design &amp; Launching.</p>
-    <ul class="ticks"><li>Topper in Diploma · B.E. MBM Jodhpur · M.Tech IIT Jodhpur · Ph.D. · MBA Symbiosis</li><li>Consultancy for various industries &amp; government projects; expert examiner for RPSC, RTU Kota, MPUAT, Rajasthan Board, Rajasthan University, etc.</li><li>SAE founder at ECA, BAJA main round, free career counseling for students</li></ul>
+    <ul class="ticks"><li>International experience as a Project Manager in Dubai &amp; Afghanistan, and General Manager in Indian industry</li><li>Topper in Diploma · B.E. MBM Jodhpur · M.Tech IIT Jodhpur · Ph.D. · MBA Symbiosis</li><li>Consultancy for various industries &amp; government projects; expert examiner for RPSC, RTU Kota, MPUAT, Rajasthan Board, Rajasthan University, etc.</li><li>SAE founder at ECA, BAJA main round, free career counseling for students</li></ul>
     <a class="btn btn-primary" href="about">Know more about him</a></div>
 </div></section>
 
@@ -264,12 +282,12 @@ page("index","VKVSir – Dr. Vinod Kumar Verma | Automobile Engineering, EV & Wo
  home, home_js.replace("</script>", "dbRpc('get_public_stats').then(s=>document.querySelectorAll('[data-stat=total]').forEach(e=>e.textContent=s.total_questions.toLocaleString('en-IN'))).catch(()=>{});</script>"))
 
 # =================== ABOUT ===================
-about = banner("About VKVSir","Dr. Vinod Kumar Verma (Ph.D., M.Tech., MBA): professor, innovator, consultant and mentor at Engineering College Ajmer.","About") + """
+about = banner("About VKVSir","Dr. Vinod Kumar Verma (Ph.D., M.Tech., MBA): professor, innovator, consultant and mentor, with international industry experience in Dubai and Afghanistan.","About") + """
 <style>.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px}.fact{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);border-radius:var(--r);padding:22px;box-shadow:var(--sh)}.fact h3{font-size:var(--step-1);margin-bottom:.4em}.fact p,.fact li{color:var(--muted)}.fact p{margin:0}.fact ul{margin:0;padding-left:18px}.split{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(30px,5vw,60px);align-items:start}.split img{border-radius:var(--r-lg);box-shadow:var(--sh-lg);position:sticky;top:calc(var(--hh) + 20px)}.sk{text-align:center;font-size:var(--step-2);font-family:var(--f-head);color:var(--g800);margin-top:40px}@media(max-width:900px){.split{grid-template-columns:1fr}.split img{position:static;max-width:420px;margin:0 auto}}</style>
 <section class="sec sec-white"><div class="wrap"><div class="facts">
  <div class="fact rv"><h3>Profile</h3><p>Dr. Vinod Kumar Verma has served as a faculty member in the Department of Mechanical Engineering at Engineering College Ajmer since 2008. He is recognised for his expertise in Automobile Engineering, Renewable Energy, Marketing, and New Product Design &amp; Launching.</p></div>
  <div class="fact rv rv-d1"><h3>Education</h3><p>Diploma topper (Govt. Polytechnic, Kota); B.E. (MBM Engineering College, Jodhpur); M.Tech. (IIT Jodhpur); Ph.D.; and MBA in Marketing (Symbiosis, Pune).</p></div>
- <div class="fact rv rv-d2"><h3>Experience</h3><p>More than five years in industry, including two years as a project manager in Dubai and Afghanistan, and over seventeen years in teaching, with a mission to empower the young generation through quality education and meaningful opportunities.</p></div>
+ <div class="fact rv rv-d2"><h3>Global industry experience</h3><p>More than five years in industry: as a <b>Project Manager on international projects in Dubai and Afghanistan</b>, and as a <b>General Manager in Indian industry</b>. Over seventeen years in teaching, with a mission to empower the young generation through quality education and meaningful opportunities.</p></div>
  <div class="fact rv"><h3>Awards &amp; recognition</h3><p>Honoured and appreciated by the Former President of India, Late Shri Pranab Mukherjee; the Union MHRD Minister, Dr. Satyapal Singh; the Education Minister of Rajasthan; the District Collector of Ajmer; and many other dignitaries.</p></div>
  <div class="fact rv rv-d1"><h3>Consultancy &amp; expert roles</h3><ul><li>Consultancy work delivered for various industries and government projects.</li><li>Expert in examination and evaluation for statutory bodies including RPSC, Rajasthan Board, MPUAT, RTU Kota, the University of Rajasthan, etc.</li></ul></div>
  <div class="fact rv rv-d2"><h3>Milestones</h3><ul><li>Granted patent on an automatic fire-extinguishing and window-breaking system for cars.</li><li>Publications in reputed national and international journals.</li><li>Founder of SAEINDIA at ECA; team reached the BAJA main round.</li><li>Organised 60+ seminars, industrial tours and workshops; invited expert and keynote speaker.</li></ul></div>
@@ -278,7 +296,7 @@ about = banner("About VKVSir","Dr. Vinod Kumar Verma (Ph.D., M.Tech., MBA): prof
  <img class="rv" src="https://static.wixstatic.com/media/b90d41_4866adbee9464682abf4a1dfda66fb69~mv2.png/v1/crop/x_185,y_93,w_1153,h_1407/fill/w_520,h_634,al_c,q_85,enc_auto/vkv.png" width="520" height="634" loading="lazy" alt="Dr. Vinod Kumar Verma">
  <div class="rv rv-d1"><span class="kicker">More about VKVSir</span><h2 style="font-size:var(--step-3)">Where education, innovation and mentorship meet</h2>
  <p>Welcome to the official website of Dr. Vinod Kumar Verma, affectionately known as VKVSir, a respected name in automobile engineering, manufacturing processes and innovation.</p>
- <p>With more than two decades of combined corporate and academic experience, Dr. Verma brings practical insight to every classroom. His five years in industry, including two years abroad as a project manager, gave him a first-hand understanding of real-world engineering challenges and how to solve them.</p>
+ <p>With more than two decades of combined corporate and academic experience, Dr. Verma brings practical insight to every classroom. His five years in industry, leading international projects as a Project Manager in Dubai and Afghanistan and later serving as a General Manager in Indian industry, gave him a first-hand understanding of real-world engineering, people and business challenges.</p>
  <p>What truly sets him apart is his passion for teaching and innovation. Over more than seventeen years in academia, he has guided countless students towards their academic and professional goals. His commitment to innovation is reflected in his research publications, a granted patent, and consultancy work delivered for various industries and government projects.</p>
  <p>Beyond the classroom, Dr. Verma is valued as a mentor and motivator. Students regularly seek his advice on careers and personal growth, drawn by his genuine wish to see them succeed. As a coordinator of the Training and Placement Cell, he bridges academia and industry by building partnerships with leading companies and HR professionals. He also serves statutory bodies such as RPSC, RTU Kota, MPUAT, the Rajasthan Board and the University of Rajasthan as an expert in examination and evaluation.</p>
  <p>His academic journey spans a B.E. from MBM Engineering College, Jodhpur, an M.Tech. from the Indian Institute of Technology Jodhpur, a Ph.D., and an MBA from Symbiosis, Pune.</p>
