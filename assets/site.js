@@ -108,3 +108,16 @@ function lightbox(selector){
 
 /* Round a live count down to a clean figure with + (never overstates) */
 function plus(n){ n=+n||0; const step = n>=1000?1000 : n>=100?100 : n>=50?10 : 5; const r=Math.floor(n/step)*step; return (r||n).toLocaleString('en-IN')+'+'; }
+
+/* one-time floating hint, once per page per device */
+function siteGuide(target, text){
+  if (!target) return; const key = 'vkv-guide:' + location.pathname;
+  try { if (localStorage.getItem(key)) return; localStorage.setItem(key, '1'); } catch(e) { return; }
+  const tip = document.createElement('div'); tip.className = 'guide-tip'; tip.innerHTML = '<span class="ga">↑</span>' + text;
+  document.body.appendChild(tip);
+  const place = () => { const r = target.getBoundingClientRect(); tip.style.top = (r.bottom + scrollY + 10) + 'px'; tip.style.left = Math.max(12, Math.min(r.left + scrollX + 16, innerWidth - 280)) + 'px'; };
+  place(); addEventListener('resize', place); target.classList.add('pulse');
+  setTimeout(() => { tip.classList.add('out'); target.classList.remove('pulse'); setTimeout(() => tip.remove(), 600); }, 6500);
+  target.addEventListener('click', () => { tip.remove(); target.classList.remove('pulse'); }, { once: true });
+}
+window.siteGuide = siteGuide;
