@@ -241,3 +241,6 @@ body{animation:pagein .45s ease both}
 .guide-tip.out{opacity:0}@keyframes gpop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}@keyframes gbob{50%{transform:translateY(-5px)}}
 .pulse{box-shadow:0 0 0 0 rgba(216,178,90,.7);animation:pls 1.4s ease-out infinite}@keyframes pls{to{box-shadow:0 0 0 12px rgba(216,178,90,0)}}
 .unit .lock{background:#f3ece0;color:#8a6a1e}
+.wa-line{display:flex;align-items:center;gap:10px;margin-top:16px;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.35);border-radius:12px;padding:10px 14px;text-decoration:none!important;max-width:320px}
+.wa-line svg{width:30px;height:30px;flex:none}.wa-line b{display:block;color:#fff;font-family:var(--f-head)}.wa-line small{color:#b9cbc4;font-size:13px}
+.ftr .soc a svg{width:22px;height:22px}
