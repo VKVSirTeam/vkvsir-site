@@ -14,7 +14,7 @@ const SITE = {
   logo: 'https://static.wixstatic.com/media/b90d41_2891d42aeac74eb783f9e95cded38f1e~mv2.png/v1/fit/w_120,h_120,q_90/logo.png',
   joinUrl: 'join',
   email: 'vinodvermavkvsir@gmail.com',
-  address: 'NB-202, New Building, Engineering College Ajmer, Rajasthan, India – 305025',
+  address: 'NB-202, New Building, Engineering College Ajmer – 305025',
   socials: [
     ['YouTube','https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1','a1b09fe8b7f04378a9fe076748ad4a6a.png'],
     ['LinkedIn','https://www.linkedin.com/in/vkvsir','48a2a42b19814efaa824450f23e8a253.png'],
@@ -64,11 +64,11 @@ const SITE = {
     <ul class="menu" id="menu">${items}<li><a class="cta" href="${SITE.joinUrl}">Join free</a></li></ul>
   </div></header><div class="scrim" id="scrim"></div>`;
   document.getElementById('site-footer').outerHTML = `
-  <footer class="ftr"><div class="wrap"><div class="ftr-grid" style="grid-template-columns:1.3fr 1fr 1.2fr 1fr">
-    <div>${brand}<p style="margin-top:16px">${SITE.address}</p><p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${SITE.email}&su=Enquiry%20from%20vkvsir.com" target="_blank" rel="noopener">${SITE.email}</a></p><div class="soc">${soc}</div></div>
-    <div><h3>Explore</h3><ul><li><a href="about">About</a></li><li><a href="research-project-innovation">R&amp;D &amp; Consultancy</a></li><li><a href="media">Media</a></li><li><a href="blog">Blog</a></li><li><a href="test-lab">Test Lab</a></li></ul></div>
-    <div><h3>Courses</h3><ul>${SITE.courses.map(([t,u])=>`<li><a href="${u}">${t}</a></li>`).join('')}</ul></div>
-    <div><h3>Help</h3><ul><li><a href="${SITE.joinUrl}">Join membership – free</a></li><li><a href="members">Members area</a></li><li><a href="faq">FAQ</a></li><li><a href="contact">Contact</a></li><li><a href="${OLD}/post/privacy-policy">Privacy policy</a></li></ul></div>
+  <footer class="ftr"><div class="wrap"><div class="ftr-grid">
+    <div>${brand}<p class="addr">${SITE.address}</p><p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${SITE.email}&su=Enquiry%20from%20vkvsir.com" target="_blank" rel="noopener">${SITE.email}</a></p><div class="soc">${soc}</div>
+      <div class="ftr-cta"><a class="gold" href="${SITE.joinUrl}">Join free</a><a href="test-lab">Test Lab</a></div></div>
+    <div><h3>Explore</h3><ul><li><a href="about">About</a></li><li><a href="courses">Courses</a></li><li><a href="research-project-innovation">R&amp;D &amp; Consultancy</a></li><li><a href="media">Media</a></li><li><a href="blog">Blog</a></li></ul></div>
+    <div><h3>Help</h3><ul><li><a href="members">Members area</a></li><li><a href="faq">FAQ</a></li><li><a href="contact">Contact</a></li><li><a href="privacy-policy">Privacy policy</a></li></ul></div>
   </div><div class="copy"><span>${SITE.footer}</span><span>Learning with VKVSir is fun.</span></div></div></footer>`;
 
   const body = document.body, burger = document.querySelector('.burger');
