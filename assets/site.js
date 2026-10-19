@@ -15,7 +15,9 @@ const SITE = {
   joinUrl: 'join',
   email: 'vinodvermavkvsir@gmail.com',
   address: 'NB-202, New Building, Engineering College Ajmer – 305025',
+  whatsapp: 'https://whatsapp.com/channel/0029Va5ka1rFHWq4y4OcYy3U',
   socials: [
+    ['WhatsApp channel','https://whatsapp.com/channel/0029Va5ka1rFHWq4y4OcYy3U','WA'],
     ['YouTube','https://www.youtube.com/@vkvsirdotcom?sub_confirmation=1','a1b09fe8b7f04378a9fe076748ad4a6a.png'],
     ['LinkedIn','https://www.linkedin.com/in/vkvsir','48a2a42b19814efaa824450f23e8a253.png'],
     ['Facebook','https://www.facebook.com/vkvsir','e316f544f9094143b9eac01f1f19e697.png'],
@@ -55,7 +57,8 @@ const SITE = {
     const list = sub === 'members' ? [['Members home','members'], ...SITE.members, ['Join membership – free', SITE.joinUrl]] : sub === 'courses' ? [['All courses','courses'], ...SITE.courses] : sub;
     return `<li><button aria-expanded="false" aria-haspopup="true">${t} <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" stroke-width="2"/></svg></button><ul class="drop">${list.map(([a,b])=>`<li>${A(a,b)}</li>`).join('')}</ul></li>`;
   }).join('');
-  const soc = SITE.socials.map(([n,u,i])=>`<a href="${u}" target="_blank" rel="noopener" aria-label="${n}"><img src="https://static.wixstatic.com/media/${i}/v1/fit/w_44,h_44/s.png" alt="" width="22" height="22" loading="lazy"></a>`).join('');
+  const WA_SVG = '<svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><path fill="#25D366" d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.4.7 4.6 1.9 6.6L3 29l7-2.2c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.7 12.7-12.7S23 3 16 3z"/><path fill="#fff" d="M22.6 18.9c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6l-1-2.5c-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.4 3.7 5.9 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 2-.8 2.3-1.6.3-.8.3-1.5.2-1.6-.1-.1-.3-.2-.6-.4z"/></svg>';
+  const soc = SITE.socials.map(([n,u,i])=>`<a href="${u}" target="_blank" rel="noopener" aria-label="${n}" title="${n}">${i==='WA'?WA_SVG:`<img src="https://static.wixstatic.com/media/${i}/v1/fit/w_44,h_44/s.png" alt="" width="22" height="22" loading="lazy">`}</a>`).join('');
   const brand = `<a class="brand" href="./" aria-label="Home – ${SITE.name}"><img class="logo" src="${SITE.logo}" alt="VKVSir logo" width="52" height="44"><span><b>${SITE.name}</b><small>${SITE.short}</small></span></a>`;
   document.getElementById('site-header').outerHTML = `
   <a class="skip" href="#main">Skip to content</a>
@@ -66,7 +69,7 @@ const SITE = {
   document.getElementById('site-footer').outerHTML = `
   <footer class="ftr"><div class="wrap"><div class="ftr-grid">
     <div>${brand}<p class="addr">${SITE.address}</p><p><a href="https://mail.google.com/mail/?view=cm&fs=1&to=${SITE.email}&su=Enquiry%20from%20vkvsir.com" target="_blank" rel="noopener">${SITE.email}</a></p><div class="soc">${soc}</div>
-      <div class="ftr-cta"><a class="gold" href="${SITE.joinUrl}">Join free</a><a href="test-lab">Test Lab</a></div></div>
+      <a class="wa-line" href="${SITE.whatsapp}" target="_blank" rel="noopener">${WA_SVG}<span><b>Follow us on WhatsApp</b><small>Openings, opportunities &amp; updates</small></span></a><div class="ftr-cta"><a class="gold" href="${SITE.joinUrl}">Join free</a><a href="test-lab">Test Lab</a></div></div>
     <div><h3>Explore</h3><ul><li><a href="about">About</a></li><li><a href="courses">Courses</a></li><li><a href="research-project-innovation">R&amp;D &amp; Consultancy</a></li><li><a href="media">Media</a></li><li><a href="blog">Blog</a></li></ul></div>
     <div><h3>Help</h3><ul><li><a href="members">Members area</a></li><li><a href="faq">FAQ</a></li><li><a href="contact">Contact</a></li><li><a href="privacy-policy">Privacy policy</a></li></ul></div>
   </div><div class="copy"><span>${SITE.footer}</span><span>Learning with VKVSir is fun.</span></div></div></footer>`;
