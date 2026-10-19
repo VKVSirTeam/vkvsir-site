@@ -185,19 +185,54 @@ H_CSS = """<style>
 @media (max-width:900px) and (min-width:641px){.split{grid-template-columns:1fr}}
 @media (max-width:900px){.lab,.rd,.views{grid-template-columns:1fr}.hero .wrap:not(.stats-wrap){text-align:center}.actions{justify-content:center}.quote{text-align:left}.hero-ph{max-width:320px}.stats{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.mock{transform:none}}
 @media (max-width:520px){.feat{gap:10px}.feat div{padding:12px}.feat b{font-size:14.5px}.feat span{font-size:13px}}
+
+/* ===== Hero v3 (desktop & tablet) ===== */
+.hero{background:radial-gradient(70% 90% at 78% 30%,#1f6a5a 0,transparent 60%),radial-gradient(50% 60% at 10% 100%,#103d35 0,transparent 70%),linear-gradient(160deg,#0c2f29,#08201c)}
+.hero::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(90deg,#000 0,transparent 55%);pointer-events:none}
+.hero>.wrap{position:relative;z-index:1}
+.hero .kick{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-head);font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.hero .kick::before{content:"";width:34px;height:2px;background:var(--gold)}
+.hero h1 span{display:none}
+.halo{position:absolute;left:50%;bottom:0;width:92%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 50% 45%,rgba(216,178,90,.35) 0,rgba(31,106,90,.55) 38%,rgba(12,47,41,0) 70%)}
+.halo::before{content:"";position:absolute;inset:6%;border-radius:50%;border:1.5px solid rgba(216,178,90,.45);border-right-color:transparent;border-bottom-color:transparent;animation:spin 28s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-ph img{-webkit-mask-image:linear-gradient(#000 78%,transparent);mask-image:linear-gradient(#000 78%,transparent)}
+.hero-ph::before{display:none}
+.chip{position:absolute;z-index:2;font-family:var(--f-head);font-weight:600;font-size:13px;color:#eaf2ee;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);padding:8px 14px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.25);animation:float 6s ease-in-out infinite}
+.chip.c1{top:16%;left:-8%}.chip.c2{top:42%;right:-6%;animation-delay:-2s}.chip.c3{bottom:26%;left:-2%;animation-delay:-4s}
+@keyframes float{50%{transform:translateY(-8px)}}
+.stats{position:relative;z-index:2;background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.12);border-bottom:0;gap:0;margin-top:-34px}
+.stats div{background:none;position:relative;padding:20px 14px 18px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.stats div+div::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;background:rgba(255,255,255,.14)}
+.stats svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.stats b{font-size:clamp(28px,2.6vw,38px);letter-spacing:-.02em;background:linear-gradient(180deg,#f3d58a,#c99a3c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats span{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#a9c0b8;text-align:center;line-height:1.4}
+@media (min-width:901px){
+ .hero .wrap:not(.stats-wrap){grid-template-columns:1fr 1fr!important;gap:20px!important;align-items:end!important;padding-top:clamp(18px,2.6vw,36px)!important}
+ .hero h1{font-size:clamp(34px,3.5vw,52px)!important;line-height:1.08;margin:0 0 .35em!important}
+ .he{font-size:clamp(15.5px,1.15vw,18px)!important;max-width:540px;color:#c9dbd4}
+ .quote{font-size:15.5px;max-width:520px}
+ .hero .wrap:not(.stats-wrap)>div:first-child{padding-bottom:clamp(48px,6vh,72px)!important}
+ .hero-ph{max-width:none!important;width:min(100%,520px);justify-self:center}
+ .hero-ph img{max-height:min(560px,62vh);width:auto;margin:0 auto}
+}
+@media (max-width:900px){.chip,.hero::after{display:none}.stats{margin-top:-10px}.halo{width:110%}}
+@media (max-width:640px){.stats svg{display:none}.stats b{font-size:19px}.stats span{font-size:9px;letter-spacing:.02em;text-transform:none}.hero .kick{font-size:11px;margin-bottom:6px;justify-content:center}.hero .kick::before{display:none}}
+@media (prefers-reduced-motion:reduce){.chip,.halo::before{animation:none}}
 </style>"""
 home = H_CSS + f"""
 <section class="hero"><div class="wrap">
   <div class="rv in">
-    <h1><span>VKVSir · Engineering College Ajmer</span>Dr. Vinod Kr. Verma</h1>
+    <span class="kick">VKVSir · Engineering College Ajmer</span>
+    <h1>Dr. Vinod Kr. Verma</h1>
     <p class="he">He is <em>a professor by profession</em>, an innovator by intelligence, a motivator by mood, brilliant with brain &amp; humble with heart<span class="he-x">, with global industry experience as a Project Manager in Dubai &amp; Afghanistan and a General Manager in India</span>.</p>
     <p class="quote">"In today's era, there is nothing better than human networking!!" … VKVSir</p>
     <div class="actions"><a class="btn btn-gold" href="courses">Explore courses</a><a class="btn btn-light" href="{TESTLAB}" target="_blank" rel="noopener">Take a free test</a></div>
   </div>
-  <div class="hero-ph"><img src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_440,h_531,al_c,q_85,enc_auto/vkvsir.png" width="440" height="531" alt="Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer" fetchpriority="high"></div>
+  <div class="hero-ph"><span class="halo" aria-hidden="true"></span><span class="chip c1">Ph.D. · M.Tech IIT Jodhpur · MBA</span><span class="chip c2">🌍 Dubai · Afghanistan · India</span><span class="chip c3">🏅 Patent granted</span><img src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_620,h_748,al_c,q_88,enc_auto/vkvsir.png" width="620" height="748" alt="Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer" fetchpriority="high"></div>
 </div>
 <div class="wrap stats-wrap"><div class="stats">
-  <div><b>18+</b><span><i class="lg">years teaching</i><i class="sm">yrs teaching</i></span></div><div><b>5+</b><span><i class="lg">years industry · India &amp; abroad</i><i class="sm">yrs industry</i></span></div><div><b>10+</b><span><i class="lg">consultancy &amp; expert · industry &amp; govt.</i><i class="sm">consultancy &amp; expert</i></span></div><div><b>60+</b><span><i class="lg">seminars &amp; workshops</i><i class="sm">seminars</i></span></div><div><b>1</b><span><i class="lg">patent granted</i><i class="sm">patent</i></span></div>
+  <div><svg viewBox="0 0 24 24"><path d="M3 9l9-5 9 5-9 5-9-5z"/><path d="M7 11v5c3 2 7 2 10 0v-5"/></svg><b>18+</b><span><i class="lg">years teaching</i><i class="sm">yrs teaching</i></span></div><div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><b>5+</b><span><i class="lg">years industry · India &amp; abroad</i><i class="sm">yrs industry</i></span></div><div><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10"/><path d="M9 20v-6h6v6"/></svg><b>10+</b><span><i class="lg">consultancy &amp; expert · industry &amp; govt.</i><i class="sm">consultancy &amp; expert</i></span></div><div><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z"/></svg><b>60+</b><span><i class="lg">seminars &amp; workshops</i><i class="sm">seminars</i></span></div><div><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg><b>1</b><span><i class="lg">patent granted</i><i class="sm">patent</i></span></div>
 </div></div></section>
 
 <section class="sec sec-white" id="about"><div class="wrap split">
