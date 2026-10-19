@@ -566,6 +566,7 @@ Promise.all([dbRpc('get_public_stats').catch(()=>null), dbGet('catalog?select=*&
   el.innerHTML=Object.entries(groups).map(([g,rs])=>`<div class="cgroup"><h3>${esc(g)}</h3><div class="items">${rs.map(r=>{const href=r.url||(r.status==='live'?TESTLAB:'');const tag=href?'a':'div';return `<${tag} class="item" ${href?`href="${esc(href)}" target="_blank" rel="noopener"`:''}><b>${esc(r.title)}</b><p>${esc(r.description||'')}</p><span class="qn">${esc(r.subgrp||'')}${r.subject_id&&qmap[r.subject_id]?' · '+plus(qmap[r.subject_id])+' questions':''}</span></${tag}>`}).join('')}</div></div>`).join('')+'<p class="muted" style="margin:14px 0 0">…and many more categories being added regularly.</p>';});
 });
 </script>"""
+tl = tl.replace('href="TESTLAB"', 'href="' + TESTLAB + '"')
 tljs = "<script>window.CAT_FALLBACK=" + json.dumps(CAT_FALLBACK) + "</script>" + tljs
 page("test-lab","VKV Sir Test Lab – Free Online MCQ Tests for Engineering, GATE, PSU, RTO & Interviews",
  "Free online MCQ tests by VKVSir: thousands of questions for internal exams and viva, competitive exams (GATE, PSU, RTO/MVI, SSC) and upcoming interview preparation.", tl, tljs, crumbs="Test Lab")
