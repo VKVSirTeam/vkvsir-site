@@ -107,17 +107,17 @@ FAQ_CSS = '<style>.faq details{background:#fff;border:1px solid var(--line);bord
 # =================== HOME ===================
 H_CSS = """<style>
 .hero{background:radial-gradient(900px 520px at 85% 20%,#1f6253 0,transparent 62%),radial-gradient(600px 400px at 0 100%,#123f37 0,transparent 70%),var(--g900);color:#e4ece8;overflow:hidden;position:relative}
-.hero .wrap:not(.stats-wrap){display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:end;padding:clamp(28px,4vw,52px) 0 0}
-.hero .wrap:not(.stats-wrap)>div:first-child{padding-bottom:clamp(20px,3vw,40px)}
-.hero h1{color:#fff;font-size:var(--step-4);margin:.1em 0 .3em}
+.hero .wrap:not(.stats-wrap){display:grid;grid-template-columns:1.15fr .85fr;gap:32px;align-items:end;padding:clamp(16px,2.4vw,30px) 0 0}
+.hero .wrap:not(.stats-wrap)>div:first-child{padding-bottom:clamp(16px,2vw,28px)}
+.hero h1{color:#fff;font-size:clamp(36px,4.2vw,60px);margin:.05em 0 .2em}
 .hero h1 span{display:block;color:var(--gold);font-size:.42em;font-weight:600;letter-spacing:.02em;margin-bottom:.4em}
-.he{font-size:var(--step-1);line-height:1.6;color:#cfe0d9;margin:0 0 1.2em}
+.he{font-size:clamp(17px,1.35vw,20px);line-height:1.55;color:#cfe0d9;margin:0 0 .9em}
 .he em{color:var(--lime);font-style:normal}
 .intl{font-family:var(--f-head);font-size:15px;color:#d8e6e0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:7px 14px;display:inline-block;margin:0 0 16px}.intl b{color:var(--gold)}
 .aph{position:relative;border-radius:var(--r-lg);background:radial-gradient(circle at 50% 70%,var(--g100) 0,#f3f8f1 60%,#fff 100%);padding:18px 18px 0;overflow:hidden;box-shadow:var(--sh)}.aph img{box-shadow:none!important;border-radius:0!important;width:100%;mix-blend-mode:multiply}
-.quote{border-left:3px solid var(--gold);padding:4px 0 4px 16px;font-style:italic;color:#e9dcb8;margin:0 0 28px}
+.quote{border-left:3px solid var(--gold);padding:4px 0 4px 16px;font-style:italic;color:#e9dcb8;margin:0 0 20px}
 .actions{display:flex;gap:12px;flex-wrap:wrap}
-.hero-ph{align-self:end;justify-self:center;position:relative;max-width:470px}
+.hero-ph{align-self:end;justify-self:center;position:relative;max-width:min(400px,47vh)}
 .hero-ph::before{content:"";position:absolute;inset:12% 6% 0;background:radial-gradient(circle,var(--gold) 0,transparent 68%);opacity:.28;filter:blur(10px)}
 .hero-ph img{position:relative;filter:drop-shadow(0 24px 40px rgba(0,0,0,.45))}
 .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.1);border-radius:var(--r) var(--r) 0 0;overflow:hidden;margin-top:-1px}
@@ -168,21 +168,21 @@ H_CSS = """<style>
 .cta-band>*{position:relative}.cta-band h2{color:#fff;font-size:var(--step-4);margin-bottom:.3em}.cta-band p{color:#d5e2dd;max-width:620px;margin:0 auto 28px;font-size:var(--step-1)}
 .cta-band .actions{justify-content:center}
 @media (max-width:640px){
- .hero .wrap:not(.stats-wrap){grid-template-columns:1fr 34%!important;gap:10px!important;text-align:left!important;padding-top:18px!important;align-items:end!important}
- .hero .wrap:not(.stats-wrap)>div:first-child{padding-bottom:14px!important}
- .hero h1{font-size:clamp(28px,8.4vw,34px);margin:.05em 0 .25em}.hero h1 span{font-size:.42em}
- .he{font-size:14.5px;line-height:1.5;margin-bottom:10px}
- .intl{font-size:12px;padding:5px 10px;border-radius:12px;margin-bottom:10px}
+ .hero .wrap:not(.stats-wrap){padding-top:14px!important;gap:6px!important}
+ .hero .wrap:not(.stats-wrap)>div:first-child{padding-bottom:0!important}
+ .hero h1{font-size:clamp(30px,9vw,38px);margin:.05em 0 .2em}
+ .he{font-size:15px;line-height:1.5;margin-bottom:12px}.he-x{display:none}
  .quote{display:none}
- .actions{justify-content:flex-start!important;gap:8px}.hero .actions .btn{padding:10px 14px;font-size:14px}
- .hero-ph{max-width:none!important;width:100%;align-self:end}.hero-ph::before{inset:20% 0 0}
+ .actions{gap:8px}.hero .actions .btn{padding:10px 16px;font-size:14.5px}
+ .hero-ph{max-width:190px!important}
  .stats{grid-template-columns:repeat(5,1fr)!important;border-radius:12px 12px 0 0}
  .stats div{padding:10px 3px}.stats b{font-size:19px}.stats span{font-size:9.5px;line-height:1.25;display:block;margin-top:3px}
  .split{grid-template-columns:34% 1fr!important;gap:14px!important;align-items:start!important}
- .aph{padding:8px 8px 0;border-radius:14px;position:sticky;top:calc(var(--hh) + 10px)}
+ .aph{padding:8px 8px 0;border-radius:14px}
  .split h2{font-size:22px!important}
 .cta-band{padding:56px 16px}.mock{padding:16px}.mock h4{font-size:16px}}
-@media (max-width:900px) and (min-width:641px){.hero .wrap:not(.stats-wrap),.split{grid-template-columns:1fr}}
+@media (max-width:900px){.hero .wrap:not(.stats-wrap){grid-template-columns:1fr;text-align:center}.hero .actions{justify-content:center}}
+@media (max-width:900px) and (min-width:641px){.split{grid-template-columns:1fr}}
 @media (max-width:900px){.lab,.rd,.views{grid-template-columns:1fr}.hero .wrap:not(.stats-wrap){text-align:center}.actions{justify-content:center}.quote{text-align:left}.hero-ph{max-width:320px}.stats{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.mock{transform:none}}
 @media (max-width:520px){.feat{gap:10px}.feat div{padding:12px}.feat b{font-size:14.5px}.feat span{font-size:13px}}
 </style>"""
@@ -190,15 +190,14 @@ home = H_CSS + f"""
 <section class="hero"><div class="wrap">
   <div class="rv in">
     <h1><span>VKVSir · Engineering College Ajmer</span>Dr. Vinod Kr. Verma</h1>
-    <p class="he">He is <em>a professor by profession</em>, an innovator by intelligence, a motivator by mood, brilliant with brain &amp; humble with heart.</p>
-    <p class="intl">🌍 Former Project Manager in <b>Dubai &amp; Afghanistan</b> · General Manager in Indian industry</p>
+    <p class="he">He is <em>a professor by profession</em>, an innovator by intelligence, a motivator by mood, brilliant with brain &amp; humble with heart<span class="he-x">, with global industry experience as a Project Manager in Dubai &amp; Afghanistan and a General Manager in India</span>.</p>
     <p class="quote">"In today's era, there is nothing better than human networking!!" … VKVSir</p>
     <div class="actions"><a class="btn btn-gold" href="courses">Explore courses</a><a class="btn btn-light" href="{TESTLAB}" target="_blank" rel="noopener">Take a free test</a></div>
   </div>
   <div class="hero-ph"><img src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_440,h_531,al_c,q_85,enc_auto/vkvsir.png" width="440" height="531" alt="Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer" fetchpriority="high"></div>
 </div>
 <div class="wrap stats-wrap"><div class="stats">
-  <div><b>18+</b><span><i class="lg">years teaching</i><i class="sm">yrs teaching</i></span></div><div><b>5+</b><span><i class="lg">years industry · India &amp; abroad</i><i class="sm">yrs industry</i></span></div><div><b>10+</b><span><i class="lg">consultancy &amp; expert · industry &amp; govt. projects</i><i class="sm">consultancy</i></span></div><div><b>60+</b><span><i class="lg">seminars &amp; workshops</i><i class="sm">seminars</i></span></div><div><b>1</b><span><i class="lg">patent granted</i><i class="sm">patent</i></span></div>
+  <div><b>18+</b><span><i class="lg">years teaching</i><i class="sm">yrs teaching</i></span></div><div><b>5+</b><span><i class="lg">years industry · India &amp; abroad</i><i class="sm">yrs industry</i></span></div><div><b>10+</b><span><i class="lg">consultancy &amp; expert · industry &amp; govt.</i><i class="sm">consultancy &amp; expert</i></span></div><div><b>60+</b><span><i class="lg">seminars &amp; workshops</i><i class="sm">seminars</i></span></div><div><b>1</b><span><i class="lg">patent granted</i><i class="sm">patent</i></span></div>
 </div></div></section>
 
 <section class="sec sec-white" id="about"><div class="wrap split">
@@ -563,7 +562,7 @@ Promise.all([dbRpc('get_public_stats').catch(()=>null), dbGet('catalog?select=*&
  const qmap={}; if(s){ document.querySelector('[data-k=total]').textContent=plus(s.total_questions); document.querySelector('[data-k=tests]').textContent=plus(s.tests_listed); s.subjects.forEach(x=>qmap[x.id]=x.questions); }
  document.querySelectorAll('.cg').forEach(el=>{ const rows=cat.filter(c=>c.track===el.dataset.track); if(!rows.length){el.innerHTML='<p class="muted">Categories will appear here soon.</p>';return;}
   const groups={}; rows.forEach(r=>(groups[r.grp]=groups[r.grp]||[]).push(r));
-  el.innerHTML=Object.entries(groups).map(([g,rs])=>`<div class="cgroup"><h3>${esc(g)}</h3><div class="items">${rs.map(r=>{const href=r.url||(r.status==='live'?TESTLAB:'');const tag=href?'a':'div';return `<${tag} class="item" ${href?`href="${esc(href)}" target="_blank" rel="noopener"`:''}><b>${esc(r.title)}</b><p>${esc(r.description||'')}</p><span class="qn">${esc(r.subgrp||'')}${r.subject_id&&qmap[r.subject_id]?' · '+plus(qmap[r.subject_id])+' questions':''}</span></${tag}>`}).join('')}</div></div>`).join('')+'<p class="muted" style="margin:14px 0 0">…and many more categories being added regularly.</p>';});
+  el.innerHTML=Object.entries(groups).map(([g,rs])=>`<div class="cgroup"><h3>${esc(g)}</h3><div class="items">${rs.map(r=>{const href=r.url||(r.status==='live'?TESTLAB:'');const tag=href?'a':'div';return `<${tag} class="item" ${href?`href="${esc(href)}" target="_blank" rel="noopener"`:''}><b>${esc(r.title)}</b><p>${esc(r.description||'')}</p><span class="qn">${esc(r.subgrp||'')}</span></${tag}>`}).join('')}</div></div>`).join('')+'<p class="muted" style="margin:14px 0 0">…and many more categories being added regularly.</p>';});
 });
 </script>"""
 tl = tl.replace('href="TESTLAB"', 'href="' + TESTLAB + '"')
