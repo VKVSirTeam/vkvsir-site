@@ -233,3 +233,5 @@ body{animation:pagein .45s ease both}
 .ftr-cta a.gold{background:var(--gold);color:#1a1a1a!important;border-color:var(--gold)}
 
 .sm{display:none}@media(max-width:640px){.lg{display:none}.sm{display:inline}}
+.menu a,.menu button{white-space:nowrap}
+@media (min-width:1181px) and (max-width:1440px){.hdr .brand small{max-width:240px;overflow:hidden;text-overflow:ellipsis}}
