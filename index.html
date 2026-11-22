@@ -180,7 +180,7 @@
 
 <section class="sec sec-deep" id="test-lab"><div class="wrap lab">
   <div class="rv"><span class="kicker">VKV Sir Test Lab</span><h2 style="font-size:var(--step-3)">Practise like the real exam</h2>
-    <p><b style="color:var(--gold)" data-stat="total">Thousands of</b> MCQs, organised the way you study: <b>Practice</b> topic by topic with answers explained, timed <b>Tests</b> and full mock papers, <b>Exams</b> (GATE, ESE, PSU, SSC, railways, RTO/MVI and B.Tech syllabus), a <b>Daily test</b> with its own leaderboard, and <b>Job Prep</b> for placements.</p>
+    <p><b style="color:var(--gold)" data-stat="total">1,00,000+</b> MCQs, organised the way you study: <b>Practice</b> topic by topic with answers explained, timed <b>Tests</b> and full mock papers, <b>Exams</b> (GATE, ESE, PSU, SSC, railways, RTO/MVI and B.Tech syllabus), a <b>Daily test</b> with its own leaderboard, and <b>Job Prep</b> for placements.</p>
     <div class="feat"><div><b>Topic &amp; unit tests</b><span>Pick a unit or a single topic and start in one tap.</span></div><div><b>Fair timing</b><span>Per-question timers with extra time for numericals.</span></div><div><b>Easy → hard mix</b><span>Balanced difficulty, from concepts to analytical problems.</span></div><div><b>Instant results</b><span>See your score and correct answers right away.</span></div></div>
     <div class="actions" style="justify-content:flex-start"><a class="btn btn-gold" href="https://test.vkvsir.com/practice" target="_blank" rel="noopener">Start practice</a><a class="btn btn-light" href="https://test.vkvsir.com/test" target="_blank" rel="noopener">Take a test</a><a class="btn btn-light" href="test-lab">How Test Lab works</a></div></div>
   <div class="mock rv rv-d2" aria-hidden="true"><div class="top"><span>Automobile Engg. · Unit 3</span><span class="timer">⏱ 00:42</span></div><div class="bar"><i></i></div>
@@ -255,6 +255,6 @@ const jump=n=>{clearInterval(t);show(n);start();};
 dots.forEach((d,n)=>d.onclick=()=>jump(n));s.querySelector('.p').onclick=()=>jump(i-1);s.querySelector('.n').onclick=()=>jump(i+1);
 let x0=null;s.addEventListener('touchstart',e=>x0=e.touches[0].clientX,{passive:true});s.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)jump(i+(dx<0?1:-1));x0=null;});
 new IntersectionObserver(es=>es.forEach(e=>{clearInterval(t);if(e.isIntersecting)start();})).observe(s);})();
-dbRpc('get_public_stats').then(s=>document.querySelectorAll('[data-stat=total]').forEach(e=>e.textContent=s.total_questions.toLocaleString('en-IN'))).catch(()=>{});</script>
+document.querySelectorAll('[data-stat=total]').forEach(e=>{const to=100000,t0=performance.now();const run=()=>{(function tick(t){const k=Math.min(1,(t-t0)/1600);e.textContent=k<1?Math.round(to*(1-Math.pow(1-k,3))).toLocaleString('en-IN'):'1,00,000+';if(k<1)requestAnimationFrame(tick);})(performance.now());};if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();run();}});io.observe(e);}else e.textContent='1,00,000+';});</script>
 </body>
 </html>

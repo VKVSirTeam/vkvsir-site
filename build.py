@@ -262,7 +262,7 @@ home = H_CSS + f"""
 
 <section class="sec sec-deep" id="test-lab"><div class="wrap lab">
   <div class="rv"><span class="kicker">VKV Sir Test Lab</span><h2 style="font-size:var(--step-3)">Practise like the real exam</h2>
-    <p><b style="color:var(--gold)" data-stat="total">Thousands of</b> MCQs, organised the way you study: <b>Practice</b> topic by topic with answers explained, timed <b>Tests</b> and full mock papers, <b>Exams</b> (GATE, ESE, PSU, SSC, railways, RTO/MVI and B.Tech syllabus), a <b>Daily test</b> with its own leaderboard, and <b>Job Prep</b> for placements.</p>
+    <p><b style="color:var(--gold)" data-stat="total">1,00,000+</b> MCQs, organised the way you study: <b>Practice</b> topic by topic with answers explained, timed <b>Tests</b> and full mock papers, <b>Exams</b> (GATE, ESE, PSU, SSC, railways, RTO/MVI and B.Tech syllabus), a <b>Daily test</b> with its own leaderboard, and <b>Job Prep</b> for placements.</p>
     <div class="feat"><div><b>Topic &amp; unit tests</b><span>Pick a unit or a single topic and start in one tap.</span></div><div><b>Fair timing</b><span>Per-question timers with extra time for numericals.</span></div><div><b>Easy → hard mix</b><span>Balanced difficulty, from concepts to analytical problems.</span></div><div><b>Instant results</b><span>See your score and correct answers right away.</span></div></div>
     <div class="actions" style="justify-content:flex-start"><a class="btn btn-gold" href="{TESTLAB}/practice" target="_blank" rel="noopener">Start practice</a><a class="btn btn-light" href="{TESTLAB}/test" target="_blank" rel="noopener">Take a test</a><a class="btn btn-light" href="test-lab">How Test Lab works</a></div></div>
   <div class="mock rv rv-d2" aria-hidden="true"><div class="top"><span>Automobile Engg. · Unit 3</span><span class="timer">⏱ 00:42</span></div><div class="bar"><i></i></div>
@@ -334,7 +334,7 @@ new IntersectionObserver(es=>es.forEach(e=>{clearInterval(t);if(e.isIntersecting
 faq_ld = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":html.unescape(q),"acceptedAnswer":{"@type":"Answer","text":html.unescape(a)}} for q,a in FAQS]}
 page("index","VKVSir – Dr. Vinod Kumar Verma | Automobile Engineering, EV & Workshop Courses",
  "Free Automobile Engineering, Hybrid & Electric Vehicles, Workshop Practice and Machine Drawing lectures in Hindi & English by Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer. PPTs, PDFs, MCQs and online tests.",
- home, home_js.replace("</script>", "dbRpc('get_public_stats').then(s=>document.querySelectorAll('[data-stat=total]').forEach(e=>e.textContent=s.total_questions.toLocaleString('en-IN'))).catch(()=>{});</script>"))
+ home, home_js.replace("</script>", "document.querySelectorAll('[data-stat=total]').forEach(e=>{const to=100000,t0=performance.now();const run=()=>{(function tick(t){const k=Math.min(1,(t-t0)/1600);e.textContent=k<1?Math.round(to*(1-Math.pow(1-k,3))).toLocaleString('en-IN'):'1,00,000+';if(k<1)requestAnimationFrame(tick);})(performance.now());};if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){io.disconnect();run();}});io.observe(e);}else e.textContent='1,00,000+';});</script>"))
 
 # =================== ABOUT ===================
 about = banner("About VKVSir","Dr. Vinod Kumar Verma (Ph.D., M.Tech., MBA): professor, innovator, consultant and mentor, with international industry experience in Dubai and Afghanistan.","About") + """
@@ -636,7 +636,7 @@ tl = """<style>.tl-hero{background:radial-gradient(900px 500px at 85% 10%,#1f625
 tljs = """<script>
 const STL={live:'Live',coming:'Coming soon',planned:'Planned',research:'In research'};
 Promise.all([dbRpc('get_public_stats').catch(()=>null), dbGet('catalog?select=*&active=eq.true&order=track,sort').catch(()=>window.CAT_FALLBACK||[])]).then(([s,cat])=>{
- const qmap={}; if(s){ document.querySelector('[data-k=total]').textContent=plus(s.total_questions); document.querySelector('[data-k=tests]').textContent=plus(s.tests_listed); s.subjects.forEach(x=>qmap[x.id]=x.questions); }
+ const qmap={}; if(s){ document.querySelector('[data-k=total]').textContent='1,00,000+'; document.querySelector('[data-k=tests]').textContent=plus(s.tests_listed); s.subjects.forEach(x=>qmap[x.id]=x.questions); }
  document.querySelectorAll('.cg').forEach(el=>{ const rows=cat.filter(c=>c.track===el.dataset.track); if(!rows.length){el.innerHTML='<p class="muted">Categories will appear here soon.</p>';return;}
   const groups={}; rows.forEach(r=>(groups[r.grp]=groups[r.grp]||[]).push(r));
   el.innerHTML=Object.entries(groups).map(([g,rs])=>`<div class="cgroup"><h3>${esc(g)}</h3><div class="items">${rs.map(r=>{const href=r.url||(r.status==='live'?TESTLAB:'');const tag=href?'a':'div';return `<${tag} class="item" ${href?`href="${esc(href)}" target="_blank" rel="noopener"`:''}><b>${esc(r.title)}</b><p>${esc(r.description||'')}</p><span class="qn">${esc(r.subgrp||'')}</span></${tag}>`}).join('')}</div></div>`).join('')+'<p class="muted" style="margin:14px 0 0">…and many more categories being added regularly.</p>';});
