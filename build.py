@@ -238,7 +238,7 @@ home = H_CSS + f"""
     <h1>Dr. Vinod Kr. Verma</h1>
     <p class="he">He is <em>a professor by profession</em>, an innovator by intelligence, a motivator by mood, brilliant with brain &amp; humble with heart<span class="he-x">, with global industry experience as a Project Manager in Dubai &amp; Afghanistan and a General Manager in India</span>.</p>
     <p class="quote">"In today's era, there is nothing better than human networking!!" … VKVSir</p>
-    <div class="actions"><a class="btn btn-gold" href="courses">Explore courses</a><a class="btn btn-light" href="{TESTLAB}" target="_blank" rel="noopener">Take a free test</a></div>
+    <div class="tiles3"><a class="t3" href="courses"><b>Courses</b><span>Full lectures in Hindi &amp; English</span></a><a class="t3" href="{TESTLAB}/practice" target="_blank" rel="noopener"><b>Practice subjects</b><span>Topic-wise, answers explained</span></a><a class="t3 t3-gold" href="{TESTLAB}/test" target="_blank" rel="noopener"><b>Take a test</b><span>Timed, scored, ranked</span></a></div>
   </div>
   <div class="hero-ph"><span class="halo" aria-hidden="true"></span><span class="chip c1">🎓 IITian M.Tech · Ph.D. &amp; MBA</span><span class="chip c2">🌍 Dubai · Afghanistan · India</span><span class="chip c3">🏅 Patent granted</span><img src="https://static.wixstatic.com/media/b90d41_0e9d277a56394502abc7bd99cb2779c1~mv2.png/v1/crop/x_110,y_0,w_1074,h_1296/fill/w_620,h_748,al_c,q_88,enc_auto/vkvsir.png" width="620" height="748" alt="Dr. Vinod Kumar Verma (VKVSir), Engineering College Ajmer" fetchpriority="high"></div>
 </div>
@@ -262,9 +262,9 @@ home = H_CSS + f"""
 
 <section class="sec sec-deep" id="test-lab"><div class="wrap lab">
   <div class="rv"><span class="kicker">VKV Sir Test Lab</span><h2 style="font-size:var(--step-3)">Practise like the real exam</h2>
-    <p><b style="color:var(--gold)" data-stat="total">Thousands of</b> MCQs across three tracks: <b>Foundation</b> (internal exams &amp; viva), <b>Competitive exams</b> (GATE, PSU, RTO/MVI, SSC) and <b>Career &amp; interview</b> preparation.</p>
+    <p><b style="color:var(--gold)" data-stat="total">Thousands of</b> MCQs, organised the way you study: <b>Practice</b> topic by topic with answers explained, timed <b>Tests</b> and full mock papers, <b>Exams</b> (GATE, ESE, PSU, SSC, railways, RTO/MVI and B.Tech syllabus), a <b>Daily test</b> with its own leaderboard, and <b>Job Prep</b> for placements.</p>
     <div class="feat"><div><b>Topic &amp; unit tests</b><span>Pick a unit or a single topic and start in one tap.</span></div><div><b>Fair timing</b><span>Per-question timers with extra time for numericals.</span></div><div><b>Easy → hard mix</b><span>Balanced difficulty, from concepts to analytical problems.</span></div><div><b>Instant results</b><span>See your score and correct answers right away.</span></div></div>
-    <div class="actions" style="justify-content:flex-start"><a class="btn btn-gold" href="{TESTLAB}" target="_blank" rel="noopener">Open Test Lab</a><a class="btn btn-light" href="test-lab">How Test Lab works</a></div></div>
+    <div class="actions" style="justify-content:flex-start"><a class="btn btn-gold" href="{TESTLAB}/practice" target="_blank" rel="noopener">Start practice</a><a class="btn btn-light" href="{TESTLAB}/test" target="_blank" rel="noopener">Take a test</a><a class="btn btn-light" href="test-lab">How Test Lab works</a></div></div>
   <div class="mock rv rv-d2" aria-hidden="true"><div class="top"><span>Automobile Engg. · Unit 3</span><span class="timer">⏱ 00:42</span></div><div class="bar"><i></i></div>
     <h4>Q 6 / 10 · Which component converts reciprocating motion into rotary motion?</h4>
     <div class="opt"><b>A</b> Camshaft</div><div class="opt ok"><b>B</b> Crankshaft ✓</div><div class="opt"><b>C</b> Flywheel</div><div class="opt"><b>D</b> Connecting rod</div></div>

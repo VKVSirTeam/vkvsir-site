@@ -41,7 +41,7 @@ const SITE = {
     ['Project & innovation ideas','members#projects']
   ],
   menu: [
-    ['Home','./'],['About','about'],['Courses',null,'courses'],['Test Lab','test-lab'],
+    ['Home','./'],['About','about'],['Courses',null,'courses'],['Test Lab',null,[['About Test Lab','test-lab'],['Practice subjects',TESTLAB+'/practice'],['Take a test',TESTLAB+'/test'],['Daily test',TESTLAB+'/t/daily'],['Exams (GATE, SSC, PSU…)',TESTLAB+'/exams'],['Job Prep',TESTLAB+'/career'],['Leaderboard',TESTLAB+'/leaderboard']]],
     ['R&D','research-project-innovation'],['Media','media'],['Blog','blog'],['Members',null,'members']
   ],
   footer: '©2026 Website created & handled by Reeva Verma'
